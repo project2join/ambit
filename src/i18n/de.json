@@ -105,9 +105,9 @@
       "title": "Dating — deine Einstellungen."
     },
     "firstPlan": {
-      "title": "Erstell deinen ersten Ich-geh-eh-Plan.",
-      "subtitle": "Wohin gehst du diese Woche eh? Lad jemanden ein — ganz ohne Verpflichtung.",
-      "use": "Übernehmen",
+      "title": "Erstell deinen ersten Plan.",
+      "subtitle": "Wohin gehst du diese Woche sowieso? Lad jemanden ein.",
+      "use": "Plan erstellen",
       "laterHint": "Kein Druck — einen Plan erstellen kannst du jederzeit."
     }
   },
@@ -119,8 +119,8 @@
     "categoriesHint": "Kategorien sortieren nur deinen Feed — ausgeschlossen wird dadurch niemand.",
     "orientLabel": "Ich interessiere mich für",
     "orientHint": "Steuert nur dein Entdecken-Set — für niemanden sichtbar.",
-    "relLabel": "Beziehungsmodell · optional",
-    "relHint": "Erscheint nur als kleines Badge, wenn du es angibst. Nochmals antippen entfernt es.",
+    "relLabel": "Mein Beziehungsstatus · optional",
+    "relHint": "Was für dich gilt — nicht, was du suchst. Erscheint nur als kleines Badge, wenn du es angibst. Nochmals antippen entfernt es.",
     "showOpenRel": "Leute in offenen Beziehungen anzeigen"
   },
   "me": {

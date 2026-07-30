@@ -105,9 +105,9 @@
       "title": "Dating — your settings."
     },
     "firstPlan": {
-      "title": "Create your first I'm-going-anyway plan.",
-      "subtitle": "Where are you going this week anyway? Invite someone along — no strings attached.",
-      "use": "Use this",
+      "title": "Create your first plan.",
+      "subtitle": "Where are you going this week anyway? Invite someone along.",
+      "use": "Create plan",
       "laterHint": "No pressure — you can create a plan any time."
     }
   },
@@ -119,8 +119,8 @@
     "categoriesHint": "Categories only sort your feed — nobody is ever excluded.",
     "orientLabel": "I'm interested in",
     "orientHint": "Only steers your Discover set — visible to no one.",
-    "relLabel": "Relationship model · optional",
-    "relHint": "Only appears as a small badge if you set it. Tap again to remove.",
+    "relLabel": "My relationship status · optional",
+    "relHint": "What's true for you — not what you're looking for. Only appears as a small badge if you set it. Tap again to remove.",
     "showOpenRel": "Show people in open relationships"
   },
   "me": {

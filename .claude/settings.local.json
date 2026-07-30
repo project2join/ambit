@@ -24,7 +24,8 @@
       "Bash(git commit -m 'Mehrsprachigkeit: alle Texte aus de.json/en.json, Gerätesprache als Start, Umschalter mit Speicherung *)",
       "Bash(git commit -m 'Willkommen-Label entfernt: Slogan begrüsst direkt *)",
       "Bash(npm run *)",
-      "Bash(git commit -m 'Profil-Bereich: Onboarding in 10 Schritten, Ich-Tab, Bottom-Navigation, Datenbank-Setup *)"
+      "Bash(git commit -m 'Profil-Bereich: Onboarding in 10 Schritten, Ich-Tab, Bottom-Navigation, Datenbank-Setup *)",
+      "Bash(git commit -m 'Texte verfeinert: Beziehungsstatus klarer, Abschluss-Karte lockerer *)"
     ]
   }
 }
