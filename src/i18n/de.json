@@ -15,13 +15,193 @@
     "sentTitle": "Schau in dein Postfach.",
     "sentBody": "Wir haben dir einen Anmelde-Link an <strong>{{email}}</strong> geschickt. Ein Klick darauf, und du bist drin."
   },
-  "home": {
-    "loggedInAs": "Eingeloggt als",
+  "common": {
+    "next": "Weiter",
+    "back": "Zurück",
+    "remove": "Entfernen",
+    "close": "Schliessen",
+    "later": "Später",
+    "change": "Ändern"
+  },
+  "nav": {
+    "plans": "Pläne",
+    "discover": "Entdecken",
+    "create": "Plan erstellen",
+    "places": "Orte",
+    "me": "Ich"
+  },
+  "placeholder": {
+    "title": "Kommt bald.",
+    "body": "Diesen Teil bauen wir als Nächstes."
+  },
+  "setupError": {
+    "title": "Datenbank fehlt noch",
+    "body": "Dein Profil konnte nicht geladen werden. Wahrscheinlich wurde das Setup-Skript (supabase/setup.sql) noch nicht in Supabase ausgeführt."
+  },
+  "photos": {
+    "main": "Hauptfoto",
+    "add": "Foto",
+    "uploading": "Lädt hoch…",
+    "uploadError": "Hochladen hat nicht geklappt — versuch es nochmal."
+  },
+  "location": {
+    "searchPlaceholder": "Quartier, Ort oder PLZ",
+    "search": "Suchen",
+    "noResults": "Nichts gefunden — probier es mit dem Ortsnamen."
+  },
+  "promptsUi": {
+    "pickTitle": "Wähle eine Frage",
+    "pick": "Frage wählen",
+    "change": "Andere Frage",
+    "answerPlaceholder": "Deine Antwort …",
+    "addThird": "+ Dritte Antwort hinzufügen (optional)"
+  },
+  "onboarding": {
+    "stepOf": "Schritt {{current}} von {{total}}",
+    "basics": {
+      "title": "Schön, bist du da.",
+      "subtitle": "Erzähl kurz, wer du bist.",
+      "nameLabel": "Vorname",
+      "namePlaceholder": "Dein Vorname",
+      "ageLabel": "Alter",
+      "ageHint": "Ambit ist ab 18.",
+      "genderLabel": "Geschlecht"
+    },
+    "photosStep": {
+      "title": "Zeig dich.",
+      "subtitle": "3 bis 5 Fotos — zum Start reichen 2. Wichtig: Das erste Foto zeigt dein Gesicht."
+    },
+    "aboutStep": {
+      "title": "Über dich.",
+      "subtitle": "Ein, zwei Sätze reichen — wie du bist, nicht dein Lebenslauf.",
+      "placeholder": "z. B. Halb Gym, halb Gipfeli. Immer offen für Pläne, bei denen man danach etwas erzählen kann."
+    },
+    "promptsStep": {
+      "title": "Zwei Fragen, ehrliche Antworten.",
+      "subtitle": "Wähle zwei Fragen und antworte in deinen Worten. Eine dritte ist freiwillig."
+    },
+    "languagesStep": {
+      "title": "Welche Sprachen sprichst du?",
+      "otherPlaceholder": "Weitere … (z. B. Tamil, Türkisch)",
+      "otherAdd": "Hinzufügen"
+    },
+    "locationStep": {
+      "title": "Wo bist du zuhause?",
+      "subtitle": "Nur Quartier, Ort oder Postleitzahl — nie deine Adresse.",
+      "chosenLabel": "Dein Ort",
+      "privacyHint": "Andere sehen nur diese Bezeichnung — nie eine Adresse oder exakte Distanz."
+    },
+    "rhythmStep": {
+      "title": "Wann bist du meist unterwegs?"
+    },
+    "interestsStep": {
+      "title": "Was machst du eh schon gern?"
+    },
+    "smokingStep": {
+      "title": "Rauchst du?",
+      "hint": "Optional — nochmals antippen entfernt die Angabe."
+    },
+    "datingStep": {
+      "title": "Dating — deine Einstellungen."
+    },
+    "firstPlan": {
+      "title": "Erstell deinen ersten Ich-geh-eh-Plan.",
+      "subtitle": "Wohin gehst du diese Woche eh? Lad jemanden ein — ganz ohne Verpflichtung.",
+      "use": "Übernehmen",
+      "laterHint": "Kein Druck — einen Plan erstellen kannst du jederzeit."
+    }
+  },
+  "intent": {
+    "seekLabel": "Ich suche",
+    "meetLabel": "So treffe ich mich gern",
+    "intentHint": "Diese zwei Einstellungen steuern alles: Du siehst nur, was zu dir passt — und umgekehrt.",
+    "categoriesLabel": "Meine Kategorien",
+    "categoriesHint": "Kategorien sortieren nur deinen Feed — ausgeschlossen wird dadurch niemand.",
+    "orientLabel": "Ich interessiere mich für",
+    "orientHint": "Steuert nur dein Entdecken-Set — für niemanden sichtbar.",
+    "relLabel": "Beziehungsmodell · optional",
+    "relHint": "Erscheint nur als kleines Badge, wenn du es angibst. Nochmals antippen entfernt es.",
+    "showOpenRel": "Leute in offenen Beziehungen anzeigen"
+  },
+  "me": {
+    "photosLabel": "Meine Fotos · {{count}} von 5",
+    "aboutLabel": "Über mich",
+    "rhythmLabel": "Meist unterwegs",
+    "languagesLabel": "Ich spreche",
+    "locationLabel": "Wohnort",
+    "radiusLabel": "Umkreis für Pläne & Entdecken",
+    "radiusHint": "Sortiert nach Nähe — schliesst niemanden aus. Andere sehen nur deinen Ort, nie deine Adresse oder exakte Distanz.",
+    "smokingLabel": "Rauchen",
+    "appLanguage": "App-Sprache",
     "logout": "Abmelden"
   },
   "language": {
-    "label": "Sprache",
     "de": "Deutsch",
     "en": "English"
+  },
+  "gender": {
+    "woman": "Frau",
+    "man": "Mann",
+    "nonbinary": "Non-binär"
+  },
+  "categories": {
+    "sport": "Sport",
+    "kaffee": "Kaffee",
+    "essen": "Essen",
+    "ausgang": "Ausgang"
+  },
+  "languagesList": {
+    "de": "Deutsch",
+    "ch": "Schweizerdeutsch",
+    "en": "Englisch",
+    "fr": "Französisch",
+    "it": "Italienisch",
+    "es": "Spanisch",
+    "pt": "Portugiesisch"
+  },
+  "rhythmList": {
+    "morning": "Morgens",
+    "evening": "Abends",
+    "weekend": "Wochenende"
+  },
+  "seek": {
+    "friendship": "Freundschaft",
+    "dating": "Dating"
+  },
+  "meet": {
+    "group": "In der Gruppe",
+    "pair": "Zu zweit"
+  },
+  "smokingList": {
+    "no": "Nein",
+    "sometimes": "Gelegentlich",
+    "yes": "Ja"
+  },
+  "orientationList": {
+    "women": "Frauen",
+    "men": "Männer",
+    "all": "Alle"
+  },
+  "relList": {
+    "single": "Single",
+    "open": "Offene Beziehung"
+  },
+  "prompts": {
+    "p1": "Nimm mich mit zu…",
+    "p2": "Zuletzt allein gemacht — wäre zu zweit besser gewesen:",
+    "p3": "Zu zweit gemacht — wäre allein besser gewesen:",
+    "p4": "Darin will ich dieses Jahr besser werden:",
+    "p5": "Ich geh eh regelmässig… — kommst du mit?",
+    "p6": "Teilst du dein Essen? Sei ehrlich.",
+    "p7": "Was hast du zuletzt aus Angst nicht gemacht?",
+    "p8": "Wenn du ein Buch schreiben müsstest — worüber?",
+    "p9": "Ohne Ziel in den nächsten Zug steigen — Traum oder Albtraum?",
+    "p10": "Dafür stehe ich freiwillig um 6 Uhr morgens auf:"
+  },
+  "planSuggestions": {
+    "sport": "Ich geh eh Donnerstag bouldern — wer kommt mit?",
+    "kaffee": "Samstagvormittag Kafi am See — ich bin eh da.",
+    "essen": "Ich teste eh die neue Ramen-Beiz — jemand dabei?",
+    "ausgang": "Freitag ins Kino — Tag noch flexibel. Wer kommt mit?"
   }
 }

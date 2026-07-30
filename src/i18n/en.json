@@ -15,13 +15,193 @@
     "sentTitle": "Check your inbox.",
     "sentBody": "We've sent a sign-in link to <strong>{{email}}</strong>. One click and you're in."
   },
-  "home": {
-    "loggedInAs": "Signed in as",
+  "common": {
+    "next": "Next",
+    "back": "Back",
+    "remove": "Remove",
+    "close": "Close",
+    "later": "Later",
+    "change": "Change"
+  },
+  "nav": {
+    "plans": "Plans",
+    "discover": "Discover",
+    "create": "Create plan",
+    "places": "Places",
+    "me": "Me"
+  },
+  "placeholder": {
+    "title": "Coming soon.",
+    "body": "This part is next on our list."
+  },
+  "setupError": {
+    "title": "Database not set up yet",
+    "body": "Your profile couldn't be loaded. Most likely the setup script (supabase/setup.sql) hasn't been run in Supabase yet."
+  },
+  "photos": {
+    "main": "Main photo",
+    "add": "Photo",
+    "uploading": "Uploading…",
+    "uploadError": "Upload failed — please try again."
+  },
+  "location": {
+    "searchPlaceholder": "Neighbourhood, town or postcode",
+    "search": "Search",
+    "noResults": "Nothing found — try the place name."
+  },
+  "promptsUi": {
+    "pickTitle": "Pick a question",
+    "pick": "Pick a question",
+    "change": "Different question",
+    "answerPlaceholder": "Your answer …",
+    "addThird": "+ Add a third answer (optional)"
+  },
+  "onboarding": {
+    "stepOf": "Step {{current}} of {{total}}",
+    "basics": {
+      "title": "Glad you're here.",
+      "subtitle": "Tell us a little about yourself.",
+      "nameLabel": "First name",
+      "namePlaceholder": "Your first name",
+      "ageLabel": "Age",
+      "ageHint": "Ambit is 18+.",
+      "genderLabel": "Gender"
+    },
+    "photosStep": {
+      "title": "Show yourself.",
+      "subtitle": "3 to 5 photos — 2 are enough to start. Important: the first photo shows your face."
+    },
+    "aboutStep": {
+      "title": "About you.",
+      "subtitle": "A sentence or two is plenty — how you are, not your CV.",
+      "placeholder": "e.g. Half gym, half croissants. Always up for plans worth telling stories about."
+    },
+    "promptsStep": {
+      "title": "Two questions, honest answers.",
+      "subtitle": "Pick two questions and answer in your own words. A third one is optional."
+    },
+    "languagesStep": {
+      "title": "Which languages do you speak?",
+      "otherPlaceholder": "More … (e.g. Tamil, Turkish)",
+      "otherAdd": "Add"
+    },
+    "locationStep": {
+      "title": "Where's home?",
+      "subtitle": "Just a neighbourhood, town or postcode — never your address.",
+      "chosenLabel": "Your place",
+      "privacyHint": "Others only ever see this label — never an address or exact distance."
+    },
+    "rhythmStep": {
+      "title": "When are you usually out?"
+    },
+    "interestsStep": {
+      "title": "What do you already love doing?"
+    },
+    "smokingStep": {
+      "title": "Do you smoke?",
+      "hint": "Optional — tap again to remove."
+    },
+    "datingStep": {
+      "title": "Dating — your settings."
+    },
+    "firstPlan": {
+      "title": "Create your first I'm-going-anyway plan.",
+      "subtitle": "Where are you going this week anyway? Invite someone along — no strings attached.",
+      "use": "Use this",
+      "laterHint": "No pressure — you can create a plan any time."
+    }
+  },
+  "intent": {
+    "seekLabel": "I'm looking for",
+    "meetLabel": "How I like to meet",
+    "intentHint": "These two settings steer everything: you only see what fits you — and vice versa.",
+    "categoriesLabel": "My categories",
+    "categoriesHint": "Categories only sort your feed — nobody is ever excluded.",
+    "orientLabel": "I'm interested in",
+    "orientHint": "Only steers your Discover set — visible to no one.",
+    "relLabel": "Relationship model · optional",
+    "relHint": "Only appears as a small badge if you set it. Tap again to remove.",
+    "showOpenRel": "Show people in open relationships"
+  },
+  "me": {
+    "photosLabel": "My photos · {{count}} of 5",
+    "aboutLabel": "About me",
+    "rhythmLabel": "Usually out",
+    "languagesLabel": "I speak",
+    "locationLabel": "Home",
+    "radiusLabel": "Radius for plans & discover",
+    "radiusHint": "Sorts by distance — never excludes anyone. Others only see your place, never your address or exact distance.",
+    "smokingLabel": "Smoking",
+    "appLanguage": "App language",
     "logout": "Sign out"
   },
   "language": {
-    "label": "Language",
     "de": "Deutsch",
     "en": "English"
+  },
+  "gender": {
+    "woman": "Woman",
+    "man": "Man",
+    "nonbinary": "Non-binary"
+  },
+  "categories": {
+    "sport": "Sports",
+    "kaffee": "Coffee",
+    "essen": "Food",
+    "ausgang": "Going out"
+  },
+  "languagesList": {
+    "de": "German",
+    "ch": "Swiss German",
+    "en": "English",
+    "fr": "French",
+    "it": "Italian",
+    "es": "Spanish",
+    "pt": "Portuguese"
+  },
+  "rhythmList": {
+    "morning": "Mornings",
+    "evening": "Evenings",
+    "weekend": "Weekends"
+  },
+  "seek": {
+    "friendship": "Friendship",
+    "dating": "Dating"
+  },
+  "meet": {
+    "group": "In a group",
+    "pair": "One-on-one"
+  },
+  "smokingList": {
+    "no": "No",
+    "sometimes": "Sometimes",
+    "yes": "Yes"
+  },
+  "orientationList": {
+    "women": "Women",
+    "men": "Men",
+    "all": "Everyone"
+  },
+  "relList": {
+    "single": "Single",
+    "open": "Open relationship"
+  },
+  "prompts": {
+    "p1": "Take me along to…",
+    "p2": "Last thing I did alone that would have been better with company:",
+    "p3": "Last thing I did with someone that would have been better alone:",
+    "p4": "This year I want to get better at:",
+    "p5": "I'm going anyway — want to join? I regularly…",
+    "p6": "Do you share your food? Be honest.",
+    "p7": "What's the last thing fear stopped you from doing?",
+    "p8": "If you had to write a book — what about?",
+    "p9": "Hopping on the next train with no destination — dream or nightmare?",
+    "p10": "I'll voluntarily get up at 6 a.m. for:"
+  },
+  "planSuggestions": {
+    "sport": "I'm going bouldering Thursday anyway — who's in?",
+    "kaffee": "Saturday-morning coffee by the lake — I'll be there anyway.",
+    "essen": "I'm trying the new ramen place anyway — anyone joining?",
+    "ausgang": "Cinema on Friday — day still flexible. Who's in?"
   }
 }

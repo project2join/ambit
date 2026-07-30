@@ -1,51 +1,68 @@
 /*
   Herzstück der App: entscheidet, wer was sieht.
   - Nicht eingeloggt → nur der Login-Bildschirm
-  - Eingeloggt → vorerst eine leere Seite mit E-Mail, Logout und Sprachwahl
-    (der Sprach-Umschalter zieht später in den «Ich»-Tab um)
-
-  Alle Texte kommen per t('…') aus den Übersetzungsdateien.
+  - Eingeloggt, Profil unvollständig → Onboarding
+  - Eingeloggt mit fertigem Profil → die App mit Navigation
 */
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { supabase } from './lib/supabase'
-import { setLanguage } from './i18n'
+import { loadProfile } from './lib/profile'
 import Login from './Login'
+import Onboarding from './onboarding/Onboarding'
+import MainShell from './MainShell'
+import { Card } from './components/UI'
 
 function App() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   // session = die aktuelle Anmeldung (null heisst: niemand eingeloggt)
   const [session, setSession] = useState(null)
-  // Beim allerersten Laden wissen wir noch nicht, ob jemand eingeloggt ist
-  const [loading, setLoading] = useState(true)
+  const [sessionLoading, setSessionLoading] = useState(true)
+
+  // Das Profil des eingeloggten Nutzers
+  const [profile, setProfile] = useState(null)
+  const [profileState, setProfileState] = useState('loading') // loading | ready | error
+
+  // Mit welchem Tab die App nach dem Onboarding startet
+  const [startTab, setStartTab] = useState('plans')
 
   useEffect(() => {
     // Beim Start: Ist schon jemand eingeloggt? (z. B. von letztem Besuch)
     supabase.auth.getSession().then(({ data }) => {
       setSession(data.session)
-      setLoading(false)
+      setSessionLoading(false)
     })
 
-    // Danach: zuhören, ob sich jemand ein- oder ausloggt,
-    // damit die Seite sofort umschaltet
+    // Zuhören, ob sich jemand ein- oder ausloggt
     const { data: listener } = supabase.auth.onAuthStateChange(
       (_event, newSession) => {
         setSession(newSession)
       }
     )
-
-    // Aufräumen, wenn die App geschlossen wird
     return () => listener.subscription.unsubscribe()
   }, [])
 
-  // Abmelden: Supabase vergisst die Anmeldung, Login-Screen erscheint wieder
-  async function handleLogout() {
-    await supabase.auth.signOut()
-  }
+  // Sobald jemand eingeloggt ist: das Profil aus der Datenbank laden
+  useEffect(() => {
+    if (!session) {
+      setProfile(null)
+      setProfileState('loading')
+      return
+    }
+    loadProfile(session.user.id).then(({ profile, error }) => {
+      if (error) {
+        console.error('Profil laden fehlgeschlagen:', error.message)
+        setProfileState('error')
+      } else {
+        setProfile(profile)
+        setProfileState('ready')
+      }
+    })
+  }, [session])
 
   // Noch am Prüfen — kurz nichts anzeigen (verhindert Aufblitzen des Logins)
-  if (loading) {
+  if (sessionLoading) {
     return <div className="min-h-dvh bg-paper" />
   }
 
@@ -54,58 +71,50 @@ function App() {
     return <Login />
   }
 
-  // Eingeloggt → vorerst leere Seite mit E-Mail, Logout und Sprachwahl
-  return (
-    <div className="min-h-dvh bg-paper flex justify-center">
-      <div className="w-full max-w-[390px] flex flex-col">
-        <header className="px-5 pt-5 pb-3 flex items-center justify-between">
-          <span className="font-serif text-[24px] font-medium tracking-[0.2px] text-ink">
-            {t('brand.name')}
-          </span>
-          <button
-            onClick={handleLogout}
-            className="text-[12px] font-semibold text-sub bg-card border border-line rounded-full px-4 py-2"
-          >
-            {t('home.logout')}
-          </button>
-        </header>
+  // Profil lädt noch
+  if (profileState === 'loading') {
+    return <div className="min-h-dvh bg-paper" />
+  }
 
-        <main className="flex-1 flex flex-col items-center justify-center gap-8 px-5 pb-16 text-center">
-          <div>
-            <div className="text-[12px] font-semibold uppercase tracking-[0.9px] text-mut">
-              {t('home.loggedInAs')}
-            </div>
-            <p className="font-serif text-[18px] font-medium text-ink mt-2">
-              {session.user.email}
-            </p>
+  // Datenbank noch nicht eingerichtet (setup.sql fehlt)
+  if (profileState === 'error') {
+    return (
+      <div className="min-h-dvh bg-paper flex items-center justify-center px-5">
+        <Card className="max-w-[350px] text-center">
+          <div className="font-serif text-[20px] font-semibold text-ink">
+            {t('setupError.title')}
           </div>
-
-          {/* Sprach-Umschalter: Deutsch / English.
-              Die Wahl wird gespeichert und gilt auch beim nächsten Besuch. */}
-          <div>
-            <div className="text-[12px] font-semibold uppercase tracking-[0.9px] text-mut mb-3">
-              {t('language.label')}
-            </div>
-            <div className="inline-flex rounded-full border border-line bg-card p-1">
-              {['de', 'en'].map((lang) => (
-                <button
-                  key={lang}
-                  onClick={() => setLanguage(lang)}
-                  className={
-                    'rounded-full px-4 py-2 text-[13px] font-semibold transition-colors ' +
-                    (i18n.language === lang
-                      ? 'bg-pine text-white' // aktive Sprache: grün
-                      : 'text-sub') // inaktive Sprache: dezent
-                  }
-                >
-                  {t(`language.${lang}`)}
-                </button>
-              ))}
-            </div>
-          </div>
-        </main>
+          <p className="text-[14px] text-sub mt-2 leading-relaxed">
+            {t('setupError.body')}
+          </p>
+        </Card>
       </div>
-    </div>
+    )
+  }
+
+  // Eingeloggt, aber Onboarding noch nicht abgeschlossen
+  if (!profile?.onboarding_done) {
+    return (
+      <Onboarding
+        user={session.user}
+        profile={profile}
+        onDone={(tab) => {
+          setStartTab(tab)
+          // Profil neu laden, damit die App den fertigen Stand hat
+          loadProfile(session.user.id).then(({ profile }) => setProfile(profile))
+        }}
+      />
+    )
+  }
+
+  // Eingeloggt mit fertigem Profil → die richtige App
+  return (
+    <MainShell
+      user={session.user}
+      profile={profile}
+      onProfileChange={setProfile}
+      initialTab={startTab}
+    />
   )
 }
 
