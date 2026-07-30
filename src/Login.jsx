@@ -53,10 +53,6 @@ function Login() {
 
         {/* Begrüssung */}
         <main className="flex-1 flex flex-col justify-center gap-5 px-5 pb-10">
-          <div className="text-[12px] font-semibold uppercase tracking-[0.9px] text-mut">
-            {t('login.welcome')}
-          </div>
-
           {/* whitespace-pre-line: der Zeilenumbruch (\n) aus der
               Übersetzungsdatei wird als echter Umbruch angezeigt */}
           <h1 className="font-serif text-[32px] leading-[1.25] font-semibold text-ink whitespace-pre-line">
