@@ -43,7 +43,7 @@ function Login() {
             Ambit
           </div>
           <p className="mt-3 text-[15px] text-sub">
-            Du gehst eh. Nimm jemanden mit.
+            Ich gehe eh — komm mit.
           </p>
         </div>
 
