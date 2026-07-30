@@ -1,13 +1,20 @@
 /*
   Herzstück der App: entscheidet, wer was sieht.
   - Nicht eingeloggt → nur der Login-Bildschirm
-  - Eingeloggt → vorerst eine leere Seite mit E-Mail und Logout-Knopf
+  - Eingeloggt → vorerst eine leere Seite mit E-Mail, Logout und Sprachwahl
+    (der Sprach-Umschalter zieht später in den «Ich»-Tab um)
+
+  Alle Texte kommen per t('…') aus den Übersetzungsdateien.
 */
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { supabase } from './lib/supabase'
+import { setLanguage } from './i18n'
 import Login from './Login'
 
 function App() {
+  const { t, i18n } = useTranslation()
+
   // session = die aktuelle Anmeldung (null heisst: niemand eingeloggt)
   const [session, setSession] = useState(null)
   // Beim allerersten Laden wissen wir noch nicht, ob jemand eingeloggt ist
@@ -47,29 +54,55 @@ function App() {
     return <Login />
   }
 
-  // Eingeloggt → vorerst leere Seite mit E-Mail und Logout
+  // Eingeloggt → vorerst leere Seite mit E-Mail, Logout und Sprachwahl
   return (
     <div className="min-h-dvh bg-paper flex justify-center">
       <div className="w-full max-w-[390px] flex flex-col">
         <header className="px-5 pt-5 pb-3 flex items-center justify-between">
           <span className="font-serif text-[24px] font-medium tracking-[0.2px] text-ink">
-            Ambit
+            {t('brand.name')}
           </span>
           <button
             onClick={handleLogout}
             className="text-[12px] font-semibold text-sub bg-card border border-line rounded-full px-4 py-2"
           >
-            Abmelden
+            {t('home.logout')}
           </button>
         </header>
 
-        <main className="flex-1 flex flex-col items-center justify-center gap-2 px-5 pb-16 text-center">
-          <div className="text-[12px] font-semibold uppercase tracking-[0.9px] text-mut">
-            Eingeloggt als
+        <main className="flex-1 flex flex-col items-center justify-center gap-8 px-5 pb-16 text-center">
+          <div>
+            <div className="text-[12px] font-semibold uppercase tracking-[0.9px] text-mut">
+              {t('home.loggedInAs')}
+            </div>
+            <p className="font-serif text-[18px] font-medium text-ink mt-2">
+              {session.user.email}
+            </p>
           </div>
-          <p className="font-serif text-[18px] font-medium text-ink">
-            {session.user.email}
-          </p>
+
+          {/* Sprach-Umschalter: Deutsch / English.
+              Die Wahl wird gespeichert und gilt auch beim nächsten Besuch. */}
+          <div>
+            <div className="text-[12px] font-semibold uppercase tracking-[0.9px] text-mut mb-3">
+              {t('language.label')}
+            </div>
+            <div className="inline-flex rounded-full border border-line bg-card p-1">
+              {['de', 'en'].map((lang) => (
+                <button
+                  key={lang}
+                  onClick={() => setLanguage(lang)}
+                  className={
+                    'rounded-full px-4 py-2 text-[13px] font-semibold transition-colors ' +
+                    (i18n.language === lang
+                      ? 'bg-pine text-white' // aktive Sprache: grün
+                      : 'text-sub') // inaktive Sprache: dezent
+                  }
+                >
+                  {t(`language.${lang}`)}
+                </button>
+              ))}
+            </div>
+          </div>
         </main>
       </div>
     </div>

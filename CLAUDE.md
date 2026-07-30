@@ -39,3 +39,6 @@ offen; Dating läuft ausschliesslich über beidseitige Matches.
 - Jede Änderung kurz und nicht-technisch erklären
 - Keine zusätzlichen Bibliotheken ohne Rückfrage installieren
 - Supabase-Schlüssel nur aus .env.local lesen, nie in den Code schreiben
+- Mehrsprachigkeit: Jeder Oberflächentext kommt aus den Übersetzungsdateien
+  (src/i18n/de.json und en.json), nie direkt aus dem Code — neue Texte
+  sofort in beiden Sprachen anlegen

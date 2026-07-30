@@ -1,0 +1,28 @@
+{
+  "brand": {
+    "name": "Ambit"
+  },
+  "login": {
+    "welcome": "Welcome",
+    "slogan": "I'm going anyway —\ncome along.",
+    "intro": "Bouldering, a coffee, an afternoon at the lake — why not together? Share your plan, and someone simply comes along.",
+    "emailLabel": "Your email",
+    "emailPlaceholder": "name@example.com",
+    "submit": "Send sign-in link",
+    "submitting": "Sending…",
+    "noPassword": "No password needed — we'll email you a link.",
+    "error": "That didn't work. Is the email address correct?",
+    "sentLabel": "Link sent",
+    "sentTitle": "Check your inbox.",
+    "sentBody": "We've sent a sign-in link to <strong>{{email}}</strong>. One click and you're in."
+  },
+  "home": {
+    "loggedInAs": "Signed in as",
+    "logout": "Sign out"
+  },
+  "language": {
+    "label": "Language",
+    "de": "Deutsch",
+    "en": "English"
+  }
+}

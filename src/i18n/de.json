@@ -1,0 +1,28 @@
+{
+  "brand": {
+    "name": "Ambit"
+  },
+  "login": {
+    "welcome": "Willkommen",
+    "slogan": "Ich gehe eh —\nkomm mit.",
+    "intro": "Bouldern, ins Kafi, an den See — warum nicht zusammen? Teile deinen Plan, und jemand kommt einfach mit.",
+    "emailLabel": "Deine E-Mail",
+    "emailPlaceholder": "name@beispiel.ch",
+    "submit": "Anmelde-Link schicken",
+    "submitting": "Wird geschickt…",
+    "noPassword": "Kein Passwort nötig — du bekommst einen Link per Mail.",
+    "error": "Das hat leider nicht geklappt. Stimmt die E-Mail-Adresse?",
+    "sentLabel": "Link verschickt",
+    "sentTitle": "Schau in dein Postfach.",
+    "sentBody": "Wir haben dir einen Anmelde-Link an <strong>{{email}}</strong> geschickt. Ein Klick darauf, und du bist drin."
+  },
+  "home": {
+    "loggedInAs": "Eingeloggt als",
+    "logout": "Abmelden"
+  },
+  "language": {
+    "label": "Sprache",
+    "de": "Deutsch",
+    "en": "English"
+  }
+}

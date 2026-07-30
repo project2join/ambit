@@ -18,7 +18,10 @@
       "Bash(git commit -m 'Willkommenstext verfeinert: herzlicher, ohne Doppelung zum Slogan *)",
       "Bash(git check-ignore *)",
       "Bash(git commit -m 'Supabase-Schlüssel: .env.local ausdrücklich von Git ausgeschlossen *)",
-      "Bash(git commit -m 'Login per Magic Link: Supabase verbunden, Login-Screen im Design-System *)"
+      "Bash(git commit -m 'Login per Magic Link: Supabase verbunden, Login-Screen im Design-System *)",
+      "Bash(git commit -m 'Login-Tagline auf festgelegten Slogan geändert *)",
+      "Bash(git commit -m 'Startseite und Login vereint: Begrüssung oben, E-Mail-Anmeldung darunter *)",
+      "Bash(git commit -m 'Mehrsprachigkeit: alle Texte aus de.json/en.json, Gerätesprache als Start, Umschalter mit Speicherung *)"
     ]
   }
 }
