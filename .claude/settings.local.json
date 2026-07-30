@@ -14,7 +14,11 @@
       "Bash(git commit -m 'Projektstart *)",
       "Bash(git config *)",
       "Bash(git commit -m 'Design-Fundament: Farben, Schriften und Startseite im Quiet-Luxury-Stil *)",
-      "Bash(git commit -m 'Startseite verfeinert: schlichtere Wortmarke, natürlicherer Text *)"
+      "Bash(git commit -m 'Startseite verfeinert: schlichtere Wortmarke, natürlicherer Text *)",
+      "Bash(git commit -m 'Willkommenstext verfeinert: herzlicher, ohne Doppelung zum Slogan *)",
+      "Bash(git check-ignore *)",
+      "Bash(git commit -m 'Supabase-Schlüssel: .env.local ausdrücklich von Git ausgeschlossen *)",
+      "Bash(git commit -m 'Login per Magic Link: Supabase verbunden, Login-Screen im Design-System *)"
     ]
   }
 }

@@ -1,58 +1,76 @@
 /*
-  Startseite von Ambit — im "Quiet Luxury"-Stil des Prototyps.
-  Noch ein Platzhalter: Sie zeigt das Design-Fundament
-  (Farben, Schriften, Schatten), bevor die echten Funktionen kommen.
+  Herzstück der App: entscheidet, wer was sieht.
+  - Nicht eingeloggt → nur der Login-Bildschirm
+  - Eingeloggt → vorerst eine leere Seite mit E-Mail und Logout-Knopf
 */
+import { useEffect, useState } from 'react'
+import { supabase } from './lib/supabase'
+import Login from './Login'
+
 function App() {
+  // session = die aktuelle Anmeldung (null heisst: niemand eingeloggt)
+  const [session, setSession] = useState(null)
+  // Beim allerersten Laden wissen wir noch nicht, ob jemand eingeloggt ist
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    // Beim Start: Ist schon jemand eingeloggt? (z. B. von letztem Besuch)
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data.session)
+      setLoading(false)
+    })
+
+    // Danach: zuhören, ob sich jemand ein- oder ausloggt,
+    // damit die Seite sofort umschaltet
+    const { data: listener } = supabase.auth.onAuthStateChange(
+      (_event, newSession) => {
+        setSession(newSession)
+      }
+    )
+
+    // Aufräumen, wenn die App geschlossen wird
+    return () => listener.subscription.unsubscribe()
+  }, [])
+
+  // Abmelden: Supabase vergisst die Anmeldung, Login-Screen erscheint wieder
+  async function handleLogout() {
+    await supabase.auth.signOut()
+  }
+
+  // Noch am Prüfen — kurz nichts anzeigen (verhindert Aufblitzen des Logins)
+  if (loading) {
+    return <div className="min-h-dvh bg-paper" />
+  }
+
+  // Nicht eingeloggt → ausschliesslich der Login-Bildschirm
+  if (!session) {
+    return <Login />
+  }
+
+  // Eingeloggt → vorerst leere Seite mit E-Mail und Logout
   return (
-    // Ganze Seite: Elfenbein-Hintergrund, maximal 390px breit (Handy-Format)
     <div className="min-h-dvh bg-paper flex justify-center">
       <div className="w-full max-w-[390px] flex flex-col">
-        {/* Kopfzeile mit der Wortmarke: Fraunces, schlicht und aufrecht */}
-        <header className="px-5 pt-5 pb-3">
+        <header className="px-5 pt-5 pb-3 flex items-center justify-between">
           <span className="font-serif text-[24px] font-medium tracking-[0.2px] text-ink">
             Ambit
           </span>
+          <button
+            onClick={handleLogout}
+            className="text-[12px] font-semibold text-sub bg-card border border-line rounded-full px-4 py-2"
+          >
+            Abmelden
+          </button>
         </header>
 
-        {/* Mittelteil: Begrüssung */}
-        <main className="flex-1 flex flex-col justify-center gap-5 px-5 pb-10">
-          {/* Kapitälchen-Label mit Letter-Spacing, wie im Prototyp */}
+        <main className="flex-1 flex flex-col items-center justify-center gap-2 px-5 pb-16 text-center">
           <div className="text-[12px] font-semibold uppercase tracking-[0.9px] text-mut">
-            Willkommen
+            Eingeloggt als
           </div>
-
-          <h1 className="font-serif text-[32px] leading-[1.25] font-semibold text-ink">
-            Ich gehe eh —<br />
-            komm mit.
-          </h1>
-
-          <p className="text-[15px] leading-relaxed text-sub max-w-[32ch]">
-            Bouldern, ins Kafi, an den See — warum nicht zusammen? Teile deinen
-            Plan, und jemand kommt einfach mit.
+          <p className="font-serif text-[18px] font-medium text-ink">
+            {session.user.email}
           </p>
-
-          {/* Beispielkarte: weiss, weicher tiefer Schatten, Haarlinie */}
-          <div className="mt-2 rounded-2xl bg-card border border-line shadow-card p-5">
-            <div className="text-[12px] font-semibold uppercase tracking-[0.9px] text-pine">
-              Freundschaft
-            </div>
-            <div className="font-serif text-[17px] font-medium leading-[1.35] text-ink mt-2">
-              «Ich geh eh Donnerstag bouldern — wer kommt mit?»
-            </div>
-            <div className="text-[13px] text-mut mt-3">Do · 19:00 · Kreis 5</div>
-          </div>
-
-          {/* Haupt-Knopf: Tannengrün (freundschaftliche Aktion) */}
-          <button className="mt-3 rounded-full bg-pine px-6 py-3.5 text-[15px] font-semibold text-white shadow-card active:bg-ink transition-colors">
-            Los geht's
-          </button>
         </main>
-
-        {/* Fusszeile */}
-        <footer className="px-5 py-4 text-center text-[12px] text-mut">
-          Ambit · Version 0.1
-        </footer>
       </div>
     </div>
   )
