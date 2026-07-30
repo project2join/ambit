@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(npm create *)",
+      "Bash(cd \"C:\\\\Users\\\\Vinu\\\\Desktop\\\\Project2join\" && ls ambit-tmp && mv ambit-tmp/* ambit-tmp/.gitignore . && rmdir ambit-tmp && ls)",
+      "Bash(mv ambit-tmp/.gitignore .)",
+      "Bash(mv ambit-tmp/eslint.config.js .)",
+      "Bash(rm -rf ambit-tmp)",
+      "Bash(npm install *)",
+      "Bash(printf '# Ambit\\\\n\\\\nEine mobile-first Web-App, gebaut mit React, Vite und Tailwind CSS.\\\\n\\\\n## Entwicklung\\\\n\\\\n```bash\\\\nnpm install\\\\nnpm run dev\\\\n```\\\\n\\\\nDie App läuft danach unter http://localhost:5173\\\\n')",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'Projektstart *)"
+    ]
+  }
+}
