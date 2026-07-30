@@ -1,1 +1,36 @@
 @import "tailwindcss";
+
+/*
+  Ambit Design-System — "Quiet Luxury"
+  Hier bekommen alle Farben und Schriften feste Namen.
+  Im Code schreiben wir dann z. B. "bg-paper" oder "text-ink",
+  und Tailwind setzt automatisch die richtige Farbe ein.
+*/
+@theme {
+  /* Farben */
+  --color-ink: #191813; /* Tinte — warmes Fast-Schwarz für Text */
+  --color-paper: #f6f4ef; /* Elfenbein — der Hintergrund der App */
+  --color-card: #ffffff; /* Weiss für Karten */
+  --color-pine: #33473c; /* Tannengrün — Freundschaftliches */
+  --color-pine-soft: #e9ebe2; /* helles Grün */
+  --color-bordeaux: #7e3b43; /* Bordeaux — Dating-Momente */
+  --color-bordeaux-deep: #652e36; /* dunkles Bordeaux */
+  --color-bordeaux-soft: #f1e5e3; /* helles Bordeaux */
+  --color-line: #e7e2d7; /* warme Haarlinien (Trennlinien, Ränder) */
+  --color-sub: #6e695d; /* gedämpfter Text */
+  --color-mut: #9c9689; /* leiser Text */
+
+  /* Schriften */
+  --font-serif: "Fraunces", Georgia, serif; /* Titel, Namen, Zitate */
+  --font-sans: "Inter", system-ui, sans-serif; /* Fliesstext */
+
+  /* Weicher, tiefer Schatten für Karten */
+  --shadow-card: 0 10px 30px rgba(25, 24, 19, 0.07);
+}
+
+/* Grundeinstellung: Elfenbein-Hintergrund, Inter als Standardschrift */
+body {
+  background-color: var(--color-paper);
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+}
