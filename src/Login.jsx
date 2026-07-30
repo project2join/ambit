@@ -1,7 +1,7 @@
 /*
-  Login-Bildschirm — das Einzige, was nicht eingeloggte Besucher sehen.
-  Ablauf: E-Mail eingeben → Supabase schickt einen Magic Link per Mail →
-  ein Klick auf den Link loggt ein. Kein Passwort nötig.
+  Startseite für nicht eingeloggte Besucher:
+  oben die einladende Begrüssung (Slogan + Text),
+  darunter das Login per Magic Link (E-Mail eingeben → Link per Mail → drin).
 */
 import { useState } from 'react'
 import { supabase } from './lib/supabase'
@@ -13,7 +13,7 @@ function Login() {
   const [sent, setSent] = useState(false) // wurde der Link verschickt?
   const [error, setError] = useState('') // Fehlermeldung, falls etwas schiefgeht
 
-  // Wird ausgeführt, wenn man auf «Link schicken» drückt
+  // Wird ausgeführt, wenn man auf «Anmelde-Link schicken» drückt
   async function handleSubmit(e) {
     e.preventDefault() // verhindert, dass die Seite neu lädt
     setError('')
@@ -36,72 +36,86 @@ function Login() {
 
   return (
     <div className="min-h-dvh bg-paper flex justify-center">
-      <div className="w-full max-w-[390px] flex flex-col justify-center px-5 pb-16">
-        {/* Wortmarke und Tagline */}
-        <div className="text-center mb-10">
-          <div className="font-serif text-[34px] font-medium tracking-[0.2px] text-ink">
+      <div className="w-full max-w-[390px] flex flex-col">
+        {/* Kopfzeile mit der Wortmarke: schlicht und aufrecht */}
+        <header className="px-5 pt-5 pb-3">
+          <span className="font-serif text-[24px] font-medium tracking-[0.2px] text-ink">
             Ambit
+          </span>
+        </header>
+
+        {/* Begrüssung — wie die frühere Startseite */}
+        <main className="flex-1 flex flex-col justify-center gap-5 px-5 pb-10">
+          <div className="text-[12px] font-semibold uppercase tracking-[0.9px] text-mut">
+            Willkommen
           </div>
-          <p className="mt-3 text-[15px] text-sub">
-            Ich gehe eh — komm mit.
+
+          <h1 className="font-serif text-[32px] leading-[1.25] font-semibold text-ink">
+            Ich gehe eh —<br />
+            komm mit.
+          </h1>
+
+          <p className="text-[15px] leading-relaxed text-sub max-w-[32ch]">
+            Bouldern, ins Kafi, an den See — warum nicht zusammen? Teile deinen
+            Plan, und jemand kommt einfach mit.
           </p>
-        </div>
 
-        {/* Weisse Karte mit dem Formular */}
-        <div className="rounded-2xl bg-card border border-line shadow-card p-6">
-          {sent ? (
-            // Nach dem Absenden: Bestätigung statt Formular
-            <div className="text-center py-2">
-              <div className="text-[12px] font-semibold uppercase tracking-[0.9px] text-pine">
-                Link verschickt
+          {/* Darunter: das Login in einer weissen Karte */}
+          <div className="mt-2 rounded-2xl bg-card border border-line shadow-card p-6">
+            {sent ? (
+              // Nach dem Absenden: Bestätigung statt Formular
+              <div className="text-center py-2">
+                <div className="text-[12px] font-semibold uppercase tracking-[0.9px] text-pine">
+                  Link verschickt
+                </div>
+                <p className="font-serif text-[18px] font-medium text-ink mt-3 leading-snug">
+                  Schau in dein Postfach.
+                </p>
+                <p className="text-[14px] text-sub mt-2 leading-relaxed">
+                  Wir haben dir einen Anmelde-Link an{' '}
+                  <span className="text-ink font-medium">{email}</span>{' '}
+                  geschickt. Ein Klick darauf, und du bist drin.
+                </p>
               </div>
-              <p className="font-serif text-[18px] font-medium text-ink mt-3 leading-snug">
-                Schau in dein Postfach.
-              </p>
-              <p className="text-[14px] text-sub mt-2 leading-relaxed">
-                Wir haben dir einen Anmelde-Link an{' '}
-                <span className="text-ink font-medium">{email}</span> geschickt.
-                Ein Klick darauf, und du bist drin.
-              </p>
-            </div>
-          ) : (
-            // Das Formular: E-Mail-Feld + Knopf
-            <form onSubmit={handleSubmit}>
-              <label
-                htmlFor="email"
-                className="block text-[12px] font-semibold uppercase tracking-[0.9px] text-mut mb-2"
-              >
-                Deine E-Mail
-              </label>
-              <input
-                id="email"
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="name@beispiel.ch"
-                className="w-full rounded-xl border border-line bg-paper px-4 py-3 text-[15px] text-ink placeholder:text-mut outline-none focus:border-pine"
-              />
+            ) : (
+              // Das Formular: E-Mail-Feld + Knopf
+              <form onSubmit={handleSubmit}>
+                <label
+                  htmlFor="email"
+                  className="block text-[12px] font-semibold uppercase tracking-[0.9px] text-mut mb-2"
+                >
+                  Deine E-Mail
+                </label>
+                <input
+                  id="email"
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="name@beispiel.ch"
+                  className="w-full rounded-xl border border-line bg-paper px-4 py-3 text-[15px] text-ink placeholder:text-mut outline-none focus:border-pine"
+                />
 
-              {/* Fehlermeldung, nur falls nötig */}
-              {error && (
-                <p className="text-[13px] text-bordeaux mt-2">{error}</p>
-              )}
+                {/* Fehlermeldung, nur falls nötig */}
+                {error && (
+                  <p className="text-[13px] text-bordeaux mt-2">{error}</p>
+                )}
 
-              <button
-                type="submit"
-                disabled={sending}
-                className="w-full mt-4 rounded-full bg-pine px-6 py-3.5 text-[15px] font-semibold text-white shadow-card active:bg-ink transition-colors disabled:opacity-60"
-              >
-                {sending ? 'Wird geschickt…' : 'Anmelde-Link schicken'}
-              </button>
+                <button
+                  type="submit"
+                  disabled={sending}
+                  className="w-full mt-4 rounded-full bg-pine px-6 py-3.5 text-[15px] font-semibold text-white shadow-card active:bg-ink transition-colors disabled:opacity-60"
+                >
+                  {sending ? 'Wird geschickt…' : 'Anmelde-Link schicken'}
+                </button>
 
-              <p className="text-[12px] text-mut mt-4 text-center leading-relaxed">
-                Kein Passwort nötig — du bekommst einen Link per Mail.
-              </p>
-            </form>
-          )}
-        </div>
+                <p className="text-[12px] text-mut mt-4 text-center leading-relaxed">
+                  Kein Passwort nötig — du bekommst einen Link per Mail.
+                </p>
+              </form>
+            )}
+          </div>
+        </main>
       </div>
     </div>
   )
