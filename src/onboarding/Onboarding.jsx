@@ -8,6 +8,7 @@
 */
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { supabase } from '../lib/supabase'
 import { saveProfile } from '../lib/profile'
 import { Card, Label, Chip, Toggle, PrimaryButton } from '../components/UI'
 import { LockIcon, MapPinIcon } from '../components/Icons'
@@ -198,11 +199,20 @@ function Onboarding({ user, profile, onDone }) {
   return (
     <div className="min-h-dvh bg-paper flex justify-center">
       <div className="w-full max-w-[390px] flex flex-col px-5 pb-10">
-        {/* Kopf: Wortmarke + Fortschritt */}
+        {/* Kopf: Wortmarke + Abmelden + Fortschritt */}
         <header className="pt-5 pb-2">
-          <span className="font-serif text-[24px] font-medium tracking-[0.2px] text-ink">
-            {t('brand.name')}
-          </span>
+          <div className="flex items-center justify-between">
+            <span className="font-serif text-[24px] font-medium tracking-[0.2px] text-ink">
+              {t('brand.name')}
+            </span>
+            <button
+              type="button"
+              onClick={() => supabase.auth.signOut()}
+              className="text-[12px] font-semibold text-sub bg-card border border-line rounded-full px-4 py-2"
+            >
+              {t('me.logout')}
+            </button>
+          </div>
           <div className="mt-3 h-1 rounded-full bg-line overflow-hidden">
             <div
               className="h-full bg-pine rounded-full transition-all"
