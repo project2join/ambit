@@ -16,7 +16,8 @@ offen; Dating läuft ausschliesslich über beidseitige Matches.
   Karten #FFFFFF, Tannengrün #33473C, Grün hell #E9EBE2,
   Bordeaux #7E3B43, Bordeaux dunkel #652E36, Bordeaux hell #F1E5E3,
   Linien (warme Haarlinien) #E7E2D7, Text gedämpft #6E695D, Text leise #9C9689
-- Schriften: Fraunces (Titel, Namen, Zitate — Serife; Wortmarke Ambit in Kursiv, ohne nachgestellten Punkt),
+- Schriften: Fraunces (Titel, Namen, Zitate — Serife; Wortmarke Ambit aufrecht
+  und schlicht, ohne Kursiv, ohne nachgestellten Punkt),
   Inter (Fliesstext)
 - Temperatur-Logik: Freundschaftliches = Tannengrün, Dating-Momente = Bordeaux
 - Stil: ruhig und editorial — grosszügiger Weissraum, weiche tiefe Schatten,

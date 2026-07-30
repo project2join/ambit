@@ -13,7 +13,8 @@
       "Bash(git add *)",
       "Bash(git commit -m 'Projektstart *)",
       "Bash(git config *)",
-      "Bash(git commit -m 'Design-Fundament: Farben, Schriften und Startseite im Quiet-Luxury-Stil *)"
+      "Bash(git commit -m 'Design-Fundament: Farben, Schriften und Startseite im Quiet-Luxury-Stil *)",
+      "Bash(git commit -m 'Startseite verfeinert: schlichtere Wortmarke, natürlicherer Text *)"
     ]
   }
 }

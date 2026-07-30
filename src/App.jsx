@@ -8,9 +8,9 @@ function App() {
     // Ganze Seite: Elfenbein-Hintergrund, maximal 390px breit (Handy-Format)
     <div className="min-h-dvh bg-paper flex justify-center">
       <div className="w-full max-w-[390px] flex flex-col">
-        {/* Kopfzeile mit der Wortmarke: Fraunces kursiv, ohne Punkt */}
+        {/* Kopfzeile mit der Wortmarke: Fraunces, schlicht und aufrecht */}
         <header className="px-5 pt-5 pb-3">
-          <span className="font-serif italic text-[27px] font-medium tracking-[0.3px] text-ink">
+          <span className="font-serif text-[24px] font-medium tracking-[0.2px] text-ink">
             Ambit
           </span>
         </header>
@@ -28,8 +28,8 @@ function App() {
           </h1>
 
           <p className="text-[15px] leading-relaxed text-sub max-w-[32ch]">
-            Ambit öffnet deine bestehenden Pläne für Gesellschaft. Kein Suchen,
-            kein Warten — du gehst ja sowieso.
+            Du gehst ja sowieso — bouldern, ins Kafi, an den See. Teile deinen
+            Plan, und jemand kommt einfach mit.
           </p>
 
           {/* Beispielkarte: weiss, weicher tiefer Schatten, Haarlinie */}
