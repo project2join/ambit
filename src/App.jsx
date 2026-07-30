@@ -28,7 +28,7 @@ function App() {
           </h1>
 
           <p className="text-[15px] leading-relaxed text-sub max-w-[32ch]">
-            Du gehst ja sowieso — bouldern, ins Kafi, an den See. Teile deinen
+            Bouldern, ins Kafi, an den See — warum nicht zusammen? Teile deinen
             Plan, und jemand kommt einfach mit.
           </p>
 
