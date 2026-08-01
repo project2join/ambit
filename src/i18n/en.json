@@ -109,6 +109,7 @@
   },
   "onboarding": {
     "stepOf": "Step {{current}} of {{total}}",
+    "saveError": "Saving didn't work — please try again. If it happens again, let me know.",
     "basics": {
       "title": "Glad you're here.",
       "subtitle": "Tell us a little about yourself.",

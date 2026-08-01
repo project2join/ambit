@@ -59,6 +59,7 @@ function Onboarding({ user, profile, onDone }) {
 
   const [stepIndex, setStepIndex] = useState(0)
   const [saving, setSaving] = useState(false)
+  const [saveError, setSaveError] = useState(false) // Speichern fehlgeschlagen?
   const [pickerSlot, setPickerSlot] = useState(null) // welcher Prompt-Platz wählt gerade eine Frage?
   const [otherLang, setOtherLang] = useState('') // Eingabefeld «weitere Sprachen»
 
@@ -82,11 +83,17 @@ function Onboarding({ user, profile, onDone }) {
     setDraft((d) => ({ ...d, ...patch }))
   }
 
-  // «Weiter»: aktuellen Stand speichern, dann zum nächsten Schritt
+  // «Weiter»: aktuellen Stand speichern, dann zum nächsten Schritt.
+  // Wenn das Speichern scheitert, bleiben wir stehen und zeigen es an.
   async function next() {
     setSaving(true)
-    await saveProfile(user.id, { ...draft, age: Number(draft.age) || null })
+    setSaveError(false)
+    const ok = await saveProfile(user.id, { ...draft, age: Number(draft.age) || null })
     setSaving(false)
+    if (!ok) {
+      setSaveError(true)
+      return
+    }
     setStepIndex((i) => i + 1)
     window.scrollTo(0, 0)
   }
@@ -94,12 +101,17 @@ function Onboarding({ user, profile, onDone }) {
   // Onboarding abschliessen (vom letzten Schritt aus)
   async function finish(targetTab) {
     setSaving(true)
-    await saveProfile(user.id, {
+    setSaveError(false)
+    const ok = await saveProfile(user.id, {
       ...draft,
       age: Number(draft.age) || null,
       onboarding_done: true,
     })
     setSaving(false)
+    if (!ok) {
+      setSaveError(true)
+      return
+    }
     onDone(targetTab)
   }
 
@@ -614,12 +626,23 @@ function Onboarding({ user, profile, onDone }) {
               <p className="text-[12px] text-mut text-center -mt-1">
                 {t('onboarding.firstPlan.laterHint')}
               </p>
+              {/* Falls das Speichern scheitert: sichtbar sagen statt schweigen */}
+              {saveError && (
+                <p className="text-[13px] text-bordeaux text-center">
+                  {t('onboarding.saveError')}
+                </p>
+              )}
             </>
           )}
 
           {/* Weiter/Zurück (ausser auf der Abschluss-Karte) */}
           {step !== 'firstplan' && (
             <div className="mt-2 flex flex-col gap-3">
+              {saveError && (
+                <p className="text-[13px] text-bordeaux text-center">
+                  {t('onboarding.saveError')}
+                </p>
+              )}
               <PrimaryButton onClick={next} disabled={!canContinue || saving}>
                 {t('common.next')}
               </PrimaryButton>

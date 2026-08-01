@@ -109,6 +109,7 @@
   },
   "onboarding": {
     "stepOf": "Schritt {{current}} von {{total}}",
+    "saveError": "Speichern hat nicht geklappt — versuch es nochmal. Wenn es wieder passiert, sag mir Bescheid.",
     "basics": {
       "title": "Schön, bist du da.",
       "subtitle": "Erzähl kurz, wer du bist.",
