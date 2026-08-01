@@ -36,7 +36,8 @@
       "Bash(git commit -m 'Ich-Tab: Radius bis 100 km, vorübergehender Standort; Verifiziert-Schalter ausgeblendet; TODO-Merkliste *)",
       "Bash(git commit -m 'Absicht ehrlich formuliert: sortiert statt filtert; Feed-Fusszeile entfernt; Dating strikt zu zweit als Regel verankert *)",
       "Bash(git commit -m 'Design beruhigt: Fraunces auf ruhige Stufe festgepinnt, Alkoholfrei-Hinweis leise statt Badge *)",
-      "Bash(git commit -m 'Beziehungsstatus-Hinweis vereinfacht *)"
+      "Bash(git commit -m 'Beziehungsstatus-Hinweis vereinfacht *)",
+      "Bash(git commit -m 'Anfrage-Mechanik: Anfragen, sanfter Korb, Flexibel-Termine, Verbindungen-Übersicht, Meine-Filter *)"
     ]
   }
 }

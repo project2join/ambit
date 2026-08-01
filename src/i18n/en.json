@@ -36,6 +36,7 @@
   },
   "plans": {
     "all": "All",
+    "mine": "Mine",
     "yourPlan": "Your plan",
     "flexBadge": "Date to follow",
     "visibleFor": "visible to: {{filters}}",
@@ -51,6 +52,48 @@
     "delete": "Delete",
     "deleteConfirm": "Really delete this plan?"
   },
+  "requests": {
+    "request": "Ask to join",
+    "requested": "Requested ✓",
+    "joined": "You're in ✓",
+    "youreIn": "You're in — {{when}}",
+    "planFull": "Plan is full",
+    "cancel": "Cancel",
+    "cancelConfirm": "Want to cancel? Cancelling early is completely fine — the spot opens up right away.",
+    "confirm": "Confirm",
+    "send": "Send request",
+    "pickDays": "Which days work for you?",
+    "noRequests": "No open requests.",
+    "requestCount_one": "{{count}} request",
+    "requestCount_other": "{{count}} requests",
+    "accept": "Accept",
+    "declineSoft": "Plan full",
+    "cancelledNote": "{{name}} can't make it after all — the spot is open again.",
+    "dateSet": "The date is set: {{when}} — are you in?",
+    "availability": "Availability",
+    "setDate": "Set the date",
+    "with": "Joining: {{names}}"
+  },
+  "connections": {
+    "title": "Connections",
+    "tabPlans": "Plans",
+    "tabLikes": "They like you",
+    "requestOpen": "Request open — we'll let you know",
+    "empty": "Nothing coming up yet — browse the plans.",
+    "chatSoon": "Plan chat · coming soon",
+    "hostedBy": "Plan by {{name}}",
+    "nobodyYet": "Nobody joining yet",
+    "likesSoon": "Coming soon — signals and matches will land here."
+  },
+  "days": {
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat",
+    "sun": "Sun"
+  },
   "create": {
     "title": "Where are you going this week anyway?",
     "placeholder": "I'm going anyway …",
@@ -60,7 +103,7 @@
     "flexible": "Flexible",
     "dateLabel": "Date",
     "timeLabel": "Time",
-    "fixHint": "You're going anyway — the date is set. Who's coming along?",
+    "fixHint": "The date is set — who's coming along?",
     "flexHint": "People tap the days that work for them — you set the date afterwards. Window max. 7 days.",
     "alreadyFlexible": "You already have a flexible plan. Delete it first or set its date.",
     "window": {

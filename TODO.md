@@ -17,7 +17,14 @@
 ## Nächste grosse Schritte
 - Feed-Sortierung nach «So treffe ich mich gern» (Gruppe/zu zweit):
   passende Pläne zuerst zeigen — nie ausblenden
-- Anfragen / Mitkommen bei fremden Plänen (der grüne «Anfragen»-Knopf)
-- Entdecken-Tab (Dating-Set, beidseitige Matches)
+- Entdecken-Tab (Dating-Set, beidseitige Matches) — füllt auch
+  «Du gefällst» in den Verbindungen
 - Orte-Tab (private Orte, beidseitige Aufdeckung)
-- Plan-Chat
+- Plan-Chat (Knopf in den Verbindungen wartet schon)
+
+## Technisch härten (später)
+- Anfrage-Statuswechsel serverseitig absichern (aktuell könnte eine
+  technisch versierte Person ihre eigene Anfrage per API annehmen —
+  Lösung: Statuswechsel über eine Datenbank-Funktion statt direktem Update)
+- «Sanfter Korb» auch auf API-Ebene verbergen (declined-Status ist im
+  Netzwerk-Tab theoretisch sichtbar, die Oberfläche zeigt ihn nie)

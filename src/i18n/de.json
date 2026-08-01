@@ -36,6 +36,7 @@
   },
   "plans": {
     "all": "Alle",
+    "mine": "Meine",
     "yourPlan": "Dein Plan",
     "flexBadge": "Datum folgt",
     "visibleFor": "sichtbar für: {{filters}}",
@@ -50,6 +51,48 @@
     "alcoholFree": "alkoholfrei",
     "delete": "Löschen",
     "deleteConfirm": "Diesen Plan wirklich löschen?"
+  },
+  "requests": {
+    "request": "Anfragen",
+    "requested": "Angefragt ✓",
+    "joined": "Dabei ✓",
+    "youreIn": "Du bist dabei — {{when}}",
+    "planFull": "Plan ist voll",
+    "cancel": "Absagen",
+    "cancelConfirm": "Willst du absagen? Früh absagen ist völlig okay — der Platz wird sofort wieder frei.",
+    "confirm": "Zusagen",
+    "send": "Anfrage senden",
+    "pickDays": "Welche Tage gehen bei dir?",
+    "noRequests": "Keine offenen Anfragen.",
+    "requestCount_one": "{{count}} Anfrage",
+    "requestCount_other": "{{count}} Anfragen",
+    "accept": "Annehmen",
+    "declineSoft": "Plan voll",
+    "cancelledNote": "{{name}} kann doch nicht — der Platz ist wieder frei.",
+    "dateSet": "Der Termin steht: {{when}} — bist du dabei?",
+    "availability": "Verfügbarkeiten",
+    "setDate": "Termin festlegen",
+    "with": "Dabei: {{names}}"
+  },
+  "connections": {
+    "title": "Verbindungen",
+    "tabPlans": "Pläne",
+    "tabLikes": "Du gefällst",
+    "requestOpen": "Anfrage offen — wir sagen dir Bescheid",
+    "empty": "Noch nichts Kommendes — stöbere in den Plänen.",
+    "chatSoon": "Plan-Chat · kommt bald",
+    "hostedBy": "Plan von {{name}}",
+    "nobodyYet": "Noch niemand dabei",
+    "likesSoon": "Kommt bald — hier landen Signale und Matches."
+  },
+  "days": {
+    "mon": "Mo",
+    "tue": "Di",
+    "wed": "Mi",
+    "thu": "Do",
+    "fri": "Fr",
+    "sat": "Sa",
+    "sun": "So"
   },
   "create": {
     "title": "Wohin gehst du diese Woche sowieso?",
