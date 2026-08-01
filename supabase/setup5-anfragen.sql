@@ -3,12 +3,15 @@
 -- Ausführen: Dashboard → SQL Editor → New query → einfügen → Run
 -- =====================================================================
 
+-- 0) Allfällige alte requests-Tabelle aus früheren Versuchen entfernen
+drop table if exists requests cascade;
+
 -- 1) Pläne bekommen einen Status: offen oder voll
 alter table plans add column if not exists status text not null default 'open'
   check (status in ('open', 'full'));
 
 -- 2) Die Anfragen-Tabelle: wer möchte bei welchem Plan mitkommen
-create table if not exists requests (
+create table requests (
   id uuid primary key default gen_random_uuid(),
   plan_id uuid not null references plans (id) on delete cascade,
   requester uuid not null references profiles (id) on delete cascade,
