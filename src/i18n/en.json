@@ -169,7 +169,7 @@
     "orientLabel": "I'm interested in",
     "orientHint": "Only steers your Discover set — visible to no one.",
     "relLabel": "My relationship status · optional",
-    "relHint": "What's true for you — not what you're looking for. Only appears as a small badge if you set it. Tap again to remove.",
+    "relHint": "What's true for you. Only shown if you set it.",
     "showOpenRel": "Show people in open relationships"
   },
   "me": {

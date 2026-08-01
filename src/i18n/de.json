@@ -169,7 +169,7 @@
     "orientLabel": "Ich interessiere mich für",
     "orientHint": "Steuert nur dein Entdecken-Set — für niemanden sichtbar.",
     "relLabel": "Mein Beziehungsstatus · optional",
-    "relHint": "Was für dich gilt — nicht, was du suchst. Erscheint nur als kleines Badge, wenn du es angibst. Nochmals antippen entfernt es.",
+    "relHint": "Was für dich gilt. Erscheint nur, wenn du es angibst.",
     "showOpenRel": "Leute in offenen Beziehungen anzeigen"
   },
   "me": {
