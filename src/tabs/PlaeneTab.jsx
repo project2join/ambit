@@ -49,6 +49,20 @@ function Avatar({ owner }) {
   )
 }
 
+// Den Zeitpunkt lesbar machen: fixer Termin («Do, 5. Aug · 19:00»)
+// oder das Zeitfenster («Diese Woche») bei flexiblen Plänen
+function whenLabel(plan, t, lang) {
+  if (plan.is_flexible) {
+    return plan.time_window ? t(`create.window.${plan.time_window}`) : null
+  }
+  if (!plan.when_at) return null
+  const d = new Date(plan.when_at)
+  const locale = lang === 'de' ? 'de-CH' : 'en-GB'
+  const day = d.toLocaleDateString(locale, { weekday: 'short', day: 'numeric', month: 'short' })
+  const time = d.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' })
+  return `${day} · ${time}`
+}
+
 // Die Zeile «sichtbar für: …» aus den Plan-Filtern zusammensetzen
 function filterLine(plan, t) {
   const parts = []
@@ -64,7 +78,7 @@ function filterLine(plan, t) {
 }
 
 function PlaeneTab({ user, onCreate }) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const [plans, setPlans] = useState(null) // null = lädt noch
   const [owners, setOwners] = useState({}) // Infos zu den Erstellenden
@@ -100,6 +114,13 @@ function PlaeneTab({ user, onCreate }) {
     }
     load()
   }, [])
+
+  // Eigenen Plan löschen (mit kurzer Rückfrage)
+  async function deletePlan(id) {
+    if (!window.confirm(t('plans.deleteConfirm'))) return
+    const { error } = await supabase.from('plans').delete().eq('id', id)
+    if (!error) setPlans((list) => list.filter((p) => p.id !== id))
+  }
 
   // Chips grenzen nur die Anzeige ein — nie dauerhaft
   const visible =
@@ -149,12 +170,22 @@ function PlaeneTab({ user, onCreate }) {
       {visible.map((plan) => {
         const isMine = plan.owner === user.id
         const owner = owners[plan.owner]
+        const when = whenLabel(plan, t, i18n.language)
         return (
           <Card key={plan.id} className="mb-3 p-4">
-            {/* Eigener Plan: kleines grünes Label */}
+            {/* Eigener Plan: grünes Label + Löschen-Knopf */}
             {isMine && (
-              <div className="text-[12px] font-semibold uppercase tracking-[0.3px] text-pine mb-2">
-                {t('plans.yourPlan')}
+              <div className="flex items-center justify-between mb-2">
+                <div className="text-[12px] font-semibold uppercase tracking-[0.3px] text-pine">
+                  {t('plans.yourPlan')}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => deletePlan(plan.id)}
+                  className="text-[12px] font-semibold text-mut"
+                >
+                  {t('plans.delete')}
+                </button>
               </div>
             )}
 
@@ -167,10 +198,15 @@ function PlaeneTab({ user, onCreate }) {
                 </div>
                 <div className="text-[12px] text-mut flex items-center gap-1 flex-wrap">
                   {t(`categories.${plan.category}`)}
-                  {plan.when_text && <> · {plan.when_text}</>}
-                  {plan.flexible && (
+                  {when && <> · {when}</>}
+                  {plan.is_flexible && (
                     <span className="text-[10.5px] font-bold tracking-[0.5px] uppercase text-sub bg-paper border border-line px-[7px] py-[2px] rounded-full ml-0.5">
                       {t('plans.flexBadge')}
+                    </span>
+                  )}
+                  {plan.alcohol_free && (
+                    <span className="text-[10.5px] font-bold tracking-[0.5px] uppercase text-pine bg-pine-soft px-[7px] py-[2px] rounded-full ml-0.5">
+                      {t('plans.alcoholFree')}
                     </span>
                   )}
                 </div>

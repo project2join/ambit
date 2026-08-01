@@ -47,7 +47,41 @@
     "emptyTitle": "Noch kein Plan diese Woche.",
     "emptyBody": "Sei du der Grund, warum jemand rausgeht.",
     "emptyButton": "Plan erstellen",
-    "footer": "Pläne sind freundschaftlich & offen. Dating läuft über Entdecken — zu zweit oder zu viert."
+    "footer": "Pläne sind freundschaftlich & offen. Dating läuft über Entdecken — zu zweit oder zu viert.",
+    "alcoholFree": "alkoholfrei",
+    "delete": "Löschen",
+    "deleteConfirm": "Diesen Plan wirklich löschen?"
+  },
+  "create": {
+    "title": "Wohin gehst du eh?",
+    "subtitle": "Kein Event, keine Orga. Nur dein Plan — mit offenen Plätzen.",
+    "placeholder": "Ich geh eh …",
+    "categoryLabel": "Kategorie",
+    "whenLabel": "Wann",
+    "fix": "Fix",
+    "flexible": "Flexibel",
+    "dateLabel": "Datum",
+    "timeLabel": "Uhrzeit",
+    "fixHint": "Du gehst eh — der Termin steht, niemand muss verhandeln.",
+    "flexHint": "Mitkommende tippen an, welche Tage bei ihnen gehen — du legst danach den Termin fest. Fenster max. 7 Tage, ein flexibler Plan gleichzeitig.",
+    "alreadyFlexible": "Du hast schon einen flexiblen Plan. Lösch ihn zuerst oder leg dort ein Datum fest.",
+    "window": {
+      "this_week": "Diese Woche",
+      "weekend": "Wochenende",
+      "next_week": "Nächste Woche"
+    },
+    "spotsLabel": "Offene Plätze",
+    "alcoholFreeLabel": "Alkoholfrei",
+    "alcoholFreeHint": "Erscheint als kleines Badge auf deinem Plan.",
+    "visibilityTitle": "Wer sieht diesen Plan?",
+    "ageLabel": "Alter",
+    "ageYears": "Jahre",
+    "genderLabel": "Geschlecht",
+    "verifiedOnly": "Nur verifizierte Profile",
+    "visibilityHint": "Wer nicht passt, sieht deinen Plan gar nie. Gefiltert wird vorher — nicht durch Ablehnung danach.",
+    "publish": "Plan veröffentlichen",
+    "publishing": "Wird veröffentlicht…",
+    "publishError": "Das hat nicht geklappt — versuch es nochmal."
   },
   "setupError": {
     "title": "Datenbank fehlt noch",

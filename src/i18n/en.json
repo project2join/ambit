@@ -47,7 +47,41 @@
     "emptyTitle": "No plans this week yet.",
     "emptyBody": "Be the reason someone goes out.",
     "emptyButton": "Create a plan",
-    "footer": "Plans are friendly & open. Dating happens in Discover — one-on-one or as a four."
+    "footer": "Plans are friendly & open. Dating happens in Discover — one-on-one or as a four.",
+    "alcoholFree": "alcohol-free",
+    "delete": "Delete",
+    "deleteConfirm": "Really delete this plan?"
+  },
+  "create": {
+    "title": "Where are you going anyway?",
+    "subtitle": "No event, no organising. Just your plan — with open spots.",
+    "placeholder": "I'm going anyway …",
+    "categoryLabel": "Category",
+    "whenLabel": "When",
+    "fix": "Fixed",
+    "flexible": "Flexible",
+    "dateLabel": "Date",
+    "timeLabel": "Time",
+    "fixHint": "You're going anyway — the time is set, nobody has to negotiate.",
+    "flexHint": "People tap the days that work for them — you set the date afterwards. Window max. 7 days, one flexible plan at a time.",
+    "alreadyFlexible": "You already have a flexible plan. Delete it first or set its date.",
+    "window": {
+      "this_week": "This week",
+      "weekend": "Weekend",
+      "next_week": "Next week"
+    },
+    "spotsLabel": "Open spots",
+    "alcoholFreeLabel": "Alcohol-free",
+    "alcoholFreeHint": "Appears as a small badge on your plan.",
+    "visibilityTitle": "Who sees this plan?",
+    "ageLabel": "Age",
+    "ageYears": "years",
+    "genderLabel": "Gender",
+    "verifiedOnly": "Verified profiles only",
+    "visibilityHint": "If someone doesn't fit, they never see your plan. Filtering happens before — not through rejection after.",
+    "publish": "Publish plan",
+    "publishing": "Publishing…",
+    "publishError": "That didn't work — please try again."
   },
   "setupError": {
     "title": "Database not set up yet",

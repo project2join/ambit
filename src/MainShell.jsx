@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import BottomNav from './components/BottomNav'
 import IchTab from './tabs/IchTab'
 import PlaeneTab from './tabs/PlaeneTab'
+import ErstellenTab from './tabs/ErstellenTab'
 
 // Platzhalter für die Tabs, die wir als Nächstes bauen
 function Placeholder() {
@@ -42,7 +43,10 @@ function MainShell({ user, profile, onProfileChange, initialTab = 'plans' }) {
           {tab === 'plans' && (
             <PlaeneTab user={user} onCreate={() => setTab('create')} />
           )}
-          {tab !== 'me' && tab !== 'plans' && <Placeholder />}
+          {tab === 'create' && (
+            <ErstellenTab user={user} onPublished={() => setTab('plans')} />
+          )}
+          {tab !== 'me' && tab !== 'plans' && tab !== 'create' && <Placeholder />}
         </div>
 
         <BottomNav tab={tab} onChange={setTab} />
