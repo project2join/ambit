@@ -36,6 +36,15 @@ body {
 }
 
 /*
+  Fraunces zähmen: Die Schrift wird bei grossen Titeln automatisch
+  dekorativer (mehr Schnörkel). Wir pinnen sie auf eine ruhige Stufe
+  fest — elegant und serifig, aber ohne das Verspielte.
+*/
+.font-serif {
+  font-variation-settings: 'opsz' 18;
+}
+
+/*
   Doppel-Schieberegler für die Altersspanne:
   zwei übereinanderliegende Regler — nur die runden Griffe reagieren
   auf Berührung, damit beide bedienbar bleiben.

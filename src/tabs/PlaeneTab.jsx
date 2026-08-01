@@ -204,11 +204,8 @@ function PlaeneTab({ user, onCreate }) {
                       {t('plans.flexBadge')}
                     </span>
                   )}
-                  {plan.alcohol_free && (
-                    <span className="text-[10.5px] font-bold tracking-[0.5px] uppercase text-pine bg-pine-soft px-[7px] py-[2px] rounded-full ml-0.5">
-                      {t('plans.alcoholFree')}
-                    </span>
-                  )}
+                  {/* bewusst leise: nur ein feiner Zusatz, kein Badge */}
+                  {plan.alcohol_free && <> · {t('plans.alcoholFree')}</>}
                 </div>
               </div>
             </div>
