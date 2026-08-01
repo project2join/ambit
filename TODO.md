@@ -15,6 +15,8 @@
   (bei Gelegenheit, mit Vorsicht).
 
 ## Nächste grosse Schritte
+- Feed-Sortierung nach «So treffe ich mich gern» (Gruppe/zu zweit):
+  passende Pläne zuerst zeigen — nie ausblenden
 - Anfragen / Mitkommen bei fremden Plänen (der grüne «Anfragen»-Knopf)
 - Entdecken-Tab (Dating-Set, beidseitige Matches)
 - Orte-Tab (private Orte, beidseitige Aufdeckung)

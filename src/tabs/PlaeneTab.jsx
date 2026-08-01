@@ -228,12 +228,6 @@ function PlaeneTab({ user, onCreate }) {
         )
       })}
 
-      {/* Hinweis am Ende der Liste */}
-      {visible.length > 0 && (
-        <p className="text-[12px] text-mut text-center px-5 pt-2 leading-relaxed">
-          {t('plans.footer')}
-        </p>
-      )}
     </div>
   )
 }

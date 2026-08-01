@@ -47,7 +47,6 @@
     "emptyTitle": "Noch kein Plan diese Woche.",
     "emptyBody": "Sei du der Grund, warum jemand rausgeht.",
     "emptyButton": "Plan erstellen",
-    "footer": "Pläne sind freundschaftlich & offen. Dating läuft über Entdecken — zu zweit oder zu viert.",
     "alcoholFree": "alkoholfrei",
     "delete": "Löschen",
     "deleteConfirm": "Diesen Plan wirklich löschen?"
@@ -164,7 +163,7 @@
   "intent": {
     "seekLabel": "Ich suche",
     "meetLabel": "So treffe ich mich gern",
-    "intentHint": "Diese zwei Einstellungen steuern alles: Du siehst nur, was zu dir passt — und umgekehrt.",
+    "intentHint": "Sortiert nur, was dir zuerst gezeigt wird — ausgeschlossen wird niemand. Und erstellen kannst du jede Art von Plan, immer.",
     "categoriesLabel": "Meine Kategorien",
     "categoriesHint": "Kategorien sortieren nur deinen Feed — ausgeschlossen wird dadurch niemand.",
     "orientLabel": "Ich interessiere mich für",

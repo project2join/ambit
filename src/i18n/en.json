@@ -47,7 +47,6 @@
     "emptyTitle": "No plans this week yet.",
     "emptyBody": "Be the reason someone goes out.",
     "emptyButton": "Create a plan",
-    "footer": "Plans are friendly & open. Dating happens in Discover — one-on-one or as a four.",
     "alcoholFree": "alcohol-free",
     "delete": "Delete",
     "deleteConfirm": "Really delete this plan?"
@@ -164,7 +163,7 @@
   "intent": {
     "seekLabel": "I'm looking for",
     "meetLabel": "How I like to meet",
-    "intentHint": "These two settings steer everything: you only see what fits you — and vice versa.",
+    "intentHint": "Only sorts what you see first — nobody is excluded. And you can always create any kind of plan.",
     "categoriesLabel": "My categories",
     "categoriesHint": "Categories only sort your feed — nobody is ever excluded.",
     "orientLabel": "I'm interested in",

@@ -31,7 +31,10 @@ offen; Dating läuft ausschliesslich über beidseitige Matches.
   Anzeige: Wer nicht passt, sieht den Plan gar nie
 - Ablehnungen werden nie angezeigt — Abgelehnte sehen «Plan ist voll»
 - Orte von Nutzern sind privat; Aufdeckung nur beidseitig
-- Dating nie über offene Pläne, nur über beidseitige Matches
+- Dating nie über offene Pläne, nur über beidseitige Matches —
+  und strikt zu zweit: keine Gruppen-Dates
+- «So treffe ich mich gern» (Gruppe/zu zweit) sortiert nur den Feed,
+  schliesst nie aus — und schränkt das Erstellen von Plänen nie ein
 
 ## Arbeitsregeln
 - Kleine Schritte; nach jeder funktionierenden Änderung: git commit
