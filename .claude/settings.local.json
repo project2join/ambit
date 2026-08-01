@@ -31,7 +31,8 @@
       "Bash(git commit -m 'Plan-erstellen-Screen: Fix/Flexibel, Plätze-Stepper, alkoholfrei, Sichtbarkeits-Block mit Doppel-Schieberegler *)",
       "Bash(git commit -m 'Reparatur-Skript für Setup 2: alte blocks-Tabelle ersetzen *)",
       "Bash(git commit -m 'Erstellen-Screen: Hinweis unter dem Knopf, was zum Veröffentlichen noch fehlt *)",
-      "Bash(git commit -m 'Onboarding: Speicherfehler sichtbar machen statt still weiterspringen *)"
+      "Bash(git commit -m 'Onboarding: Speicherfehler sichtbar machen statt still weiterspringen *)",
+      "Bash(git commit -m 'Erstellen-Screen verfeinert: schlichtere Texte und Zahl, weichere Grün-Töne statt Fast-Schwarz *)"
     ]
   }
 }

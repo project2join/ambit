@@ -53,8 +53,7 @@
     "deleteConfirm": "Diesen Plan wirklich löschen?"
   },
   "create": {
-    "title": "Wohin gehst du eh?",
-    "subtitle": "Kein Event, keine Orga. Nur dein Plan — mit offenen Plätzen.",
+    "title": "Wohin gehst du diese Woche sowieso?",
     "placeholder": "Ich geh eh …",
     "categoryLabel": "Kategorie",
     "whenLabel": "Wann",
@@ -62,8 +61,8 @@
     "flexible": "Flexibel",
     "dateLabel": "Datum",
     "timeLabel": "Uhrzeit",
-    "fixHint": "Du gehst eh — der Termin steht, niemand muss verhandeln.",
-    "flexHint": "Mitkommende tippen an, welche Tage bei ihnen gehen — du legst danach den Termin fest. Fenster max. 7 Tage, ein flexibler Plan gleichzeitig.",
+    "fixHint": "Du gehst eh — der Termin steht. Wer kommt mit?",
+    "flexHint": "Mitkommende tippen an, welche Tage bei ihnen gehen — du legst danach den Termin fest. Fenster max. 7 Tage.",
     "alreadyFlexible": "Du hast schon einen flexiblen Plan. Lösch ihn zuerst oder leg dort ein Datum fest.",
     "window": {
       "this_week": "Diese Woche",
@@ -82,7 +81,6 @@
     "publish": "Plan veröffentlichen",
     "publishing": "Wird veröffentlicht…",
     "publishError": "Das hat nicht geklappt — versuch es nochmal.",
-    "needText": "Schreib zuerst deinen Plan-Text oben.",
     "needDateTime": "Wähle noch Datum und Uhrzeit."
   },
   "setupError": {

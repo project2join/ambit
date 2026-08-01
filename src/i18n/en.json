@@ -53,8 +53,7 @@
     "deleteConfirm": "Really delete this plan?"
   },
   "create": {
-    "title": "Where are you going anyway?",
-    "subtitle": "No event, no organising. Just your plan — with open spots.",
+    "title": "Where are you going this week anyway?",
     "placeholder": "I'm going anyway …",
     "categoryLabel": "Category",
     "whenLabel": "When",
@@ -62,8 +61,8 @@
     "flexible": "Flexible",
     "dateLabel": "Date",
     "timeLabel": "Time",
-    "fixHint": "You're going anyway — the time is set, nobody has to negotiate.",
-    "flexHint": "People tap the days that work for them — you set the date afterwards. Window max. 7 days, one flexible plan at a time.",
+    "fixHint": "You're going anyway — the date is set. Who's coming along?",
+    "flexHint": "People tap the days that work for them — you set the date afterwards. Window max. 7 days.",
     "alreadyFlexible": "You already have a flexible plan. Delete it first or set its date.",
     "window": {
       "this_week": "This week",
@@ -82,7 +81,6 @@
     "publish": "Publish plan",
     "publishing": "Publishing…",
     "publishError": "That didn't work — please try again.",
-    "needText": "Write your plan text above first.",
     "needDateTime": "Pick a date and time."
   },
   "setupError": {

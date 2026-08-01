@@ -85,10 +85,9 @@ function ErstellenTab({ user, onPublished }) {
   return (
     <div className="px-[18px] py-4 pb-6">
       {/* Titel */}
-      <h1 className="font-serif text-[19px] font-semibold text-ink mb-1">
+      <h1 className="font-serif text-[19px] font-semibold text-ink mb-4">
         {t('create.title')}
       </h1>
-      <p className="text-[13px] text-sub mb-4">{t('create.subtitle')}</p>
 
       {/* Der Plan-Text — in Fraunces, wie im Prototyp */}
       <input
@@ -171,7 +170,8 @@ function ErstellenTab({ user, onPublished }) {
         >
           −
         </button>
-        <div className="font-serif text-[22px] font-semibold text-ink min-w-5 text-center">
+        {/* bewusst schlicht in der Textschrift — nicht in der Serife */}
+        <div className="text-[17px] font-medium text-ink min-w-5 text-center">
           {spots}
         </div>
         <button
@@ -257,26 +257,20 @@ function ErstellenTab({ user, onPublished }) {
       {/* Fehlermeldung, nur falls nötig */}
       {error && <p className="text-[13px] text-bordeaux mt-3">{t('create.publishError')}</p>}
 
-      {/* Veröffentlichen */}
+      {/* Veröffentlichen — Tannengrün: Pläne sind freundschaftlich */}
       <button
         type="button"
         onClick={publish}
         disabled={!canPublish}
-        className="w-full mt-[18px] rounded-full bg-ink px-6 py-[15px] text-[15px] font-semibold text-white disabled:opacity-40"
+        className="w-full mt-[18px] rounded-full bg-pine px-6 py-[15px] text-[15px] font-semibold text-white disabled:opacity-40"
       >
         {publishing ? t('create.publishing') : t('create.publish')}
       </button>
 
-      {/* Sagt freundlich, was noch fehlt, solange der Knopf grau ist */}
-      {!canPublish && !publishing && (
+      {/* Nur wenn Text schon steht, aber Datum/Uhrzeit fehlen */}
+      {!publishing && text.trim().length > 0 && mode === 'fix' && (!date || !time) && (
         <p className="text-[12px] text-mut text-center mt-2">
-          {text.trim().length === 0
-            ? t('create.needText')
-            : mode === 'fix' && (!date || !time)
-              ? t('create.needDateTime')
-              : mode === 'flex' && hasFlexPlan
-                ? t('create.alreadyFlexible')
-                : ''}
+          {t('create.needDateTime')}
         </p>
       )}
     </div>

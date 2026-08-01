@@ -26,7 +26,8 @@ export function Label({ children, warm, className = '' }) {
   )
 }
 
-// Auswahl-Chip: aktiv = dunkel (oder Bordeaux bei warm), inaktiv = weiss
+// Auswahl-Chip: aktiv = Tannengrün (oder Bordeaux bei Dating-Momenten),
+// inaktiv = weiss. Grün statt Fast-Schwarz wirkt weicher.
 export function Chip({ active, warm, onClick, children }) {
   return (
     <button
@@ -35,7 +36,7 @@ export function Chip({ active, warm, onClick, children }) {
       className={
         'px-[14px] py-[7px] rounded-full text-[13px] font-medium whitespace-nowrap transition-colors border ' +
         (active
-          ? (warm ? 'bg-bordeaux' : 'bg-ink') + ' text-white border-transparent'
+          ? (warm ? 'bg-bordeaux' : 'bg-pine') + ' text-white border-transparent'
           : 'bg-card text-sub border-line')
       }
     >
