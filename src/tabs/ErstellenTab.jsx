@@ -243,13 +243,13 @@ function ErstellenTab({ user, onPublished }) {
           ))}
         </div>
 
-        {/* Nur verifizierte Profile */}
-        <div className="flex items-center gap-2.5">
-          <Toggle on={verifiedOnly} onClick={() => setVerifiedOnly(!verifiedOnly)} />
-          <span className="text-[14px] text-ink">{t('create.verifiedOnly')}</span>
-        </div>
+        {/*
+          «Nur verifizierte Profile» ist AUSGEBLENDET, bis es einen
+          Verifizierungsprozess gibt (siehe TODO.md) — sonst würde der
+          Schalter Pläne unsichtbar machen, weil noch niemand verifiziert ist.
+        */}
 
-        <p className="text-[12px] text-mut mt-3 leading-relaxed">
+        <p className="text-[12px] text-mut mt-1 leading-relaxed">
           {t('create.visibilityHint')}
         </p>
       </Card>

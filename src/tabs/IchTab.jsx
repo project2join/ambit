@@ -34,6 +34,7 @@ function IchTab({ user, profile, onChange }) {
 
   const [pickerOpen, setPickerOpen] = useState(false) // Fragen-Auswahl offen?
   const [editingLocation, setEditingLocation] = useState(false)
+  const [editingCurrent, setEditingCurrent] = useState(false) // Ferien-Standort?
   const [otherLang, setOtherLang] = useState('')
   const radiusTimer = useRef(null) // verzögertes Speichern für den Slider
 
@@ -232,17 +233,55 @@ function IchTab({ user, profile, onChange }) {
           </div>
         )}
 
-        {/* Umkreis-Slider: 1–50 km */}
+        {/* Vorübergehender Standort — z. B. in den Ferien */}
+        <div className="mt-4 pt-4 border-t border-line">
+          <Label className="mb-2">{t('me.currentLabel')}</Label>
+          {editingCurrent ? (
+            <LocationSearch
+              onPick={(r) => {
+                patch({ current_area: r.area, current_lat: r.lat, current_lng: r.lng })
+                setEditingCurrent(false)
+              }}
+            />
+          ) : profile.current_area ? (
+            <div className="flex items-center gap-2 text-[14.5px] text-ink">
+              <MapPinIcon size={15} className="text-pine" />
+              {profile.current_area}
+              <button
+                type="button"
+                onClick={() =>
+                  patch({ current_area: null, current_lat: null, current_lng: null })
+                }
+                className="ml-auto text-[12px] font-semibold text-mut"
+              >
+                {t('common.remove')}
+              </button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={() => setEditingCurrent(true)}
+              className="w-full py-2.5 rounded-xl border-[1.5px] border-dashed border-line text-mut text-[13px] font-medium"
+            >
+              + {t('me.currentAdd')}
+            </button>
+          )}
+          <p className="text-[12px] text-mut leading-relaxed mt-2">
+            {t('me.currentHint')}
+          </p>
+        </div>
+
+        {/* Umkreis-Slider: 1–100 km */}
         <div className="flex justify-between items-baseline mt-4 mb-1">
           <span className="text-[12px] text-mut">{t('me.radiusLabel')}</span>
-          <span className="font-serif text-[15px] font-bold text-ink">
+          <span className="text-[15px] font-semibold text-ink">
             {profile.radius_km || 10} km
           </span>
         </div>
         <input
           type="range"
           min="1"
-          max="50"
+          max="100"
           value={profile.radius_km || 10}
           onChange={(e) => setRadius(Number(e.target.value))}
           aria-label={t('me.radiusLabel')}
