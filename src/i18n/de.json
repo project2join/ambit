@@ -81,7 +81,9 @@
     "visibilityHint": "Wer nicht passt, sieht deinen Plan gar nie. Gefiltert wird vorher — nicht durch Ablehnung danach.",
     "publish": "Plan veröffentlichen",
     "publishing": "Wird veröffentlicht…",
-    "publishError": "Das hat nicht geklappt — versuch es nochmal."
+    "publishError": "Das hat nicht geklappt — versuch es nochmal.",
+    "needText": "Schreib zuerst deinen Plan-Text oben.",
+    "needDateTime": "Wähle noch Datum und Uhrzeit."
   },
   "setupError": {
     "title": "Datenbank fehlt noch",

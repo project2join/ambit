@@ -266,6 +266,19 @@ function ErstellenTab({ user, onPublished }) {
       >
         {publishing ? t('create.publishing') : t('create.publish')}
       </button>
+
+      {/* Sagt freundlich, was noch fehlt, solange der Knopf grau ist */}
+      {!canPublish && !publishing && (
+        <p className="text-[12px] text-mut text-center mt-2">
+          {text.trim().length === 0
+            ? t('create.needText')
+            : mode === 'fix' && (!date || !time)
+              ? t('create.needDateTime')
+              : mode === 'flex' && hasFlexPlan
+                ? t('create.alreadyFlexible')
+                : ''}
+        </p>
+      )}
     </div>
   )
 }

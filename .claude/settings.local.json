@@ -28,7 +28,9 @@
       "Bash(git commit -m 'Texte verfeinert: Beziehungsstatus klarer, Abschluss-Karte lockerer *)",
       "Bash(git commit -m 'Abmelden-Knopf im Onboarding ergänzt *)",
       "Bash(git commit -m 'Pläne-Tab: Karten-Feed mit Kategorie-Chips, Sichtbarkeits-Logik in der Datenbank, einladender Leer-Zustand *)",
-      "Bash(git commit -m 'Plan-erstellen-Screen: Fix/Flexibel, Plätze-Stepper, alkoholfrei, Sichtbarkeits-Block mit Doppel-Schieberegler *)"
+      "Bash(git commit -m 'Plan-erstellen-Screen: Fix/Flexibel, Plätze-Stepper, alkoholfrei, Sichtbarkeits-Block mit Doppel-Schieberegler *)",
+      "Bash(git commit -m 'Reparatur-Skript für Setup 2: alte blocks-Tabelle ersetzen *)",
+      "Bash(git commit -m 'Erstellen-Screen: Hinweis unter dem Knopf, was zum Veröffentlichen noch fehlt *)"
     ]
   }
 }

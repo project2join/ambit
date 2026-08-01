@@ -81,7 +81,9 @@
     "visibilityHint": "If someone doesn't fit, they never see your plan. Filtering happens before — not through rejection after.",
     "publish": "Publish plan",
     "publishing": "Publishing…",
-    "publishError": "That didn't work — please try again."
+    "publishError": "That didn't work — please try again.",
+    "needText": "Write your plan text above first.",
+    "needDateTime": "Pick a date and time."
   },
   "setupError": {
     "title": "Database not set up yet",
