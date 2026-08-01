@@ -34,6 +34,21 @@
     "title": "Coming soon.",
     "body": "This part is next on our list."
   },
+  "plans": {
+    "all": "All",
+    "yourPlan": "Your plan",
+    "flexBadge": "Date to follow",
+    "visibleFor": "visible to: {{filters}}",
+    "freeSpots": "{{free}} of {{total}} open",
+    "everyone": "everyone",
+    "genderWomen": "Women",
+    "genderMen": "Men",
+    "verifiedOnly": "verified",
+    "emptyTitle": "No plans this week yet.",
+    "emptyBody": "Be the reason someone goes out.",
+    "emptyButton": "Create a plan",
+    "footer": "Plans are friendly & open. Dating happens in Discover — one-on-one or as a four."
+  },
   "setupError": {
     "title": "Database not set up yet",
     "body": "Your profile couldn't be loaded. Most likely the setup script (supabase/setup.sql) hasn't been run in Supabase yet."

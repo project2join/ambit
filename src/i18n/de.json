@@ -34,6 +34,21 @@
     "title": "Kommt bald.",
     "body": "Diesen Teil bauen wir als Nächstes."
   },
+  "plans": {
+    "all": "Alle",
+    "yourPlan": "Dein Plan",
+    "flexBadge": "Datum folgt",
+    "visibleFor": "sichtbar für: {{filters}}",
+    "freeSpots": "{{free}} von {{total}} frei",
+    "everyone": "alle",
+    "genderWomen": "Frauen",
+    "genderMen": "Männer",
+    "verifiedOnly": "verifiziert",
+    "emptyTitle": "Noch kein Plan diese Woche.",
+    "emptyBody": "Sei du der Grund, warum jemand rausgeht.",
+    "emptyButton": "Plan erstellen",
+    "footer": "Pläne sind freundschaftlich & offen. Dating läuft über Entdecken — zu zweit oder zu viert."
+  },
   "setupError": {
     "title": "Datenbank fehlt noch",
     "body": "Dein Profil konnte nicht geladen werden. Wahrscheinlich wurde das Setup-Skript (supabase/setup.sql) noch nicht in Supabase ausgeführt."

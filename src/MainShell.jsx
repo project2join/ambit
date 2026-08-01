@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import BottomNav from './components/BottomNav'
 import IchTab from './tabs/IchTab'
+import PlaeneTab from './tabs/PlaeneTab'
 
 // Platzhalter für die Tabs, die wir als Nächstes bauen
 function Placeholder() {
@@ -35,11 +36,13 @@ function MainShell({ user, profile, onProfileChange, initialTab = 'plans' }) {
         </header>
 
         <div className="flex-1 overflow-y-auto">
-          {tab === 'me' ? (
+          {tab === 'me' && (
             <IchTab user={user} profile={profile} onChange={onProfileChange} />
-          ) : (
-            <Placeholder />
           )}
+          {tab === 'plans' && (
+            <PlaeneTab user={user} onCreate={() => setTab('create')} />
+          )}
+          {tab !== 'me' && tab !== 'plans' && <Placeholder />}
         </div>
 
         <BottomNav tab={tab} onChange={setTab} />
