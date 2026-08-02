@@ -204,21 +204,33 @@ function PlaeneTab({ user, onCreate }) {
 
   // ---------- Anzeige ----------
 
-  // Chips grenzen nur die Anzeige ein — nie dauerhaft
-  const filtered =
+  // Zwei Welten:
+  // «Meine» = selbst erstellt + zugesagt (eigene zuoberst, damit
+  //           Anfragen nie untergehen)
+  // «Alle» und die Kategorien = reiner Entdeckungs-Feed von anderen
+  const all = plans || []
+  const isMinePlan = (p) => p.owner === user.id
+  const isJoined = (p) => myRequests[p.id]?.status === 'accepted'
+
+  const mine = [
+    ...all.filter(isMinePlan),
+    ...all.filter((p) => !isMinePlan(p) && isJoined(p)),
+  ]
+  const discover = all.filter((p) => !isMinePlan(p) && !isJoined(p))
+
+  const visible =
     plans === null
       ? []
-      : catFilter === 'alle'
-        ? plans
-        : catFilter === 'meine'
-          ? plans.filter((p) => p.owner === user.id)
-          : plans.filter((p) => p.category === catFilter)
+      : catFilter === 'meine'
+        ? mine
+        : catFilter === 'alle'
+          ? discover
+          : discover.filter((p) => p.category === catFilter)
 
-  // Eigene Pläne zuoberst, damit Anfragen nie untergehen
-  const visible = [
-    ...filtered.filter((p) => p.owner === user.id),
-    ...filtered.filter((p) => p.owner !== user.id),
-  ]
+  // Warten Anfragen auf mich? Dann bekommt der «Meine»-Chip einen feinen Punkt
+  const hasPending = Object.values(incoming).some((list) =>
+    list.some((r) => r.status === 'pending')
+  )
 
   return (
     <div className="px-[18px] py-4 pb-6">
@@ -228,7 +240,13 @@ function PlaeneTab({ user, onCreate }) {
           {t('plans.all')}
         </Chip>
         <Chip active={catFilter === 'meine'} onClick={() => setCatFilter('meine')}>
-          {t('plans.mine')}
+          <span className="flex items-center gap-1.5">
+            {t('plans.mine')}
+            {/* leiser Punkt, wenn Anfragen auf dich warten */}
+            {hasPending && (
+              <span className="w-[6px] h-[6px] rounded-full bg-bordeaux" />
+            )}
+          </span>
         </Chip>
         {CATEGORY_IDS.map((c) => (
           <Chip key={c} active={catFilter === c} onClick={() => setCatFilter(c)}>
