@@ -11,6 +11,7 @@
     "submitting": "Sending…",
     "noPassword": "No password needed — we'll email you a link.",
     "error": "That didn't work. Is the email address correct?",
+    "errorRate": "Too many sign-in emails were sent just now. Wait a moment and try again.",
     "sentLabel": "Link sent",
     "sentTitle": "Check your inbox.",
     "sentBody": "We've sent a sign-in link to <strong>{{email}}</strong>. One click and you're in."

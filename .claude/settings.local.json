@@ -39,7 +39,8 @@
       "Bash(git commit -m 'Beziehungsstatus-Hinweis vereinfacht *)",
       "Bash(git commit -m 'Anfrage-Mechanik: Anfragen, sanfter Korb, Flexibel-Termine, Verbindungen-Übersicht, Meine-Filter *)",
       "Bash(git commit -m 'Setup 5 robust gemacht: alte requests-Tabelle wird ersetzt *)",
-      "Bash(git commit -m 'Feed getrennt: Alle ist reiner Entdeckungs-Feed, Meine buendelt eigene und zugesagte Plaene *)"
+      "Bash(git commit -m 'Feed getrennt: Alle ist reiner Entdeckungs-Feed, Meine buendelt eigene und zugesagte Plaene *)",
+      "Bash(git commit -m 'Login: echten Fehlergrund protokollieren, eigene Meldung bei zu vielen Anmelde-Mails *)"
     ]
   }
 }

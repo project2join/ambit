@@ -18,12 +18,12 @@ function Login() {
   const [email, setEmail] = useState('') // was im Feld steht
   const [sending, setSending] = useState(false) // wird gerade gesendet?
   const [sent, setSent] = useState(false) // wurde der Link verschickt?
-  const [error, setError] = useState(false) // ist etwas schiefgegangen?
+  const [error, setError] = useState(null) // null | 'generic' | 'rate'
 
   // Wird ausgeführt, wenn man auf «Anmelde-Link schicken» drückt
   async function handleSubmit(e) {
     e.preventDefault() // verhindert, dass die Seite neu lädt
-    setError(false)
+    setError(null)
     setSending(true)
 
     // Supabase bitten, den Magic Link zu verschicken.
@@ -35,7 +35,13 @@ function Login() {
 
     setSending(false)
     if (error) {
-      setError(true)
+      // Den echten Grund in die Konsole schreiben (F12 → Console),
+      // damit beim Entwickeln nichts im Dunkeln bleibt
+      console.error('Anmelde-Mail fehlgeschlagen:', error.status, error.message)
+      // Zu viele Mails in kurzer Zeit? Dann das ehrlich sagen.
+      const isRate =
+        error.status === 429 || /rate limit|security purposes/i.test(error.message || '')
+      setError(isRate ? 'rate' : 'generic')
     } else {
       setSent(true) // Erfolgsmeldung zeigen
     }
@@ -107,8 +113,8 @@ function Login() {
 
                 {/* Fehlermeldung, nur falls nötig */}
                 {error && (
-                  <p className="text-[13px] text-bordeaux mt-2">
-                    {t('login.error')}
+                  <p className="text-[13px] text-bordeaux mt-2 leading-relaxed">
+                    {error === 'rate' ? t('login.errorRate') : t('login.error')}
                   </p>
                 )}
 
