@@ -12,8 +12,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { supabase } from '../lib/supabase'
-import { XIcon } from './Icons'
+import { XIcon, MoreIcon } from './Icons'
 import { formatWhen } from '../lib/format'
+import SafetyMenu from './SafetyMenu'
 import KeepCard from './KeepCard'
 import { loadKeeps, addKeep, removeKeep, isKeepWindow } from '../lib/keeps'
 
@@ -27,6 +28,8 @@ function ChatSheet({ user, plan, onClose, onKeepChange }) {
   const [draft, setDraft] = useState('')
   const [sending, setSending] = useState(false)
   const [keep, setKeep] = useState(null) // { mine, matched } für diesen Plan
+  const [whoOpen, setWhoOpen] = useState(false) // «Wen melden?»-Liste
+  const [safetyPerson, setSafetyPerson] = useState(null)
   const bottomRef = useRef(null)
 
   // Ist der Plan mehr als 48 Stunden vorbei? Dann nur noch lesen —
@@ -202,14 +205,25 @@ function ChatSheet({ user, plan, onClose, onKeepChange }) {
             </div>
             <div className="text-[12.5px] text-mut truncate">«{plan.text}»</div>
           </div>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label={t('common.close')}
-            className="text-mut p-1 flex-shrink-0"
-          >
-            <XIcon size={20} />
-          </button>
+          <div className="flex items-center gap-1 flex-shrink-0">
+            {/* Drei Punkte: jemanden melden oder blockieren */}
+            <button
+              type="button"
+              onClick={() => setWhoOpen(true)}
+              aria-label={t('safety.menu')}
+              className="text-mut p-1"
+            >
+              <MoreIcon size={20} />
+            </button>
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label={t('common.close')}
+              className="text-mut p-1"
+            >
+              <XIcon size={20} />
+            </button>
+          </div>
         </div>
 
         {/* Die Nachrichten */}
@@ -295,6 +309,55 @@ function ChatSheet({ user, plan, onClose, onKeepChange }) {
           )}
         </div>
       </div>
+
+      {/* «Wen möchtest du melden oder blockieren?» */}
+      {whoOpen && (
+        <div className="fixed inset-0 z-40 bg-ink/55 flex items-end justify-center">
+          <div className="w-full max-w-[390px] bg-card rounded-t-3xl px-5 pt-5 pb-7">
+            <div className="flex items-center justify-between mb-3">
+              <div className="font-serif text-[18px] font-bold text-ink">
+                {t('safety.whoTitle')}
+              </div>
+              <button
+                type="button"
+                onClick={() => setWhoOpen(false)}
+                aria-label={t('common.close')}
+                className="text-mut p-1"
+              >
+                <XIcon size={20} />
+              </button>
+            </div>
+            <div className="flex flex-col gap-2">
+              {Object.values(people)
+                .filter((p) => p.id !== user.id)
+                .map((p) => (
+                  <button
+                    key={p.id}
+                    type="button"
+                    onClick={() => {
+                      setSafetyPerson(p)
+                      setWhoOpen(false)
+                    }}
+                    className="w-full text-left rounded-xl border border-line bg-paper px-4 py-3.5 text-[14.5px] text-ink"
+                  >
+                    {p.name}
+                  </button>
+                ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Melden / Blockieren */}
+      {safetyPerson && (
+        <SafetyMenu
+          user={user}
+          person={safetyPerson}
+          planId={plan.id}
+          onBlocked={onClose}
+          onClose={() => setSafetyPerson(null)}
+        />
+      )}
     </div>
   )
 }

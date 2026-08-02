@@ -1,18 +1,20 @@
 # Ambit — Offene Punkte (nicht vergessen!)
 
 ## Versprochen, kommt noch
-- **Verifizierungsprozess** bauen (z. B. Selfie-Abgleich, braucht einen Dienst).
-  Danach: Schalter «Nur verifizierte Profile» im Erstellen-Screen wieder
-  einblenden (siehe Kommentar in src/tabs/ErstellenTab.jsx) und den
-  Verifiziert-Haken im Profilkopf zeigen.
-- **Profil löschen** — Knopf im «Ich»-Tab: Konto, Profildaten und Fotos
-  vollständig entfernen.
+- **Verifizierung automatisieren** — läuft aktuell von Hand: Selfie per Mail
+  an den Betreiber, danach `is_verified` in Supabase auf true setzen.
+  Sobald genug Profile verifiziert sind: Schalter «Nur verifizierte Profile»
+  im Erstellen-Screen wieder einblenden (Kommentar in ErstellenTab.jsx).
 - **Profil pausieren** — Knopf im «Ich»-Tab: unsichtbar werden, ohne dass
   Daten verloren gehen; jederzeit reaktivierbar.
+- **Benachrichtigungen** wirklich verschicken (E-Mail oder Push). Die
+  Schalter im «Ich»-Tab speichern die Wahl schon, es passiert nur noch nichts.
+- **Treffpunkt als eigenes Feld** beim Plan-Erstellen. Aktuell steckt der Ort
+  im Plan-Text; «Plan teilen» schickt darum den ganzen Text mit.
 - **Magic-Link-Mail auf Deutsch** übersetzen
   (Supabase → Authentication → Email Templates).
-- Alte Spalte `is_verified` in der profiles-Tabelle aufräumen
-  (bei Gelegenheit, mit Vorsicht).
+- **Meldungen anschauen**: Die Tabelle `reports` in Supabase regelmässig
+  prüfen — es gibt noch keine Benachrichtigung darüber.
 
 ## Nächste grosse Schritte
 - Feed-Sortierung nach «So treffe ich mich gern» (Gruppe/zu zweit):

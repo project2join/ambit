@@ -12,7 +12,8 @@ import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { supabase } from '../lib/supabase'
 import { Card, Chip, Label } from '../components/UI'
-import { ShieldIcon, CheckIcon, XIcon } from '../components/Icons'
+import { ShieldIcon, CheckIcon, XIcon, BadgeCheckIcon, ShareIcon } from '../components/Icons'
+import { sharePlan } from '../lib/share'
 import ProfileSheet from '../components/ProfileSheet'
 import ChatSheet from '../components/ChatSheet'
 import KeepCard from '../components/KeepCard'
@@ -123,7 +124,9 @@ function PlaeneTab({ user, onCreate }) {
     if (ids.length > 0) {
       const { data: profRows } = await supabase
         .from('public_profiles')
-        .select('id, name, age, photo_urls, about, home_area, languages, categories, prompts')
+        .select(
+          'id, name, age, photo_urls, about, home_area, languages, categories, prompts, is_verified'
+        )
         .in('id', ids)
       for (const p of profRows || []) profMap[p.id] = p
     }
@@ -200,6 +203,19 @@ function PlaeneTab({ user, onCreate }) {
       .eq('status', 'accepted')
     setDateFix(null)
     load()
+  }
+
+  // Plan an eine Vertrauensperson schicken (Teilen-Menü des Geräts)
+  async function handleShare(plan) {
+    const names =
+      plan.owner === user.id
+        ? (incoming[plan.id] || [])
+            .filter((r) => r.status === 'accepted')
+            .map((r) => profiles[r.requester]?.name)
+            .filter(Boolean)
+        : [profiles[plan.owner]?.name].filter(Boolean)
+    const result = await sharePlan({ plan, names, t, lang: i18n.language })
+    if (result === 'copied') window.alert(t('share.copied'))
   }
 
   // «Gerne wieder» antippen
@@ -337,8 +353,12 @@ function PlaeneTab({ user, onCreate }) {
             <div className="flex items-center gap-3">
               <Avatar owner={owner} />
               <div className="flex-1 min-w-0">
-                <div className="text-[14px] font-semibold text-ink">
+                <div className="text-[14px] font-semibold text-ink flex items-center gap-1.5">
                   {owner ? `${owner.name}, ${owner.age}` : '…'}
+                  {/* Grünes Häkchen nur bei geprüften Profilen */}
+                  {owner?.is_verified && (
+                    <BadgeCheckIcon size={15} className="text-pine" strokeWidth={2} />
+                  )}
                 </div>
                 <div className="text-[12px] text-mut flex items-center gap-1 flex-wrap">
                   {t(`categories.${plan.category}`)}
@@ -470,6 +490,16 @@ function PlaeneTab({ user, onCreate }) {
                       >
                         {t('chat.open')}
                       </button>
+                      {/* An eine Vertrauensperson schicken */}
+                      <button
+                        type="button"
+                        onClick={() => handleShare(plan)}
+                        aria-label={t('share.button')}
+                        className="rounded-full border border-line bg-card text-sub px-3 py-2 flex items-center gap-1.5 text-[12.5px] font-semibold"
+                      >
+                        <ShareIcon size={14} />
+                        {t('share.button')}
+                      </button>
                       <button
                         type="button"
                         onClick={() => cancelJoin(myReq)}
@@ -496,13 +526,23 @@ function PlaeneTab({ user, onCreate }) {
                           .join(', '),
                       })}
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => setChatPlan(plan)}
-                      className="rounded-full bg-pine text-white px-4 py-2 text-[12.5px] font-semibold flex-shrink-0"
-                    >
-                      {t('chat.open')}
-                    </button>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <button
+                        type="button"
+                        onClick={() => setChatPlan(plan)}
+                        className="rounded-full bg-pine text-white px-4 py-2 text-[12.5px] font-semibold"
+                      >
+                        {t('chat.open')}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleShare(plan)}
+                        aria-label={t('share.button')}
+                        className="rounded-full border border-line bg-card text-sub p-2"
+                      >
+                        <ShareIcon size={15} />
+                      </button>
+                    </div>
                   </div>
                 )}
 
@@ -633,7 +673,12 @@ function PlaeneTab({ user, onCreate }) {
 
       {/* Mini-Profil in Grossansicht */}
       {sheetProfile && (
-        <ProfileSheet profile={sheetProfile} onClose={() => setSheetProfile(null)} />
+        <ProfileSheet
+          user={user}
+          profile={sheetProfile}
+          onBlocked={load}
+          onClose={() => setSheetProfile(null)}
+        />
       )}
 
       {/* Plan-Chat */}

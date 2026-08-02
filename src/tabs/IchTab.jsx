@@ -9,7 +9,9 @@ import { supabase } from '../lib/supabase'
 import { saveProfile } from '../lib/profile'
 import { setLanguage } from '../i18n'
 import { Card, Label, Chip, Toggle } from '../components/UI'
-import { LockIcon, MapPinIcon } from '../components/Icons'
+import { LockIcon, MapPinIcon, BadgeCheckIcon } from '../components/Icons'
+import { deleteAccount } from '../lib/account'
+import { CONTACT_EMAIL } from '../config'
 import PhotoGrid from '../components/PhotoGrid'
 import LocationSearch from '../components/LocationSearch'
 import PromptPicker from '../components/PromptPicker'
@@ -35,6 +37,8 @@ function IchTab({ user, profile, onChange }) {
   const [pickerOpen, setPickerOpen] = useState(false) // Fragen-Auswahl offen?
   const [editingLocation, setEditingLocation] = useState(false)
   const [editingCurrent, setEditingCurrent] = useState(false) // Ferien-Standort?
+  const [deleting, setDeleting] = useState(false)
+  const [deleteError, setDeleteError] = useState(false)
   const [otherLang, setOtherLang] = useState('')
   const radiusTimer = useRef(null) // verzögertes Speichern für den Slider
 
@@ -62,6 +66,20 @@ function IchTab({ user, profile, onChange }) {
     await supabase.auth.signOut()
   }
 
+  // Konto löschen: zweimal nachfragen, dann unwiderruflich entfernen
+  async function handleDeleteAccount() {
+    if (!window.confirm(t('settings.deleteConfirm'))) return
+    const word = window.prompt(t('settings.deleteConfirmWord'))
+    if (word?.trim().toUpperCase() !== t('settings.deleteWord')) return
+
+    setDeleting(true)
+    setDeleteError(false)
+    const ok = await deleteAccount(user.id)
+    setDeleting(false)
+    if (!ok) setDeleteError(true)
+    // Bei Erfolg meldet die App automatisch ab — der Login erscheint
+  }
+
   const prompts = profile.prompts || []
 
   return (
@@ -71,8 +89,12 @@ function IchTab({ user, profile, onChange }) {
         <div className="w-[76px] h-[76px] rounded-full bg-pine-soft mx-auto flex items-center justify-center font-serif text-[30px] font-bold text-pine">
           {(profile.name || '?')[0]}
         </div>
-        <div className="font-serif text-[20px] font-semibold text-ink mt-2.5">
+        <div className="font-serif text-[20px] font-semibold text-ink mt-2.5 flex items-center justify-center gap-1.5">
           {profile.name}, {profile.age}
+          {/* Grünes Häkchen nur bei geprüften Profilen */}
+          {profile.is_verified && (
+            <BadgeCheckIcon size={17} className="text-pine" strokeWidth={2} />
+          )}
         </div>
         <div className="text-[13px] text-mut mt-0.5">
           {profile.home_area}
@@ -414,14 +436,87 @@ function IchTab({ user, profile, onChange }) {
         </div>
       </Card>
 
-      {/* ---------- Abmelden ---------- */}
-      <button
-        type="button"
-        onClick={handleLogout}
-        className="w-full rounded-full border border-line bg-card px-6 py-3 text-[14px] font-semibold text-sub"
-      >
-        {t('me.logout')}
-      </button>
+      {/* ---------- Verifizierung ---------- */}
+      <Card>
+        <Label className="mb-2">{t('settings.verification')}</Label>
+        {profile.is_verified ? (
+          <div className="text-[14px] text-pine font-semibold flex items-center gap-1.5">
+            <BadgeCheckIcon size={16} strokeWidth={2} />
+            {t('settings.verificationDone')}
+          </div>
+        ) : (
+          <>
+            <div className="text-[14px] text-ink">{t('settings.verificationPending')}</div>
+            <p className="text-[12px] text-mut mt-2 leading-relaxed">
+              {t('settings.verificationHow', { email: CONTACT_EMAIL })}
+            </p>
+          </>
+        )}
+      </Card>
+
+      {/* ---------- Einstellungen ---------- */}
+      <Card>
+        <Label className="mb-3">{t('settings.title')}</Label>
+
+        {/* Benachrichtigungen */}
+        <div className="text-[13px] font-semibold text-ink mb-2">
+          {t('settings.notifications')}
+        </div>
+        <div className="flex items-center justify-between gap-3 mb-2.5">
+          <span className="text-[14px] text-ink">{t('settings.notifyRequests')}</span>
+          <Toggle
+            on={profile.notify_requests ?? true}
+            onClick={() => patch({ notify_requests: !(profile.notify_requests ?? true) })}
+          />
+        </div>
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-[14px] text-ink">{t('settings.notifyMessages')}</span>
+          <Toggle
+            on={profile.notify_messages ?? true}
+            onClick={() => patch({ notify_messages: !(profile.notify_messages ?? true) })}
+          />
+        </div>
+        <p className="text-[12px] text-mut mt-2 leading-relaxed">
+          {t('settings.notifyHint')}
+        </p>
+
+        {/* Feedback — direkt an den Betreiber */}
+        <a
+          href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+            t('settings.feedbackSubject')
+          )}&body=${encodeURIComponent(t('settings.feedbackBody'))}`}
+          className="block mt-5 pt-4 border-t border-line"
+        >
+          <span className="text-[14px] font-semibold text-ink">
+            {t('settings.feedback')}
+          </span>
+          <p className="text-[12px] text-mut mt-1">{t('settings.feedbackHint')}</p>
+        </a>
+
+        {/* Abmelden */}
+        <button
+          type="button"
+          onClick={handleLogout}
+          className="w-full mt-5 rounded-full border border-line bg-paper px-6 py-3 text-[14px] font-semibold text-sub"
+        >
+          {t('me.logout')}
+        </button>
+
+        {/* Konto löschen — unwiderruflich, deshalb doppelt abgesichert */}
+        <button
+          type="button"
+          onClick={handleDeleteAccount}
+          disabled={deleting}
+          className="w-full mt-2 rounded-full border border-line bg-paper px-6 py-3 text-[14px] font-semibold text-bordeaux disabled:opacity-50"
+        >
+          {deleting ? t('settings.deleting') : t('settings.deleteAccount')}
+        </button>
+        {deleteError && (
+          <p className="text-[13px] text-bordeaux mt-2 text-center">
+            {t('settings.deleteError')}
+          </p>
+        )}
+      </Card>
 
       {/* Fragen-Auswahl (Overlay) */}
       {pickerOpen && (

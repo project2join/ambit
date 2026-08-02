@@ -47,7 +47,8 @@
       "Bash(node -e \"const a=require\\('./src/i18n/de.json'\\),b=require\\('./src/i18n/en.json'\\);const k=o=>Object.entries\\(o\\).flatMap\\(\\([x,v]\\)=>typeof v==='object'?Object.keys\\(v\\).map\\(y=>x+'.'+y\\):[x]\\);const A=k\\(a\\),B=k\\(b\\);console.log\\('nur DE:',A.filter\\(x=>!B.includes\\(x\\)\\)\\);console.log\\('nur EN:',B.filter\\(x=>!A.includes\\(x\\)\\)\\)\")",
       "Bash(git commit -m 'Plan-Chat: Gruppenchat pro Plan mit Realtime, mehrsprachiger Eisbrecher, Archiv nach 48 Stunden *)",
       "Bash(node -e \"const a=require\\('./src/i18n/de.json'\\),b=require\\('./src/i18n/en.json'\\);const k=o=>Object.entries\\(o\\).flatMap\\(\\([x,v]\\)=>typeof v==='object'?Object.keys\\(v\\).map\\(y=>x+'.'+y\\):[x]\\);const A=k\\(a\\),B=k\\(b\\);console.log\\('nur DE:',A.filter\\(x=>!B.includes\\(x\\)\\),'| nur EN:',B.filter\\(x=>!A.includes\\(x\\)\\)\\)\")",
-      "Bash(git commit -m 'Gerne wieder: beidseitiger Kontakt nach dem Treffen, 7-Tage-Fenster, Verbindung loesen *)"
+      "Bash(git commit -m 'Gerne wieder: beidseitiger Kontakt nach dem Treffen, 7-Tage-Fenster, Verbindung loesen *)",
+      "Bash(git commit -m 'Sicherheits-Grundlagen: Blockieren, Melden, Verifiziert-Haken, Plan teilen, Einstellungen mit Konto loeschen und Feedback *)"
     ]
   }
 }

@@ -3,12 +3,15 @@
   eine anfragende Person antippt. Zeigt nur die erlaubten Felder
   (Fotos, Name, Alter, Ort, Sprachen, Kategorien, Über mich, Antworten).
 */
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { XIcon } from './Icons'
+import { XIcon, MoreIcon, BadgeCheckIcon } from './Icons'
+import SafetyMenu from './SafetyMenu'
 import { langShort } from '../data/profileOptions'
 
-function ProfileSheet({ profile, onClose }) {
+function ProfileSheet({ user, profile, planId, onBlocked, onClose }) {
   const { t } = useTranslation()
+  const [safetyOpen, setSafetyOpen] = useState(false)
   if (!profile) return null
 
   const photo = profile.photo_urls?.[0]
@@ -19,19 +22,36 @@ function ProfileSheet({ profile, onClose }) {
         {/* Foto-Kopf (erstes Foto oder ruhige Farbfläche) */}
         <div className="relative h-[190px] bg-pine-soft">
           {photo && <img src={photo} alt="" className="w-full h-full object-cover" />}
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label={t('common.close')}
-            className="absolute top-3.5 right-3.5 w-8 h-8 rounded-full bg-ink/45 text-white flex items-center justify-center"
-          >
-            <XIcon size={17} />
-          </button>
+          <div className="absolute top-3.5 right-3.5 flex gap-2">
+            {/* Drei Punkte: Melden oder Blockieren */}
+            {user && (
+              <button
+                type="button"
+                onClick={() => setSafetyOpen(true)}
+                aria-label={t('safety.menu')}
+                className="w-8 h-8 rounded-full bg-ink/45 text-white flex items-center justify-center"
+              >
+                <MoreIcon size={17} />
+              </button>
+            )}
+            <button
+              type="button"
+              onClick={onClose}
+              aria-label={t('common.close')}
+              className="w-8 h-8 rounded-full bg-ink/45 text-white flex items-center justify-center"
+            >
+              <XIcon size={17} />
+            </button>
+          </div>
         </div>
 
         <div className="px-5 pt-4 pb-7">
-          <div className="font-serif text-[21px] font-bold text-ink">
+          <div className="font-serif text-[21px] font-bold text-ink flex items-center gap-1.5">
             {profile.name}, {profile.age}
+            {/* Grünes Häkchen nur bei geprüften Profilen */}
+            {profile.is_verified && (
+              <BadgeCheckIcon size={17} className="text-pine" strokeWidth={2} />
+            )}
           </div>
           <div className="text-[13px] text-mut mt-0.5">
             {profile.home_area}
@@ -69,6 +89,20 @@ function ProfileSheet({ profile, onClose }) {
           ))}
         </div>
       </div>
+
+      {/* Melden / Blockieren */}
+      {safetyOpen && (
+        <SafetyMenu
+          user={user}
+          person={profile}
+          planId={planId}
+          onBlocked={() => {
+            onBlocked?.()
+            onClose()
+          }}
+          onClose={() => setSafetyOpen(false)}
+        />
+      )}
     </div>
   )
 }
