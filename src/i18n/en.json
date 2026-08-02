@@ -75,6 +75,24 @@
     "setDate": "Set the date",
     "with": "Joining: {{names}}"
   },
+  "verify": {
+    "explain": "One selfie, one quick look from us — then you get the green tick. Optional, but it builds trust.",
+    "gestureIntro": "Take the selfie with this gesture:",
+    "gesture": {
+      "ear": "Hand at your ear",
+      "peace": "Peace sign",
+      "thumb": "Thumbs up"
+    },
+    "start": "Verify now",
+    "uploading": "Sending…",
+    "pending": "Being checked.",
+    "pendingBody": "We have your selfie. As soon as we've looked at it, your tick appears.",
+    "rejected": "That didn't work yet.",
+    "rejectedBody": "Give it another go — make sure your face and the gesture are clearly visible.",
+    "retry": "Try again",
+    "error": "That didn't work — please try again.",
+    "privacy": "Only the operator sees this selfie. It never appears on your profile and is deleted after the check."
+  },
   "safety": {
     "menu": "More",
     "block": "Block",
@@ -106,7 +124,6 @@
     "verification": "Verification",
     "verificationPending": "Not verified yet",
     "verificationDone": "Verified",
-    "verificationHow": "Send a selfie to {{email}} — ideally with your hand at your ear, so we can see it's really you. We check it by hand and add the green tick. The photo is deleted afterwards and never appears on your profile.",
     "feedback": "What's annoying? Tell me",
     "feedbackHint": "Honest feedback helps more than any statistic.",
     "feedbackSubject": "Feedback on Ambit",
@@ -187,6 +204,7 @@
     "ageYears": "years",
     "genderLabel": "Gender",
     "verifiedOnly": "Verified profiles only",
+    "verifiedOnlyHint": "Few profiles are verified so far — this narrows things down a lot.",
     "visibilityHint": "If someone doesn't fit, they never see your plan. Filtering happens before — not through rejection after.",
     "publish": "Publish plan",
     "publishing": "Publishing…",

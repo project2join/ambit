@@ -1,10 +1,12 @@
 # Ambit — Offene Punkte (nicht vergessen!)
 
 ## Versprochen, kommt noch
-- **Verifizierung automatisieren** — läuft aktuell von Hand: Selfie per Mail
-  an den Betreiber, danach `is_verified` in Supabase auf true setzen.
-  Sobald genug Profile verifiziert sind: Schalter «Nur verifizierte Profile»
-  im Erstellen-Screen wieder einblenden (Kommentar in ErstellenTab.jsx).
+- **Verifizierung automatisieren** — läuft aktuell von Hand: Selfie kommt
+  über die App in den privaten Bucket `verification`, du schaust es an und
+  setzt in `verification_requests` den Status auf `approved` oder `rejected`
+  (das Häkchen wird dann automatisch gesetzt, das Selfie gelöscht).
+  Später: ein Dienst gleicht Selfie und Profilfoto selbst ab — Achtung,
+  biometrische Daten brauchen eine saubere rechtliche Grundlage.
 - **Profil pausieren** — Knopf im «Ich»-Tab: unsichtbar werden, ohne dass
   Daten verloren gehen; jederzeit reaktivierbar.
 - **Benachrichtigungen** wirklich verschicken (E-Mail oder Push). Die

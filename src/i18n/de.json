@@ -75,6 +75,24 @@
     "setDate": "Termin festlegen",
     "with": "Dabei: {{names}}"
   },
+  "verify": {
+    "explain": "Ein Selfie, ein kurzer Blick von uns — dann bekommst du das grüne Häkchen. Freiwillig, aber es schafft Vertrauen.",
+    "gestureIntro": "Mach das Selfie mit dieser Geste:",
+    "gesture": {
+      "ear": "Hand ans Ohr",
+      "peace": "Peace-Zeichen",
+      "thumb": "Daumen hoch"
+    },
+    "start": "Jetzt verifizieren",
+    "uploading": "Wird geschickt…",
+    "pending": "Wird geprüft.",
+    "pendingBody": "Dein Selfie ist bei uns. Sobald wir es angeschaut haben, erscheint dein Häkchen.",
+    "rejected": "Das hat noch nicht geklappt.",
+    "rejectedBody": "Versuch es nochmal — achte darauf, dass dein Gesicht und die Geste gut zu sehen sind.",
+    "retry": "Nochmal versuchen",
+    "error": "Das hat nicht geklappt — versuch es nochmal.",
+    "privacy": "Das Selfie sieht nur der Betreiber, erscheint nie in deinem Profil und wird nach der Prüfung gelöscht."
+  },
   "safety": {
     "menu": "Mehr",
     "block": "Blockieren",
@@ -106,7 +124,6 @@
     "verification": "Verifizierung",
     "verificationPending": "Noch nicht verifiziert",
     "verificationDone": "Verifiziert",
-    "verificationHow": "Schick ein Selfie an {{email}} — am besten mit der Hand am Ohr, damit man sieht, dass du es bist. Wir prüfen es von Hand und setzen das grüne Häkchen. Das Foto wird danach gelöscht und erscheint nie im Profil.",
     "feedback": "Was nervt? Sag's mir",
     "feedbackHint": "Ehrliches Feedback hilft mehr als jede Statistik.",
     "feedbackSubject": "Feedback zu Ambit",
@@ -187,6 +204,7 @@
     "ageYears": "Jahre",
     "genderLabel": "Geschlecht",
     "verifiedOnly": "Nur verifizierte Profile",
+    "verifiedOnlyHint": "Noch sind wenige Profile verifiziert — das schränkt stark ein.",
     "visibilityHint": "Wer nicht passt, sieht deinen Plan gar nie. Gefiltert wird vorher — nicht durch Ablehnung danach.",
     "publish": "Plan veröffentlichen",
     "publishing": "Wird veröffentlicht…",

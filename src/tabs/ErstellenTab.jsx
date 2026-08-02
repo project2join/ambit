@@ -29,8 +29,7 @@ function ErstellenTab({ user, onPublished }) {
   const [ageMin, setAgeMin] = useState(18)
   const [ageMax, setAgeMax] = useState(65)
   const [gender, setGender] = useState('all')
-  // Bleibt aus, bis es einen Verifizierungsprozess gibt (siehe TODO.md)
-  const verifiedOnly = false
+  const [verifiedOnly, setVerifiedOnly] = useState(false)
 
   const [publishing, setPublishing] = useState(false)
   const [error, setError] = useState(false)
@@ -244,13 +243,20 @@ function ErstellenTab({ user, onPublished }) {
           ))}
         </div>
 
-        {/*
-          «Nur verifizierte Profile» ist AUSGEBLENDET, bis es einen
-          Verifizierungsprozess gibt (siehe TODO.md) — sonst würde der
-          Schalter Pläne unsichtbar machen, weil noch niemand verifiziert ist.
-        */}
+        {/* Nur verifizierte Profile */}
+        <div className="flex items-center gap-2.5">
+          <Toggle on={verifiedOnly} onClick={() => setVerifiedOnly(!verifiedOnly)} />
+          <span className="text-[14px] text-ink">{t('create.verifiedOnly')}</span>
+        </div>
+        {/* Ehrlich sein: solange kaum jemand verifiziert ist, sieht
+            fast niemand den Plan */}
+        {verifiedOnly && (
+          <p className="text-[12px] text-mut mt-1.5 leading-relaxed">
+            {t('create.verifiedOnlyHint')}
+          </p>
+        )}
 
-        <p className="text-[12px] text-mut mt-1 leading-relaxed">
+        <p className="text-[12px] text-mut mt-3 leading-relaxed">
           {t('create.visibilityHint')}
         </p>
       </Card>

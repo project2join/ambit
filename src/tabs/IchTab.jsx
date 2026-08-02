@@ -10,6 +10,7 @@ import { saveProfile } from '../lib/profile'
 import { setLanguage } from '../i18n'
 import { Card, Label, Chip, Toggle } from '../components/UI'
 import { LockIcon, MapPinIcon, BadgeCheckIcon } from '../components/Icons'
+import VerificationCard from '../components/VerificationCard'
 import { deleteAccount } from '../lib/account'
 import { CONTACT_EMAIL } from '../config'
 import PhotoGrid from '../components/PhotoGrid'
@@ -437,22 +438,7 @@ function IchTab({ user, profile, onChange }) {
       </Card>
 
       {/* ---------- Verifizierung ---------- */}
-      <Card>
-        <Label className="mb-2">{t('settings.verification')}</Label>
-        {profile.is_verified ? (
-          <div className="text-[14px] text-pine font-semibold flex items-center gap-1.5">
-            <BadgeCheckIcon size={16} strokeWidth={2} />
-            {t('settings.verificationDone')}
-          </div>
-        ) : (
-          <>
-            <div className="text-[14px] text-ink">{t('settings.verificationPending')}</div>
-            <p className="text-[12px] text-mut mt-2 leading-relaxed">
-              {t('settings.verificationHow', { email: CONTACT_EMAIL })}
-            </p>
-          </>
-        )}
-      </Card>
+      <VerificationCard user={user} profile={profile} />
 
       {/* ---------- Einstellungen ---------- */}
       <Card>
