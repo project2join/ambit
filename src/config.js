@@ -4,4 +4,4 @@
   Feedback («Was nervt? Sag's mir») und für die Verifizierung genutzt.
   Änderst du sie hier, ändert sie sich überall.
 */
-export const CONTACT_EMAIL = 'vinu.balgrist@gmail.com'
+export const CONTACT_EMAIL = 'project2join@gmail.com'
