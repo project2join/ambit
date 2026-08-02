@@ -22,6 +22,18 @@
 - Orte-Tab (private Orte, beidseitige Aufdeckung)
 - Plan-Chat (Knopf in den Verbindungen wartet schon)
 
+## Vor dem echten Start (Launch-Checkliste)
+- **Eigener Mail-Versand (SMTP) in Supabase hinterlegen** — der eingebaute
+  Versand ist nur zum Entwickeln und erlaubt nur wenige Mails pro Stunde.
+  Ohne das können sich echte Nutzer nicht anmelden. Anbieter z. B. Resend,
+  Postmark, SendGrid; einzurichten unter Supabase → Project Settings →
+  Authentication → SMTP Settings. Dazu gehört eine eigene Domain, damit die
+  Anmelde-Mails nicht im Spam landen.
+- Supabase-Gratis-Projekte werden nach längerer Inaktivität pausiert —
+  vor dem Start auf einen bezahlten Plan wechseln.
+- Datenschutzerklärung und Nutzungsbedingungen (Pflicht bei einer App mit
+  Fotos, Standort und Dating-Funktion).
+
 ## Technisch härten (später)
 - Anfrage-Statuswechsel serverseitig absichern (aktuell könnte eine
   technisch versierte Person ihre eigene Anfrage per API annehmen —
