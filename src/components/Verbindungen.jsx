@@ -11,7 +11,9 @@ import { supabase } from '../lib/supabase'
 import { Card, Chip } from './UI'
 import { XIcon } from './Icons'
 import ChatSheet from './ChatSheet'
+import KeepCard from './KeepCard'
 import { formatWhen } from '../lib/format'
+import { loadKeeps, addKeep, removeKeep, isKeepWindow } from '../lib/keeps'
 
 function Verbindungen({ user, onClose }) {
   const { t, i18n } = useTranslation()
@@ -22,6 +24,9 @@ function Verbindungen({ user, onClose }) {
   const [joined, setJoined] = useState([]) // wo ich angenommen bin
   const [pendingMine, setPendingMine] = useState([]) // meine offenen Anfragen
   const [names, setNames] = useState({}) // Profilnamen
+  const [keeps, setKeeps] = useState({}) // planId → «Gerne wieder»-Stand
+
+  const [reloadKey, setReloadKey] = useState(0)
 
   useEffect(() => {
     async function load() {
@@ -90,9 +95,22 @@ function Verbindungen({ user, onClose }) {
           .map((r) => ({ req: r, plan: reqPlans[r.plan_id] }))
       )
       setNames(nameMap)
+      setKeeps(await loadKeeps(user.id))
     }
     load()
-  }, [user.id])
+  }, [user.id, reloadKey])
+
+  // «Gerne wieder» antippen bzw. Verbindung lösen
+  async function handleKeep(plan) {
+    await addKeep(plan.id, user.id)
+    setReloadKey((k) => k + 1)
+  }
+
+  async function handleRelease(plan) {
+    if (!window.confirm(t('keep.releaseConfirm'))) return
+    await removeKeep(plan.id, user.id)
+    setReloadKey((k) => k + 1)
+  }
 
   async function cancelJoin(req) {
     if (!window.confirm(t('requests.cancelConfirm'))) return
@@ -103,15 +121,26 @@ function Verbindungen({ user, onClose }) {
     onClose() // schliessen — der Feed lädt frisch
   }
 
-  // Gehostete + zugesagte Treffen chronologisch mischen (Flexible ans Ende)
-  const upcoming = [
+  // Gehostete + zugesagte Treffen zusammenwerfen …
+  const everything = [
     ...hosted.map((h) => ({ type: 'hosted', ...h })),
     ...joined.map((j) => ({ type: 'joined', ...j })),
-  ].sort((a, b) => {
-    const ta = a.plan.when_at ? new Date(a.plan.when_at).getTime() : Infinity
-    const tb = b.plan.when_at ? new Date(b.plan.when_at).getTime() : Infinity
-    return ta - tb
-  })
+  ]
+  const isPast = (p) => p.when_at && Date.now() > new Date(p.when_at).getTime()
+
+  // … und in drei Gruppen teilen: kommend, gerade vorbei, in Kontakt
+  const upcoming = everything
+    .filter((e) => !isPast(e.plan))
+    .sort((a, b) => {
+      const ta = a.plan.when_at ? new Date(a.plan.when_at).getTime() : Infinity
+      const tb = b.plan.when_at ? new Date(b.plan.when_at).getTime() : Infinity
+      return ta - tb
+    })
+
+  const afterOpen = everything.filter(
+    (e) => isPast(e.plan) && isKeepWindow(e.plan) && !keeps[e.plan.id]?.matched
+  )
+  const kept = everything.filter((e) => isPast(e.plan) && keeps[e.plan.id]?.matched)
 
   return (
     <div className="fixed inset-0 z-30 bg-ink/55 flex items-end justify-center">
@@ -184,6 +213,56 @@ function Verbindungen({ user, onClose }) {
               </Card>
             ))}
 
+            {/* Gerade vorbei: «Gerne wieder?» — wartet noch 7 Tage */}
+            {afterOpen.length > 0 && (
+              <div className="text-[12px] font-semibold uppercase tracking-[0.9px] text-mut mt-4 mb-2">
+                {t('keep.sectionOpen')}
+              </div>
+            )}
+            {afterOpen.map(({ type, plan }) => (
+              <Card key={'keep' + plan.id + type} className="mb-2 p-3.5">
+                <div className="text-[14.5px] font-semibold text-ink truncate mb-2.5">
+                  «{plan.text}»
+                </div>
+                <KeepCard
+                  plan={plan}
+                  state={keeps[plan.id]}
+                  onKeep={() => handleKeep(plan)}
+                  onRelease={() => handleRelease(plan)}
+                />
+              </Card>
+            ))}
+
+            {/* In Kontakt geblieben — der Chat läuft weiter */}
+            {kept.length > 0 && (
+              <div className="text-[12px] font-semibold uppercase tracking-[0.9px] text-mut mt-4 mb-2">
+                {t('keep.sectionKept')}
+              </div>
+            )}
+            {kept.map(({ type, plan }) => (
+              <Card key={'kept' + plan.id + type} className="mb-2 p-3.5">
+                <div className="text-[14.5px] font-semibold text-ink truncate">
+                  «{plan.text}»
+                </div>
+                <div className="flex items-center gap-2 mt-2.5">
+                  <button
+                    type="button"
+                    onClick={() => setChatPlan(plan)}
+                    className="rounded-full bg-pine text-white px-3.5 py-2 text-[12px] font-semibold"
+                  >
+                    {t('chat.open')}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleRelease(plan)}
+                    className="rounded-full border border-line bg-card text-sub px-3.5 py-2 text-[12px] font-semibold"
+                  >
+                    {t('keep.release')}
+                  </button>
+                </div>
+              </Card>
+            ))}
+
             {/* Eigene offene Anfragen */}
             {pendingMine.map(({ plan }) => (
               <Card key={'pend' + plan.id} className="mb-2 p-3.5">
@@ -196,11 +275,14 @@ function Verbindungen({ user, onClose }) {
               </Card>
             ))}
 
-            {upcoming.length === 0 && pendingMine.length === 0 && (
-              <p className="text-[13px] text-mut text-center py-8">
-                {t('connections.empty')}
-              </p>
-            )}
+            {upcoming.length === 0 &&
+              afterOpen.length === 0 &&
+              kept.length === 0 &&
+              pendingMine.length === 0 && (
+                <p className="text-[13px] text-mut text-center py-8">
+                  {t('connections.empty')}
+                </p>
+              )}
           </>
         )}
 
@@ -217,7 +299,12 @@ function Verbindungen({ user, onClose }) {
 
       {/* Plan-Chat */}
       {chatPlan && (
-        <ChatSheet user={user} plan={chatPlan} onClose={() => setChatPlan(null)} />
+        <ChatSheet
+          user={user}
+          plan={chatPlan}
+          onClose={() => setChatPlan(null)}
+          onKeepChange={() => setReloadKey((k) => k + 1)}
+        />
       )}
     </div>
   )

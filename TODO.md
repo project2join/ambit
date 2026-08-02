@@ -33,6 +33,10 @@
 - Datenschutzerklärung und Nutzungsbedingungen (Pflicht bei einer App mit
   Fotos, Standort und Dating-Funktion).
 
+## Ideen für später
+- «Gerne wieder» in grösseren Gruppen: aktuell ein Tipp fürs ganze Treffen.
+  Falls gewünscht, später zusätzlich einzelne Personen anschreiben können.
+
 ## Technisch härten (später)
 - Anfrage-Statuswechsel serverseitig absichern (aktuell könnte eine
   technisch versierte Person ihre eigene Anfrage per API annehmen —

@@ -14,21 +14,27 @@ import { useTranslation } from 'react-i18next'
 import { supabase } from '../lib/supabase'
 import { XIcon } from './Icons'
 import { formatWhen } from '../lib/format'
+import KeepCard from './KeepCard'
+import { loadKeeps, addKeep, removeKeep, isKeepWindow } from '../lib/keeps'
 
 const CLOSE_AFTER_MS = 48 * 60 * 60 * 1000 // 48 Stunden
 
-function ChatSheet({ user, plan, onClose }) {
+function ChatSheet({ user, plan, onClose, onKeepChange }) {
   const { t, i18n } = useTranslation()
 
   const [messages, setMessages] = useState([])
   const [people, setPeople] = useState({}) // id → Profil (Name, Foto, Antworten)
   const [draft, setDraft] = useState('')
   const [sending, setSending] = useState(false)
+  const [keep, setKeep] = useState(null) // { mine, matched } für diesen Plan
   const bottomRef = useRef(null)
 
-  // Ist der Plan mehr als 48 Stunden vorbei? Dann nur noch lesen.
+  // Ist der Plan mehr als 48 Stunden vorbei? Dann nur noch lesen —
+  // ausser es hat beidseitig «Gerne wieder» gepasst, dann bleibt er offen.
   const closed =
-    !!plan.when_at && Date.now() > new Date(plan.when_at).getTime() + CLOSE_AFTER_MS
+    !!plan.when_at &&
+    Date.now() > new Date(plan.when_at).getTime() + CLOSE_AFTER_MS &&
+    !keep?.matched
 
   // Nachrichten und Teilnehmende laden
   const load = useCallback(async () => {
@@ -55,10 +61,14 @@ function ChatSheet({ user, plan, onClose }) {
       for (const p of profs || []) map[p.id] = p
     }
 
+    // Stand von «Gerne wieder» für diesen Plan
+    const keeps = await loadKeeps(user.id)
+    setKeep(keeps[plan.id] || { mine: false, matched: false })
+
     setPeople(map)
     setMessages(msgs || [])
     return { msgs: msgs || [], people: map }
-  }, [plan.id, plan.owner])
+  }, [plan.id, plan.owner, user.id])
 
   // Beim Öffnen: laden, Eisbrecher anlegen (falls noch keiner da ist),
   // und auf neue Nachrichten horchen
@@ -135,6 +145,21 @@ function ChatSheet({ user, plan, onClose }) {
     if (error && error.code !== '23505') {
       console.error('Eisbrecher fehlgeschlagen:', error.message)
     }
+  }
+
+  // «Gerne wieder» antippen
+  async function handleKeep() {
+    await addKeep(plan.id, user.id)
+    await load()
+    onKeepChange?.()
+  }
+
+  // Verbindung lösen — still, ohne Meldung an die anderen
+  async function handleRelease() {
+    if (!window.confirm(t('keep.releaseConfirm'))) return
+    await removeKeep(plan.id, user.id)
+    onKeepChange?.()
+    onClose()
   }
 
   async function send(e) {
@@ -233,6 +258,19 @@ function ChatSheet({ user, plan, onClose }) {
           })}
           <div ref={bottomRef} />
         </div>
+
+        {/* Nach dem Treffen: «Gerne wieder» — bleibt 7 Tage antippbar,
+            also auch dann noch, wenn der Chat längst geschlossen ist */}
+        {(isKeepWindow(plan) || keep?.matched) && (
+          <div className="px-5 pb-3 flex-shrink-0">
+            <KeepCard
+              plan={plan}
+              state={keep}
+              onKeep={handleKeep}
+              onRelease={handleRelease}
+            />
+          </div>
+        )}
 
         {/* Schreiben — oder der Hinweis, dass der Plan vorbei ist */}
         <div className="px-5 pt-3 pb-5 border-t border-line flex-shrink-0">

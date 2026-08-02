@@ -75,6 +75,20 @@
     "setDate": "Set the date",
     "with": "Joining: {{names}}"
   },
+  "keep": {
+    "title": "Again sometime?",
+    "body": "If someone else taps it too, this chat stays open. Otherwise nothing happens.",
+    "until": "Open until {{day}}.",
+    "button": "Again sometime",
+    "done": "Noted.",
+    "doneBody": "If someone feels the same, the chat stays open.",
+    "matched": "You're staying in touch.",
+    "matchedBody": "This chat stays open as long as you like.",
+    "release": "End connection",
+    "releaseConfirm": "End this connection? The chat disappears for everyone involved.",
+    "sectionOpen": "After the meet-up",
+    "sectionKept": "In touch"
+  },
   "chat": {
     "open": "Chat",
     "title": "Plan chat",

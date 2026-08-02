@@ -75,6 +75,20 @@
     "setDate": "Termin festlegen",
     "with": "Dabei: {{names}}"
   },
+  "keep": {
+    "title": "Gerne wieder?",
+    "body": "Tippt es jemand anderes auch an, bleibt dieser Chat offen. Sonst passiert nichts.",
+    "until": "Noch bis {{day}}.",
+    "button": "Gerne wieder",
+    "done": "Gemerkt.",
+    "doneBody": "Wenn es jemandem auch so geht, bleibt der Chat offen.",
+    "matched": "Ihr bleibt in Kontakt.",
+    "matchedBody": "Dieser Chat bleibt offen, solange ihr mögt.",
+    "release": "Verbindung lösen",
+    "releaseConfirm": "Verbindung lösen? Der Chat verschwindet für alle Beteiligten.",
+    "sectionOpen": "Nach dem Treffen",
+    "sectionKept": "In Kontakt"
+  },
   "chat": {
     "open": "Chat",
     "title": "Plan-Chat",

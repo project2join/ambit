@@ -15,6 +15,8 @@ import { Card, Chip, Label } from '../components/UI'
 import { ShieldIcon, CheckIcon, XIcon } from '../components/Icons'
 import ProfileSheet from '../components/ProfileSheet'
 import ChatSheet from '../components/ChatSheet'
+import KeepCard from '../components/KeepCard'
+import { loadKeeps, addKeep, removeKeep, isKeepWindow } from '../lib/keeps'
 import { CATEGORY_IDS } from '../data/profileOptions'
 import { formatWhen, DAY_IDS, nextDateFor } from '../lib/format'
 
@@ -78,6 +80,7 @@ function PlaeneTab({ user, onCreate }) {
   const [catFilter, setCatFilter] = useState('alle')
   const [sheetProfile, setSheetProfile] = useState(null) // Mini-Profil gross
   const [chatPlan, setChatPlan] = useState(null) // offener Plan-Chat
+  const [keeps, setKeeps] = useState({}) // planId → «Gerne wieder»-Stand
   const [dayPick, setDayPick] = useState(null) // { planId, days } — Tage wählen vor Anfrage
   const [dateFix, setDateFix] = useState(null) // { planId, day, time } — Host legt Termin fest
 
@@ -127,6 +130,7 @@ function PlaeneTab({ user, onCreate }) {
 
     setProfiles(profMap)
     setMyRequests(myMap)
+    setKeeps(await loadKeeps(user.id))
     setIncoming(incMap)
     setPlans(planRows)
   }, [user.id])
@@ -195,6 +199,19 @@ function PlaeneTab({ user, onCreate }) {
       .eq('plan_id', plan.id)
       .eq('status', 'accepted')
     setDateFix(null)
+    load()
+  }
+
+  // «Gerne wieder» antippen
+  async function handleKeep(plan) {
+    await addKeep(plan.id, user.id)
+    load()
+  }
+
+  // Verbindung lösen — still, ohne Meldung an die anderen
+  async function handleRelease(plan) {
+    if (!window.confirm(t('keep.releaseConfirm'))) return
+    await removeKeep(plan.id, user.id)
     load()
   }
 
@@ -288,6 +305,8 @@ function PlaeneTab({ user, onCreate }) {
         const pending = reqs.filter((r) => r.status === 'pending')
         const accepted = reqs.filter((r) => r.status === 'accepted')
         const cancelled = reqs.filter((r) => r.status === 'cancelled')
+        // Gehöre ich zu diesem Treffen? (Host mit Zusagen oder selbst zugesagt)
+        const imIn = (isMine && accepted.length > 0) || myReq?.status === 'accepted'
 
         return (
           <Card key={plan.id} className="mb-3 p-4">
@@ -595,6 +614,19 @@ function PlaeneTab({ user, onCreate }) {
                 )}
               </div>
             )}
+
+            {/* Nach dem Treffen: «Gerne wieder» — direkt auf der Karte,
+                damit man dafür den Chat nicht öffnen muss */}
+            {imIn && (isKeepWindow(plan) || keeps[plan.id]?.matched) && (
+              <div className="mt-3">
+                <KeepCard
+                  plan={plan}
+                  state={keeps[plan.id]}
+                  onKeep={() => handleKeep(plan)}
+                  onRelease={() => handleRelease(plan)}
+                />
+              </div>
+            )}
           </Card>
         )
       })}
@@ -606,7 +638,12 @@ function PlaeneTab({ user, onCreate }) {
 
       {/* Plan-Chat */}
       {chatPlan && (
-        <ChatSheet user={user} plan={chatPlan} onClose={() => setChatPlan(null)} />
+        <ChatSheet
+          user={user}
+          plan={chatPlan}
+          onClose={() => setChatPlan(null)}
+          onKeepChange={load}
+        />
       )}
     </div>
   )

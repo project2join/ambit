@@ -8,6 +8,7 @@ import { supabase } from './lib/supabase'
 import BottomNav from './components/BottomNav'
 import Verbindungen from './components/Verbindungen'
 import { UsersIcon } from './components/Icons'
+import { loadKeeps, isKeepWindow } from './lib/keeps'
 import IchTab from './tabs/IchTab'
 import PlaeneTab from './tabs/PlaeneTab'
 import ErstellenTab from './tabs/ErstellenTab'
@@ -32,16 +33,19 @@ function MainShell({ user, profile, onProfileChange, initialTab = 'plans' }) {
   const [badge, setBadge] = useState(0) // Zähler für Neuigkeiten
 
   // Neuigkeiten zählen: offene Anfragen auf meine Pläne +
-  // neu festgelegte Termine, die auf meine Zusage warten
+  // neu festgelegte Termine, die auf meine Zusage warten +
+  // Treffen, bei denen «Gerne wieder» noch offen ist
   const loadBadge = useCallback(async () => {
     try {
       const { data: myPlans } = await supabase
         .from('plans')
-        .select('id')
+        .select('id, when_at')
         .eq('owner', user.id)
       const ids = (myPlans || []).map((p) => p.id)
 
+      // Offene Anfragen auf meine Pläne — und wer bei ihnen schon dabei ist
       let pendingCount = 0
+      let hostedWithPeople = []
       if (ids.length > 0) {
         const { count } = await supabase
           .from('requests')
@@ -49,8 +53,17 @@ function MainShell({ user, profile, onProfileChange, initialTab = 'plans' }) {
           .in('plan_id', ids)
           .eq('status', 'pending')
         pendingCount = count || 0
+
+        const { data: acc } = await supabase
+          .from('requests')
+          .select('plan_id')
+          .in('plan_id', ids)
+          .eq('status', 'accepted')
+        const withPeople = new Set((acc || []).map((r) => r.plan_id))
+        hostedWithPeople = (myPlans || []).filter((p) => withPeople.has(p.id))
       }
 
+      // Termine, die neu feststehen und auf meine Zusage warten
       const { count: reconfirmCount } = await supabase
         .from('requests')
         .select('*', { count: 'exact', head: true })
@@ -58,7 +71,27 @@ function MainShell({ user, profile, onProfileChange, initialTab = 'plans' }) {
         .eq('status', 'accepted')
         .eq('needs_reconfirm', true)
 
-      setBadge(pendingCount + (reconfirmCount || 0))
+      // Treffen, bei denen ich dabei war und noch nicht getippt habe
+      const { data: myAcc } = await supabase
+        .from('requests')
+        .select('plan_id')
+        .eq('requester', user.id)
+        .eq('status', 'accepted')
+      const joinedIds = (myAcc || []).map((r) => r.plan_id)
+      let joinedPlans = []
+      if (joinedIds.length > 0) {
+        const { data } = await supabase
+          .from('plans')
+          .select('id, when_at')
+          .in('id', joinedIds)
+        joinedPlans = data || []
+      }
+      const keeps = await loadKeeps(user.id)
+      const keepCount = [...hostedWithPeople, ...joinedPlans].filter(
+        (p) => isKeepWindow(p) && !keeps[p.id]?.mine
+      ).length
+
+      setBadge(pendingCount + (reconfirmCount || 0) + keepCount)
     } catch {
       setBadge(0)
     }
