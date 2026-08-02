@@ -26,7 +26,10 @@ alter table profiles add column if not exists notify_requests boolean default tr
 alter table profiles add column if not exists notify_messages boolean default true;
 
 -- 3) Meldungen: Freitext-Grund, landet für den Betreiber in der Tabelle
-create table if not exists reports (
+--    (allfällige alte Tabelle aus früheren Versuchen wird ersetzt)
+drop table if exists reports cascade;
+
+create table reports (
   id uuid primary key default gen_random_uuid(),
   reporter uuid not null references profiles (id) on delete cascade,
   reported_user uuid references profiles (id) on delete set null,
