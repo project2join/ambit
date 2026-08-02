@@ -75,13 +75,23 @@
     "setDate": "Set the date",
     "with": "Joining: {{names}}"
   },
+  "chat": {
+    "open": "Chat",
+    "title": "Plan chat",
+    "placeholder": "Write a message …",
+    "send": "Send",
+    "closed": "This plan is over — see you at the next one!",
+    "empty": "No messages yet — say hi.",
+    "you": "You",
+    "icebreaker": "{{category}} · {{when}}. Glad you're all in!",
+    "icebreakerDetail": "By the way — {{name}} on «{{question}}»: «{{answer}}». Just so that's settled."
+  },
   "connections": {
     "title": "Connections",
     "tabPlans": "Plans",
     "tabLikes": "They like you",
     "requestOpen": "Request open — we'll let you know",
     "empty": "Nothing coming up yet — browse the plans.",
-    "chatSoon": "Plan chat · coming soon",
     "hostedBy": "Plan by {{name}}",
     "nobodyYet": "Nobody joining yet",
     "likesSoon": "Coming soon — signals and matches will land here."

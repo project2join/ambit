@@ -10,12 +10,14 @@ import { useTranslation } from 'react-i18next'
 import { supabase } from '../lib/supabase'
 import { Card, Chip } from './UI'
 import { XIcon } from './Icons'
+import ChatSheet from './ChatSheet'
 import { formatWhen } from '../lib/format'
 
 function Verbindungen({ user, onClose }) {
   const { t, i18n } = useTranslation()
 
   const [tab, setTab] = useState('plans')
+  const [chatPlan, setChatPlan] = useState(null) // offener Plan-Chat
   const [hosted, setHosted] = useState([]) // meine Pläne
   const [joined, setJoined] = useState([]) // wo ich angenommen bin
   const [pendingMine, setPendingMine] = useState([]) // meine offenen Anfragen
@@ -159,10 +161,16 @@ function Verbindungen({ user, onClose }) {
                     : ' · ' + t('connections.hostedBy', { name: names[plan.owner] || '…' })}
                 </div>
                 <div className="flex items-center gap-2 mt-2.5">
-                  {/* Plan-Chat kommt später — bewusst sichtbar, aber still */}
-                  <span className="rounded-full bg-paper border border-line text-mut px-3.5 py-2 text-[12px] font-semibold">
-                    {t('connections.chatSoon')}
-                  </span>
+                  {/* Chat gibt es, sobald jemand dabei ist */}
+                  {(type === 'joined' || participants?.length > 0) && (
+                    <button
+                      type="button"
+                      onClick={() => setChatPlan(plan)}
+                      className="rounded-full bg-pine text-white px-3.5 py-2 text-[12px] font-semibold"
+                    >
+                      {t('chat.open')}
+                    </button>
+                  )}
                   {type === 'joined' && (
                     <button
                       type="button"
@@ -206,6 +214,11 @@ function Verbindungen({ user, onClose }) {
           </div>
         )}
       </div>
+
+      {/* Plan-Chat */}
+      {chatPlan && (
+        <ChatSheet user={user} plan={chatPlan} onClose={() => setChatPlan(null)} />
+      )}
     </div>
   )
 }

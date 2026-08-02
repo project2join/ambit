@@ -75,13 +75,23 @@
     "setDate": "Termin festlegen",
     "with": "Dabei: {{names}}"
   },
+  "chat": {
+    "open": "Chat",
+    "title": "Plan-Chat",
+    "placeholder": "Nachricht schreiben …",
+    "send": "Senden",
+    "closed": "Dieser Plan ist vorbei — bis zum nächsten!",
+    "empty": "Noch keine Nachrichten — sag doch kurz Hallo.",
+    "you": "Du",
+    "icebreaker": "{{category}} · {{when}}. Schön, seid ihr dabei!",
+    "icebreakerDetail": "Übrigens — {{name}} zur Frage «{{question}}»: «{{answer}}». Nur damit das geklärt ist."
+  },
   "connections": {
     "title": "Verbindungen",
     "tabPlans": "Pläne",
     "tabLikes": "Du gefällst",
     "requestOpen": "Anfrage offen — wir sagen dir Bescheid",
     "empty": "Noch nichts Kommendes — stöbere in den Plänen.",
-    "chatSoon": "Plan-Chat · kommt bald",
     "hostedBy": "Plan von {{name}}",
     "nobodyYet": "Noch niemand dabei",
     "likesSoon": "Kommt bald — hier landen Signale und Matches."

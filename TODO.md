@@ -20,7 +20,6 @@
 - Entdecken-Tab (Dating-Set, beidseitige Matches) — füllt auch
   «Du gefällst» in den Verbindungen
 - Orte-Tab (private Orte, beidseitige Aufdeckung)
-- Plan-Chat (Knopf in den Verbindungen wartet schon)
 
 ## Vor dem echten Start (Launch-Checkliste)
 - **Eigener Mail-Versand (SMTP) in Supabase hinterlegen** — der eingebaute

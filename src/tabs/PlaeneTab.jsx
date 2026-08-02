@@ -14,6 +14,7 @@ import { supabase } from '../lib/supabase'
 import { Card, Chip, Label } from '../components/UI'
 import { ShieldIcon, CheckIcon, XIcon } from '../components/Icons'
 import ProfileSheet from '../components/ProfileSheet'
+import ChatSheet from '../components/ChatSheet'
 import { CATEGORY_IDS } from '../data/profileOptions'
 import { formatWhen, DAY_IDS, nextDateFor } from '../lib/format'
 
@@ -76,6 +77,7 @@ function PlaeneTab({ user, onCreate }) {
   const [incoming, setIncoming] = useState({}) // plan_id → Anfragen auf meine Pläne
   const [catFilter, setCatFilter] = useState('alle')
   const [sheetProfile, setSheetProfile] = useState(null) // Mini-Profil gross
+  const [chatPlan, setChatPlan] = useState(null) // offener Plan-Chat
   const [dayPick, setDayPick] = useState(null) // { planId, days } — Tage wählen vor Anfrage
   const [dateFix, setDateFix] = useState(null) // { planId, day, time } — Host legt Termin fest
 
@@ -435,18 +437,28 @@ function PlaeneTab({ user, onCreate }) {
                     </div>
                   </>
                 ) : (
-                  <div className="flex items-center justify-between gap-3">
+                  <div>
                     <span className="text-[13.5px] font-semibold text-pine flex items-center gap-1.5">
                       <CheckIcon size={15} />
                       {when ? t('requests.youreIn', { when }) : t('requests.joined')}
                     </span>
-                    <button
-                      type="button"
-                      onClick={() => cancelJoin(myReq)}
-                      className="text-[12px] font-semibold text-mut flex-shrink-0"
-                    >
-                      {t('requests.cancel')}
-                    </button>
+                    <div className="flex items-center gap-2 mt-2.5">
+                      {/* Chat: gibt es, sobald jemand angenommen ist */}
+                      <button
+                        type="button"
+                        onClick={() => setChatPlan(plan)}
+                        className="rounded-full bg-pine text-white px-4 py-2 text-[12.5px] font-semibold"
+                      >
+                        {t('chat.open')}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => cancelJoin(myReq)}
+                        className="rounded-full border border-line bg-card text-sub px-4 py-2 text-[12.5px] font-semibold"
+                      >
+                        {t('requests.cancel')}
+                      </button>
+                    </div>
                   </div>
                 )}
               </div>
@@ -455,14 +467,23 @@ function PlaeneTab({ user, onCreate }) {
             {/* ---------- Host-Bereich: Anfragen verwalten ---------- */}
             {isMine && (
               <div className="mt-3 pt-3 border-t border-line">
-                {/* Wer ist schon dabei */}
+                {/* Wer ist schon dabei — mit Zugang zum Plan-Chat */}
                 {accepted.length > 0 && (
-                  <div className="text-[12.5px] text-sub mb-2">
-                    {t('requests.with', {
-                      names: accepted
-                        .map((r) => profiles[r.requester]?.name || '…')
-                        .join(', '),
-                    })}
+                  <div className="flex items-center justify-between gap-3 mb-2.5">
+                    <div className="text-[12.5px] text-sub min-w-0">
+                      {t('requests.with', {
+                        names: accepted
+                          .map((r) => profiles[r.requester]?.name || '…')
+                          .join(', '),
+                      })}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setChatPlan(plan)}
+                      className="rounded-full bg-pine text-white px-4 py-2 text-[12.5px] font-semibold flex-shrink-0"
+                    >
+                      {t('chat.open')}
+                    </button>
                   </div>
                 )}
 
@@ -581,6 +602,11 @@ function PlaeneTab({ user, onCreate }) {
       {/* Mini-Profil in Grossansicht */}
       {sheetProfile && (
         <ProfileSheet profile={sheetProfile} onClose={() => setSheetProfile(null)} />
+      )}
+
+      {/* Plan-Chat */}
+      {chatPlan && (
+        <ChatSheet user={user} plan={chatPlan} onClose={() => setChatPlan(null)} />
       )}
     </div>
   )

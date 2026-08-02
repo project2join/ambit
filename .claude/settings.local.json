@@ -40,7 +40,12 @@
       "Bash(git commit -m 'Anfrage-Mechanik: Anfragen, sanfter Korb, Flexibel-Termine, Verbindungen-Übersicht, Meine-Filter *)",
       "Bash(git commit -m 'Setup 5 robust gemacht: alte requests-Tabelle wird ersetzt *)",
       "Bash(git commit -m 'Feed getrennt: Alle ist reiner Entdeckungs-Feed, Meine buendelt eigene und zugesagte Plaene *)",
-      "Bash(git commit -m 'Login: echten Fehlergrund protokollieren, eigene Meldung bei zu vielen Anmelde-Mails *)"
+      "Bash(git commit -m 'Login: echten Fehlergrund protokollieren, eigene Meldung bei zu vielen Anmelde-Mails *)",
+      "Bash(git commit -m 'TODO: Launch-Checkliste mit eigenem Mail-Versand ergaenzt *)",
+      "Bash(grep -n \"requests.joined\\\\|youreIn\\\\|requests.with\\\\|import ProfileSheet\\\\|sheetProfile, setSheetProfile\\\\|{sheetProfile &&\" src/tabs/PlaeneTab.jsx)",
+      "Bash(npx oxlint *)",
+      "Bash(node -e \"const a=require\\('./src/i18n/de.json'\\),b=require\\('./src/i18n/en.json'\\);const k=o=>Object.entries\\(o\\).flatMap\\(\\([x,v]\\)=>typeof v==='object'?Object.keys\\(v\\).map\\(y=>x+'.'+y\\):[x]\\);const A=k\\(a\\),B=k\\(b\\);console.log\\('nur DE:',A.filter\\(x=>!B.includes\\(x\\)\\)\\);console.log\\('nur EN:',B.filter\\(x=>!A.includes\\(x\\)\\)\\)\")",
+      "Bash(git commit -m 'Plan-Chat: Gruppenchat pro Plan mit Realtime, mehrsprachiger Eisbrecher, Archiv nach 48 Stunden *)"
     ]
   }
 }

@@ -29,7 +29,8 @@ function ErstellenTab({ user, onPublished }) {
   const [ageMin, setAgeMin] = useState(18)
   const [ageMax, setAgeMax] = useState(65)
   const [gender, setGender] = useState('all')
-  const [verifiedOnly, setVerifiedOnly] = useState(false)
+  // Bleibt aus, bis es einen Verifizierungsprozess gibt (siehe TODO.md)
+  const verifiedOnly = false
 
   const [publishing, setPublishing] = useState(false)
   const [error, setError] = useState(false)
