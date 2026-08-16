@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- App-Symbol: Tannengrün-Fläche mit dem Anfangsbuchstaben in Elfenbein.
+       Bewusst schlicht — passend zum "Quiet Luxury"-Stil. Der Buchstabe
+       bleibt innerhalb der mittleren 80%, damit er auch dann nicht
+       abgeschnitten wird, wenn das Betriebssystem eine runde oder eckige
+       Maske über das Icon legt ("maskable icon"). -->
+  <rect width="512" height="512" fill="#33473C" />
+  <text
+    x="256" y="266"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="290"
+    font-weight="700"
+    fill="#F6F4EF"
+    text-anchor="middle"
+    dominant-baseline="central"
+  >A</text>
+</svg>

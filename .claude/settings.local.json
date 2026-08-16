@@ -56,7 +56,9 @@
       "Bash(git commit -m 'Feedback bleibt in der App: eigenes Formular statt Mail-Link, Adresse nirgends sichtbar *)",
       "Bash(git commit -m 'TODO: Hinweis auf Feedback-Tabelle und moeglichen spaeteren Mail-Trigger *)",
       "Bash(git commit -m 'Login: Begruessung nach dem Absenden ausblenden, keine wirkende Doppelseite mehr *)",
-      "Bash(git commit -m 'Feedback-Titel offener formuliert: Lob, Kritik, Ideen statt nur Beschwerden *)"
+      "Bash(git commit -m 'Feedback-Titel offener formuliert: Lob, Kritik, Ideen statt nur Beschwerden *)",
+      "Bash(rm public/favicon.svg)",
+      "Bash(git commit -m 'App installierbar machen: Manifest, eigenes App-Symbol statt Vite-Platzhalter *)"
     ]
   }
 }
