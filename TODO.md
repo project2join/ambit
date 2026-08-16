@@ -15,8 +15,13 @@
   im Plan-Text; «Plan teilen» schickt darum den ganzen Text mit.
 - **Magic-Link-Mail auf Deutsch** übersetzen
   (Supabase → Authentication → Email Templates).
-- **Meldungen anschauen**: Die Tabelle `reports` in Supabase regelmässig
-  prüfen — es gibt noch keine Benachrichtigung darüber.
+- **Meldungen und Feedback anschauen**: Die Tabellen `reports` und
+  `feedback` in Supabase regelmässig prüfen — es gibt noch keine
+  Benachrichtigung darüber. Feedback kommt bewusst nicht per Mail, damit
+  deine Adresse nirgends in der App sichtbar ist (Wunsch vom 2026-08-16).
+  Falls später doch eine Mail-Benachrichtigung gewünscht ist: über einen
+  Datenbank-Trigger + Resend (sobald Resend eh für den Mail-Versand
+  eingerichtet ist, siehe Launch-Checkliste unten).
 
 ## Nächste grosse Schritte
 - Feed-Sortierung nach «So treffe ich mich gern» (Gruppe/zu zweit):
