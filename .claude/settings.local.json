@@ -52,7 +52,8 @@
       "Bash(git commit -m 'Setup 8 robust gemacht: alte reports-Tabelle wird ersetzt *)",
       "Bash(git commit -m 'Kontaktadresse auf Projekt-Mail umgestellt *)",
       "Bash(node -e \"const a=require\\('./src/i18n/de.json'\\),b=require\\('./src/i18n/en.json'\\);const k=\\(o,p=''\\)=>Object.entries\\(o\\).flatMap\\(\\([x,v]\\)=>typeof v==='object'&&v!==null?k\\(v,p+x+'.'\\):[p+x]\\);const A=k\\(a\\),B=k\\(b\\);console.log\\('nur DE:',A.filter\\(x=>!B.includes\\(x\\)\\),'| nur EN:',B.filter\\(x=>!A.includes\\(x\\)\\)\\)\")",
-      "Bash(git commit -m 'Verifizierung in der App: Selfie mit Geste, private Ablage, Haekchen per Statuswechsel *)"
+      "Bash(git commit -m 'Verifizierung in der App: Selfie mit Geste, private Ablage, Haekchen per Statuswechsel *)",
+      "Bash(git commit -m 'Feedback bleibt in der App: eigenes Formular statt Mail-Link, Adresse nirgends sichtbar *)"
     ]
   }
 }

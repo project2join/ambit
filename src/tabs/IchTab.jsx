@@ -11,8 +11,8 @@ import { setLanguage } from '../i18n'
 import { Card, Label, Chip, Toggle } from '../components/UI'
 import { LockIcon, MapPinIcon, BadgeCheckIcon } from '../components/Icons'
 import VerificationCard from '../components/VerificationCard'
+import FeedbackForm from '../components/FeedbackForm'
 import { deleteAccount } from '../lib/account'
-import { CONTACT_EMAIL } from '../config'
 import PhotoGrid from '../components/PhotoGrid'
 import LocationSearch from '../components/LocationSearch'
 import PromptPicker from '../components/PromptPicker'
@@ -40,6 +40,7 @@ function IchTab({ user, profile, onChange }) {
   const [editingCurrent, setEditingCurrent] = useState(false) // Ferien-Standort?
   const [deleting, setDeleting] = useState(false)
   const [deleteError, setDeleteError] = useState(false)
+  const [feedbackOpen, setFeedbackOpen] = useState(false)
   const [otherLang, setOtherLang] = useState('')
   const radiusTimer = useRef(null) // verzögertes Speichern für den Slider
 
@@ -466,18 +467,17 @@ function IchTab({ user, profile, onChange }) {
           {t('settings.notifyHint')}
         </p>
 
-        {/* Feedback — direkt an den Betreiber */}
-        <a
-          href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-            t('settings.feedbackSubject')
-          )}&body=${encodeURIComponent(t('settings.feedbackBody'))}`}
-          className="block mt-5 pt-4 border-t border-line"
+        {/* Feedback — bleibt in der App, keine Adresse sichtbar */}
+        <button
+          type="button"
+          onClick={() => setFeedbackOpen(true)}
+          className="block w-full text-left mt-5 pt-4 border-t border-line"
         >
           <span className="text-[14px] font-semibold text-ink">
             {t('settings.feedback')}
           </span>
           <p className="text-[12px] text-mut mt-1">{t('settings.feedbackHint')}</p>
-        </a>
+        </button>
 
         {/* Abmelden */}
         <button
@@ -514,6 +514,11 @@ function IchTab({ user, profile, onChange }) {
           }}
           onClose={() => setPickerOpen(false)}
         />
+      )}
+
+      {/* Feedback (Overlay) */}
+      {feedbackOpen && (
+        <FeedbackForm user={user} onClose={() => setFeedbackOpen(false)} />
       )}
     </div>
   )
