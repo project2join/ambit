@@ -57,17 +57,23 @@ function Login() {
           </span>
         </header>
 
-        {/* Begrüssung */}
+        {/* Begrüssung — verschwindet nach dem Absenden: wer schon
+            abgeschickt hat, muss nicht mehr überzeugt werden, nur noch
+            die Bestätigung sehen. Sonst wirkt es wie eine zweite Seite. */}
         <main className="flex-1 flex flex-col justify-center gap-5 px-5 pb-10">
-          {/* whitespace-pre-line: der Zeilenumbruch (\n) aus der
-              Übersetzungsdatei wird als echter Umbruch angezeigt */}
-          <h1 className="font-serif text-[32px] leading-[1.25] font-semibold text-ink whitespace-pre-line">
-            {t('login.slogan')}
-          </h1>
+          {!sent && (
+            <>
+              {/* whitespace-pre-line: der Zeilenumbruch (\n) aus der
+                  Übersetzungsdatei wird als echter Umbruch angezeigt */}
+              <h1 className="font-serif text-[32px] leading-[1.25] font-semibold text-ink whitespace-pre-line">
+                {t('login.slogan')}
+              </h1>
 
-          <p className="text-[15px] leading-relaxed text-sub max-w-[32ch]">
-            {t('login.intro')}
-          </p>
+              <p className="text-[15px] leading-relaxed text-sub max-w-[32ch]">
+                {t('login.intro')}
+              </p>
+            </>
+          )}
 
           {/* Darunter: das Login in einer weissen Karte */}
           <div className="mt-2 rounded-2xl bg-card border border-line shadow-card p-6">
