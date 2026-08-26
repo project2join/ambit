@@ -23,6 +23,16 @@
   Datenbank-Trigger + Resend (sobald Resend eh für den Mail-Versand
   eingerichtet ist, siehe Launch-Checkliste unten).
 
+## Für die erste Testrunde mit echten Leuten (ab 2026-08-16)
+- Testrunde läuft asynchron: Leute testen «wann sie mögen», nicht alle
+  gleichzeitig. Deshalb lohnt sich bald eine einfache Benachrichtigung
+  (z. B. Mail bei neuer Anfrage/Nachricht/Zusage) — sonst verpassen
+  Testende Dinge und die App wirkt "tot". Sinnvoll, sobald eh ein
+  eigener Mail-Versand eingerichtet ist (siehe Punkt unten).
+- Deploy auf Vercel + eigener Mail-Versand (Gmail-SMTP als schnelle
+  Zwischenlösung ohne Domain) sind im Gang — siehe Chat-Verlauf vom
+  2026-08-16 für die genauen Schritte.
+
 ## Nächste grosse Schritte
 - Feed-Sortierung nach «So treffe ich mich gern» (Gruppe/zu zweit):
   passende Pläne zuerst zeigen — nie ausblenden
@@ -33,10 +43,12 @@
 ## Vor dem echten Start (Launch-Checkliste)
 - **Eigener Mail-Versand (SMTP) in Supabase hinterlegen** — der eingebaute
   Versand ist nur zum Entwickeln und erlaubt nur wenige Mails pro Stunde.
-  Ohne das können sich echte Nutzer nicht anmelden. Anbieter z. B. Resend,
-  Postmark, SendGrid; einzurichten unter Supabase → Project Settings →
-  Authentication → SMTP Settings. Dazu gehört eine eigene Domain, damit die
-  Anmelde-Mails nicht im Spam landen.
+  Ohne das können sich echte Nutzer nicht anmelden. Für die Beta reicht
+  Gmail-SMTP über project2join@gmail.com (App-Passwort, kein eigener
+  Domain nötig). Für den echten Start dann auf einen Dienst wie Resend,
+  Postmark oder SendGrid mit eigener Domain wechseln — sonst landen
+  Anmelde-Mails eher im Spam. Einzurichten unter Supabase → Project
+  Settings → Authentication → SMTP Settings.
 - Supabase-Gratis-Projekte werden nach längerer Inaktivität pausiert —
   vor dem Start auf einen bezahlten Plan wechseln.
 - Datenschutzerklärung und Nutzungsbedingungen (Pflicht bei einer App mit
