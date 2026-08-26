@@ -445,33 +445,17 @@ function IchTab({ user, profile, onChange }) {
       <Card>
         <Label className="mb-3">{t('settings.title')}</Label>
 
-        {/* Benachrichtigungen */}
-        <div className="text-[13px] font-semibold text-ink mb-2">
-          {t('settings.notifications')}
-        </div>
-        <div className="flex items-center justify-between gap-3 mb-2.5">
-          <span className="text-[14px] text-ink">{t('settings.notifyRequests')}</span>
-          <Toggle
-            on={profile.notify_requests ?? true}
-            onClick={() => patch({ notify_requests: !(profile.notify_requests ?? true) })}
-          />
-        </div>
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-[14px] text-ink">{t('settings.notifyMessages')}</span>
-          <Toggle
-            on={profile.notify_messages ?? true}
-            onClick={() => patch({ notify_messages: !(profile.notify_messages ?? true) })}
-          />
-        </div>
-        <p className="text-[12px] text-mut mt-2 leading-relaxed">
-          {t('settings.notifyHint')}
-        </p>
+        {/*
+          Bewusst KEINE Benachrichtigungs-Schalter: Ambit soll man
+          öffnen, wenn man Lust hat — nicht weil ein Ping ruft.
+          Ein Besuch bleibt so immer ein bewusster Entscheid.
+        */}
 
         {/* Feedback — bleibt in der App, keine Adresse sichtbar */}
         <button
           type="button"
           onClick={() => setFeedbackOpen(true)}
-          className="block w-full text-left mt-5 pt-4 border-t border-line"
+          className="block w-full text-left"
         >
           <span className="text-[14px] font-semibold text-ink">
             {t('settings.feedback')}

@@ -117,10 +117,6 @@
   },
   "settings": {
     "title": "Settings",
-    "notifications": "Notifications",
-    "notifyRequests": "Requests for my plans",
-    "notifyMessages": "New messages in plan chats",
-    "notifyHint": "Notifications are coming soon — your choice applies from then on.",
     "verification": "Verification",
     "verificationPending": "Not verified yet",
     "verificationDone": "Verified",

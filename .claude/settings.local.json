@@ -58,7 +58,9 @@
       "Bash(git commit -m 'Login: Begruessung nach dem Absenden ausblenden, keine wirkende Doppelseite mehr *)",
       "Bash(git commit -m 'Feedback-Titel offener formuliert: Lob, Kritik, Ideen statt nur Beschwerden *)",
       "Bash(rm public/favicon.svg)",
-      "Bash(git commit -m 'App installierbar machen: Manifest, eigenes App-Symbol statt Vite-Platzhalter *)"
+      "Bash(git commit -m 'App installierbar machen: Manifest, eigenes App-Symbol statt Vite-Platzhalter *)",
+      "Bash(git commit -m 'TODO: Hinweise fuer die erste Testrunde ergaenzt \\(Benachrichtigungen, Mail-Versand\\) *)",
+      "Bash(git commit -m 'Keine externen Benachrichtigungen: nicht-funktionale Mail/Push-Schalter entfernt, In-App-Kennzeichen bleiben *)"
     ]
   }
 }

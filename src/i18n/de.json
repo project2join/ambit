@@ -117,10 +117,6 @@
   },
   "settings": {
     "title": "Einstellungen",
-    "notifications": "Benachrichtigungen",
-    "notifyRequests": "Anfragen zu meinen Plänen",
-    "notifyMessages": "Neue Nachrichten im Plan-Chat",
-    "notifyHint": "Benachrichtigungen kommen bald — deine Wahl gilt ab dann.",
     "verification": "Verifizierung",
     "verificationPending": "Noch nicht verifiziert",
     "verificationDone": "Verifiziert",
