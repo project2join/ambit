@@ -9,8 +9,6 @@
   biometrische Daten brauchen eine saubere rechtliche Grundlage.
 - **Profil pausieren** — Knopf im «Ich»-Tab: unsichtbar werden, ohne dass
   Daten verloren gehen; jederzeit reaktivierbar.
-- **Benachrichtigungen** wirklich verschicken (E-Mail oder Push). Die
-  Schalter im «Ich»-Tab speichern die Wahl schon, es passiert nur noch nichts.
 - **Treffpunkt als eigenes Feld** beim Plan-Erstellen. Aktuell steckt der Ort
   im Plan-Text; «Plan teilen» schickt darum den ganzen Text mit.
 - **Magic-Link-Mail auf Deutsch** übersetzen
@@ -24,11 +22,13 @@
   eingerichtet ist, siehe Launch-Checkliste unten).
 
 ## Für die erste Testrunde mit echten Leuten (ab 2026-08-16)
-- Testrunde läuft asynchron: Leute testen «wann sie mögen», nicht alle
-  gleichzeitig. Deshalb lohnt sich bald eine einfache Benachrichtigung
-  (z. B. Mail bei neuer Anfrage/Nachricht/Zusage) — sonst verpassen
-  Testende Dinge und die App wirkt "tot". Sinnvoll, sobald eh ein
-  eigener Mail-Versand eingerichtet ist (siehe Punkt unten).
+- Bewusste Entscheidung (2026-08-16): KEINE externen Benachrichtigungen
+  (E-Mail/Push) — Ambit öffnet man, wenn man Lust hat, nicht weil ein
+  Ping ruft. In-App-Kennzeichen reichen: die rote Zahl beim
+  Verbindungen-Symbol (MainShell.jsx, loadBadge) und der Punkt am
+  «Meine»-Chip im Pläne-Tab zeigen offene Anfragen usw. schon jetzt,
+  sobald man die App öffnet. Nicht von selbst wieder Mail/Push
+  einbauen, ohne das nochmal abzusprechen.
 - Deploy auf Vercel + eigener Mail-Versand (Gmail-SMTP als schnelle
   Zwischenlösung ohne Domain) sind im Gang — siehe Chat-Verlauf vom
   2026-08-16 für die genauen Schritte.
