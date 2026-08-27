@@ -10,12 +10,12 @@
 - **Profil pausieren** — Knopf im «Ich»-Tab: unsichtbar werden, ohne dass
   Daten verloren gehen; jederzeit reaktivierbar.
 - **Treffpunkt als eigenes Feld** beim Plan-Erstellen. Aktuell steckt der Ort
-  im Plan-Text; «Plan teilen» schickt darum den ganzen Text mit. Zusätzlicher
-  Sicherheitsgrund (2026-08-27): genauer Treffpunkt + genaue Zeit im freien
-  Text ist ein Stalking-Risiko. Ein eigenes Feld könnte den genauen Ort erst
-  nach Annahme zeigen (gleiches Prinzip wie bei «Orte»: privat, nur
-  beidseitige Aufdeckung). Bis dahin gibt's nur einen sanften Text-Hinweis
-  im Erstellen-Screen («Kaffee am Sonntag» statt «10 Uhr, Café Freud»).
+  im Plan-Text; «Plan teilen» schickt darum den ganzen Text mit. Ein eigenes
+  Feld könnte den genauen Ort erst nach Annahme zeigen (gleiches Prinzip wie
+  bei «Orte»: privat, nur beidseitige Aufdeckung). Die Uhrzeit ist dafür
+  seit 2026-08-27 schon gelöst (siehe unten) — hier geht's nur noch um den
+  Ort. Bis dahin gibt's einen Regel-Hinweis im Erstellen-Screen («Kaffee am
+  Sonntag» statt «10 Uhr, Café Freud»).
 - **Magic-Link-Mail auf Deutsch** übersetzen
   (Supabase → Authentication → Email Templates).
 - **Meldungen und Feedback anschauen**: Die Tabellen `reports` und
@@ -55,6 +55,11 @@
   Regel: abgelaufene Pläne ohne angenommene Person verschwinden nach
   24 Std. (fix) bzw. 10 Tagen (flexibel) automatisch, auch beim Host.
   Pläne mit mindestens einer angenommenen Person bleiben immer.
+- **Tageszeit statt Uhrzeit bei fixen Plänen** (setup14, 2026-08-27):
+  Beim Erstellen wählt man nur noch Morgens/Mittags/Nachmittags/Abends,
+  nie eine genaue Uhrzeit — die legt der Host im Chat fest, sobald
+  jemand angenommen hat (Stalking-Schutz). Braucht kein zusätzliches
+  Supabase-Setup ausser dem SQL selbst.
 
 ## Vor dem echten Start (Launch-Checkliste)
 - **Eigener Mail-Versand (SMTP) in Supabase hinterlegen** — der eingebaute
