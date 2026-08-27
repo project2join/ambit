@@ -10,7 +10,12 @@
 - **Profil pausieren** — Knopf im «Ich»-Tab: unsichtbar werden, ohne dass
   Daten verloren gehen; jederzeit reaktivierbar.
 - **Treffpunkt als eigenes Feld** beim Plan-Erstellen. Aktuell steckt der Ort
-  im Plan-Text; «Plan teilen» schickt darum den ganzen Text mit.
+  im Plan-Text; «Plan teilen» schickt darum den ganzen Text mit. Zusätzlicher
+  Sicherheitsgrund (2026-08-27): genauer Treffpunkt + genaue Zeit im freien
+  Text ist ein Stalking-Risiko. Ein eigenes Feld könnte den genauen Ort erst
+  nach Annahme zeigen (gleiches Prinzip wie bei «Orte»: privat, nur
+  beidseitige Aufdeckung). Bis dahin gibt's nur einen sanften Text-Hinweis
+  im Erstellen-Screen («Kaffee am Sonntag» statt «10 Uhr, Café Freud»).
 - **Magic-Link-Mail auf Deutsch** übersetzen
   (Supabase → Authentication → Email Templates).
 - **Meldungen und Feedback anschauen**: Die Tabellen `reports` und
