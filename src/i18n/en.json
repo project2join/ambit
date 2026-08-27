@@ -40,6 +40,7 @@
     "mine": "Mine",
     "yourPlan": "Your plan",
     "flexBadge": "Date to follow",
+    "timeFollowsBadge": "Time to follow",
     "visibleFor": "visible to: {{filters}}",
     "freeSpots": "{{free}} of {{total}} open",
     "everyone": "everyone",
@@ -72,6 +73,7 @@
     "cancelledNote": "{{name}} can't make it after all — the spot is open again.",
     "dateSet": "The date is set: {{when}} — are you in?",
     "availability": "Availability",
+    "setTimeLabel": "Exact time",
     "setDate": "Set the date",
     "with": "Joining: {{names}}"
   },
@@ -177,17 +179,24 @@
     "sat": "Sat",
     "sun": "Sun"
   },
+  "dayparts": {
+    "morning": "Morning",
+    "midday": "Midday",
+    "afternoon": "Afternoon",
+    "evening": "Evening"
+  },
   "create": {
     "title": "Where are you going this week anyway?",
     "placeholder": "I'm going anyway …",
-    "textSafetyHint": "Tip: write “Coffee on Sunday” rather than “10am, Café Freud” — share the exact spot later, directly with whoever's joining.",
+    "textSafetyHint": "No exact address or time in the text: write “Coffee on Sunday”, not “10am, Café Freud”. Share the spot later, directly with everyone who's in.",
     "categoryLabel": "Category",
     "whenLabel": "When",
     "fix": "Fixed",
     "flexible": "Flexible",
     "dateLabel": "Date",
-    "timeLabel": "Time",
+    "daypartLabel": "Time of day",
     "fixHint": "The date is set — who's coming along?",
+    "fixTimeHint": "Only the day is public. You'll settle the exact time in chat once someone's in.",
     "flexHint": "People tap the days that work for them — you set the date afterwards. Window max. 7 days.",
     "alreadyFlexible": "You already have a flexible plan. Delete it first or set its date.",
     "window": {
@@ -208,7 +217,7 @@
     "publish": "Publish plan",
     "publishing": "Publishing…",
     "publishError": "That didn't work — please try again.",
-    "needDateTime": "Pick a date and time."
+    "needDateTime": "Pick a date and time of day."
   },
   "setupError": {
     "title": "Database not set up yet",

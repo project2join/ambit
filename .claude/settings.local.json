@@ -78,7 +78,9 @@
       "Bash(git commit -m 'Kategorien neu geordnet: Sport, Essen, Ausgang, Unterwegs \\(Kaffee mit Essen verschmolzen\\) *)",
       "Bash(git commit -m 'Standard-Umkreis von 10 auf 50 km erhoeht, damit Freunde aus verschiedenen Staedten sich automatisch sehen *)",
       "Bash(git commit -m 'Startseiten-Text: Sterne gucken statt an den See, etwas mehr Originalitaet *)",
-      "Bash(git commit -m 'Sicherheits-Hinweis beim Plan erstellen: keine genaue Adresse/Uhrzeit im Text, wegen Stalking-Risiko *)"
+      "Bash(git commit -m 'Sicherheits-Hinweis beim Plan erstellen: keine genaue Adresse/Uhrzeit im Text, wegen Stalking-Risiko *)",
+      "Bash(git commit -m 'TODO: Sicherheitsgrund fuer Treffpunkt-Feld ergaenzt *)",
+      "Bash(git commit -m 'Fixe Plaene: nur grobe Tageszeit statt genauer Uhrzeit oeffentlich, Zeit wird im Chat vereinbart \\(Stalking-Schutz\\) *)"
     ]
   }
 }

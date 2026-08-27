@@ -1,9 +1,15 @@
 /*
   «Plan erstellen» — der Screen hinter dem grünen Plus-Knopf,
   gebaut nach dem Prototyp:
-  Text → Kategorie → Wann (Fix mit Datum/Uhrzeit ODER Flexibel mit
-  Zeitfenster) → Plätze-Stepper → alkoholfrei → «Wer sieht diesen Plan?»
-  (Altersspanne, Geschlecht, nur verifiziert) → Veröffentlichen.
+  Text → Kategorie → Wann (Fix mit Datum + grober Tageszeit ODER
+  Flexibel mit Zeitfenster) → Plätze-Stepper → alkoholfrei →
+  «Wer sieht diesen Plan?» (Altersspanne, Geschlecht, nur verifiziert)
+  → Veröffentlichen.
+
+  Bei «Fix» wird bewusst nur die Tageszeit abgefragt, nie die genaue
+  Uhrzeit — die legt der Host erst im Plan-Chat fest, sobald jemand
+  angenommen hat (Schutz vor Stalking: niemand weiss vorab öffentlich,
+  dass eine Person um exakt 19:00 an einem bestimmten Ort ist).
 */
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -14,6 +20,18 @@ import { CATEGORY_IDS } from '../data/profileOptions'
 
 const TIME_WINDOWS = ['this_week', 'weekend', 'next_week']
 
+// Grobe Tageszeit statt genauer Uhrzeit — schützt vor Stalking
+// (niemand weiss vorab, dass du z. B. um exakt 19:00 an einem Ort bist).
+// Jede Tageszeit hat eine Platzhalter-Uhrzeit fürs Sortieren im
+// Hintergrund; angezeigt wird nur das Wort, nie diese Uhrzeit.
+export const DAYPART_IDS = ['morning', 'midday', 'afternoon', 'evening']
+export const DAYPART_TIMES = {
+  morning: '09:00',
+  midday: '12:00',
+  afternoon: '15:00',
+  evening: '19:00',
+}
+
 function ErstellenTab({ user, onPublished }) {
   const { t } = useTranslation()
 
@@ -22,7 +40,7 @@ function ErstellenTab({ user, onPublished }) {
   const [category, setCategory] = useState('sport')
   const [mode, setMode] = useState('fix') // «Fix» ist der Standard
   const [date, setDate] = useState('')
-  const [time, setTime] = useState('')
+  const [daypart, setDaypart] = useState('')
   const [timeWindow, setTimeWindow] = useState('this_week')
   const [spots, setSpots] = useState(2)
   const [alcoholFree, setAlcoholFree] = useState(false)
@@ -48,7 +66,7 @@ function ErstellenTab({ user, onPublished }) {
   // Darf veröffentlicht werden?
   const canPublish =
     text.trim().length > 0 &&
-    (mode === 'fix' ? date && time : !hasFlexPlan) &&
+    (mode === 'fix' ? date && daypart : !hasFlexPlan) &&
     !publishing
 
   async function publish() {
@@ -60,8 +78,12 @@ function ErstellenTab({ user, onPublished }) {
       category,
       text: text.trim(),
       is_flexible: mode === 'flex',
-      // Fix: Datum + Uhrzeit als richtiger Zeitpunkt speichern
-      when_at: mode === 'fix' ? new Date(`${date}T${time}`).toISOString() : null,
+      // Fix: Datum steht fest, aber nur eine grobe Tageszeit — die
+      // genaue Uhrzeit bespricht man dann im Chat (Stalking-Schutz).
+      // Die Platzhalter-Uhrzeit dient nur der Sortierung im Hintergrund.
+      when_at:
+        mode === 'fix' ? new Date(`${date}T${DAYPART_TIMES[daypart]}`).toISOString() : null,
+      daypart: mode === 'fix' ? daypart : null,
       // Flexibel: nur das Zeitfenster speichern
       time_window: mode === 'flex' ? timeWindow : null,
       spots,
@@ -126,9 +148,10 @@ function ErstellenTab({ user, onPublished }) {
       </div>
 
       {mode === 'fix' ? (
-        // Fix: Datum und Uhrzeit wählen
-        <div className="flex gap-2">
-          <label className="flex-1">
+        // Fix: Datum + grobe Tageszeit wählen (genaue Uhrzeit kommt
+        // erst später im Chat, siehe Sicherheits-Hinweis oben)
+        <div>
+          <label className="block mb-3">
             <span className="block text-[12px] text-mut mb-1">{t('create.dateLabel')}</span>
             <input
               type="date"
@@ -137,15 +160,14 @@ function ErstellenTab({ user, onPublished }) {
               className="w-full rounded-xl border border-line bg-card px-3 py-2.5 text-[14px] text-ink outline-none focus:border-pine"
             />
           </label>
-          <label className="flex-1">
-            <span className="block text-[12px] text-mut mb-1">{t('create.timeLabel')}</span>
-            <input
-              type="time"
-              value={time}
-              onChange={(e) => setTime(e.target.value)}
-              className="w-full rounded-xl border border-line bg-card px-3 py-2.5 text-[14px] text-ink outline-none focus:border-pine"
-            />
-          </label>
+          <span className="block text-[12px] text-mut mb-1.5">{t('create.daypartLabel')}</span>
+          <div className="flex gap-2 flex-wrap">
+            {DAYPART_IDS.map((d) => (
+              <Chip key={d} active={daypart === d} onClick={() => setDaypart(d)}>
+                {t(`dayparts.${d}`)}
+              </Chip>
+            ))}
+          </div>
         </div>
       ) : (
         // Flexibel: ein Zeitfenster wählen
@@ -161,6 +183,11 @@ function ErstellenTab({ user, onPublished }) {
       <p className="text-[12px] text-mut mt-2 leading-relaxed">
         {mode === 'flex' ? t('create.flexHint') : t('create.fixHint')}
       </p>
+      {mode === 'fix' && (
+        <p className="text-[12px] text-mut mt-1 leading-relaxed">
+          {t('create.fixTimeHint')}
+        </p>
+      )}
 
       {/* Schon ein flexibler Plan vorhanden? Dann freundlich stoppen */}
       {mode === 'flex' && hasFlexPlan && (
@@ -281,8 +308,8 @@ function ErstellenTab({ user, onPublished }) {
         {publishing ? t('create.publishing') : t('create.publish')}
       </button>
 
-      {/* Nur wenn Text schon steht, aber Datum/Uhrzeit fehlen */}
-      {!publishing && text.trim().length > 0 && mode === 'fix' && (!date || !time) && (
+      {/* Nur wenn Text schon steht, aber Datum/Tageszeit fehlen */}
+      {!publishing && text.trim().length > 0 && mode === 'fix' && (!date || !daypart) && (
         <p className="text-[12px] text-mut text-center mt-2">
           {t('create.needDateTime')}
         </p>

@@ -40,6 +40,7 @@
     "mine": "Meine",
     "yourPlan": "Dein Plan",
     "flexBadge": "Datum folgt",
+    "timeFollowsBadge": "Zeit folgt",
     "visibleFor": "sichtbar für: {{filters}}",
     "freeSpots": "{{free}} von {{total}} frei",
     "everyone": "alle",
@@ -72,6 +73,7 @@
     "cancelledNote": "{{name}} kann doch nicht — der Platz ist wieder frei.",
     "dateSet": "Der Termin steht: {{when}} — bist du dabei?",
     "availability": "Verfügbarkeiten",
+    "setTimeLabel": "Genaue Uhrzeit",
     "setDate": "Termin festlegen",
     "with": "Dabei: {{names}}"
   },
@@ -177,17 +179,24 @@
     "sat": "Sa",
     "sun": "So"
   },
+  "dayparts": {
+    "morning": "Morgens",
+    "midday": "Mittags",
+    "afternoon": "Nachmittags",
+    "evening": "Abends"
+  },
   "create": {
     "title": "Wohin gehst du diese Woche sowieso?",
     "placeholder": "Ich geh eh …",
-    "textSafetyHint": "Tipp: Schreib lieber «Kaffee am Sonntag» als «10 Uhr, Café Freud» — den genauen Treffpunkt teilst du später direkt mit den Angenommenen.",
+    "textSafetyHint": "Keine genaue Adresse oder Uhrzeit im Text: schreib «Kaffee am Sonntag», nicht «10 Uhr, Café Freud». Den Treffpunkt teilst du später direkt mit allen, die dabei sind.",
     "categoryLabel": "Kategorie",
     "whenLabel": "Wann",
     "fix": "Fix",
     "flexible": "Flexibel",
     "dateLabel": "Datum",
-    "timeLabel": "Uhrzeit",
+    "daypartLabel": "Tageszeit",
     "fixHint": "Du gehst eh — der Termin steht. Wer kommt mit?",
+    "fixTimeHint": "Nur der Tag ist öffentlich. Die genaue Uhrzeit legt ihr im Chat fest, sobald jemand angenommen ist.",
     "flexHint": "Mitkommende tippen an, welche Tage bei ihnen gehen — du legst danach den Termin fest. Fenster max. 7 Tage.",
     "alreadyFlexible": "Du hast schon einen flexiblen Plan. Lösch ihn zuerst oder leg dort ein Datum fest.",
     "window": {
@@ -208,7 +217,7 @@
     "publish": "Plan veröffentlichen",
     "publishing": "Wird veröffentlicht…",
     "publishError": "Das hat nicht geklappt — versuch es nochmal.",
-    "needDateTime": "Wähle noch Datum und Uhrzeit."
+    "needDateTime": "Wähle noch Datum und Tageszeit."
   },
   "setupError": {
     "title": "Datenbank fehlt noch",

@@ -3,8 +3,10 @@
   genutzt vom Pläne-Feed und von den Verbindungen.
 */
 
-// Zeitpunkt eines Plans: fixer Termin («Do, 7. Aug. · 19:00»)
-// oder das Zeitfenster («Diese Woche») bei flexiblen Plänen
+// Zeitpunkt eines Plans:
+// - Flexibel: das Zeitfenster («Diese Woche»)
+// - Fix mit noch offener Uhrzeit: Tag + grobe Tageszeit («Do, 7. Aug. · Abends»)
+// - Fix mit festgelegter Uhrzeit: Tag + genaue Zeit («Do, 7. Aug. · 19:00»)
 export function formatWhen(plan, t, lang) {
   if (plan.is_flexible) {
     return plan.time_window ? t(`create.window.${plan.time_window}`) : null
@@ -13,7 +15,11 @@ export function formatWhen(plan, t, lang) {
   const d = new Date(plan.when_at)
   const locale = lang === 'de' ? 'de-CH' : 'en-GB'
   const day = d.toLocaleDateString(locale, { weekday: 'short', day: 'numeric', month: 'short' })
-  const time = d.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' })
+  // Solange nur eine grobe Tageszeit feststeht, zeigen wir nie die
+  // (intern nur als Platzhalter gespeicherte) Uhrzeit an.
+  const time = plan.daypart
+    ? t(`dayparts.${plan.daypart}`)
+    : d.toLocaleTimeString(locale, { hour: '2-digit', minute: '2-digit' })
   return `${day} · ${time}`
 }
 

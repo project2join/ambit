@@ -194,7 +194,26 @@ function PlaeneTab({ user, onCreate }) {
     const when = nextDateFor(dayId, time)
     await supabase
       .from('plans')
-      .update({ is_flexible: false, when_at: when.toISOString(), time_window: null })
+      .update({ is_flexible: false, when_at: when.toISOString(), time_window: null, daypart: null })
+      .eq('id', plan.id)
+    await supabase
+      .from('requests')
+      .update({ needs_reconfirm: true })
+      .eq('plan_id', plan.id)
+      .eq('status', 'accepted')
+    setDateFix(null)
+    load()
+  }
+
+  // Host legt bei einem fixen Plan mit nur grober Tageszeit die genaue
+  // Uhrzeit fest — der Tag steht ja schon, nur die Zeit wird ergänzt.
+  async function fixTimeOnly(plan, time) {
+    const d = new Date(plan.when_at)
+    const [h, m] = time.split(':').map(Number)
+    d.setHours(h, m, 0, 0)
+    await supabase
+      .from('plans')
+      .update({ when_at: d.toISOString(), daypart: null })
       .eq('id', plan.id)
     await supabase
       .from('requests')
@@ -366,6 +385,11 @@ function PlaeneTab({ user, onCreate }) {
                   {plan.is_flexible && (
                     <span className="text-[10.5px] font-bold tracking-[0.5px] uppercase text-sub bg-paper border border-line px-[7px] py-[2px] rounded-full ml-0.5">
                       {t('plans.flexBadge')}
+                    </span>
+                  )}
+                  {!plan.is_flexible && plan.daypart && (
+                    <span className="text-[10.5px] font-bold tracking-[0.5px] uppercase text-sub bg-paper border border-line px-[7px] py-[2px] rounded-full ml-0.5">
+                      {t('plans.timeFollowsBadge')}
                     </span>
                   )}
                   {plan.alcohol_free && <> · {t('plans.alcoholFree')}</>}
@@ -591,6 +615,39 @@ function PlaeneTab({ user, onCreate }) {
                         type="button"
                         onClick={() => setDateFix({ planId: plan.id, day: null, time: '19:00' })}
                         className="mt-2 rounded-full bg-ink text-white px-4 py-2 text-[12.5px] font-semibold"
+                      >
+                        {t('requests.setDate')}
+                      </button>
+                    )}
+                  </div>
+                )}
+
+                {/* Fix, aber nur grobe Tageszeit: die genaue Uhrzeit fehlt
+                    noch — der Tag steht schon fest, kein Tage-Picker nötig */}
+                {!plan.is_flexible && plan.daypart && accepted.length > 0 && (
+                  <div className="bg-paper rounded-xl p-3 mb-2.5">
+                    <Label className="text-[11px] mb-1.5">{t('requests.setTimeLabel')}</Label>
+                    {dateFix?.planId === plan.id ? (
+                      <div className="flex gap-2 items-center mt-1">
+                        <input
+                          type="time"
+                          value={dateFix.time}
+                          onChange={(e) => setDateFix({ ...dateFix, time: e.target.value })}
+                          className="rounded-xl border border-line bg-card px-3 py-2 text-[13px] text-ink outline-none focus:border-pine"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => fixTimeOnly(plan, dateFix.time)}
+                          className="rounded-full bg-pine text-white px-4 py-2 text-[13px] font-semibold"
+                        >
+                          {t('requests.setDate')}
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setDateFix({ planId: plan.id, time: '19:00' })}
+                        className="mt-1 rounded-full bg-ink text-white px-4 py-2 text-[12.5px] font-semibold"
                       >
                         {t('requests.setDate')}
                       </button>
