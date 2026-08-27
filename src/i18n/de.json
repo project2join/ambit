@@ -76,7 +76,6 @@
     "with": "Dabei: {{names}}"
   },
   "verify": {
-    "explain": "Ein Selfie, ein kurzer Blick von uns — dann bekommst du das grüne Häkchen. Freiwillig, aber es schafft Vertrauen.",
     "gestureIntro": "Mach das Selfie mit dieser Geste:",
     "gesture": {
       "ear": "Hand ans Ohr",
@@ -90,8 +89,7 @@
     "rejected": "Das hat noch nicht geklappt.",
     "rejectedBody": "Versuch es nochmal — achte darauf, dass dein Gesicht und die Geste gut zu sehen sind.",
     "retry": "Nochmal versuchen",
-    "error": "Das hat nicht geklappt — versuch es nochmal.",
-    "privacy": "Das Selfie sieht nur der Betreiber, erscheint nie in deinem Profil und wird nach der Prüfung gelöscht."
+    "error": "Das hat nicht geklappt — versuch es nochmal."
   },
   "safety": {
     "menu": "Mehr",
@@ -120,8 +118,9 @@
     "verification": "Verifizierung",
     "verificationPending": "Noch nicht verifiziert",
     "verificationDone": "Verifiziert",
+    "feedbackLabel": "Feedback",
     "feedback": "Lob, Kritik, Ideen — sag's mir",
-    "feedbackHint": "Schreib einfach frei heraus — auch Kleinigkeiten. Ehrliches Feedback hilft mehr als jede Statistik.",
+    "feedbackHint": "Schreib einfach frei, was du denkst — auch Kleinigkeiten.",
     "feedbackPlaceholder": "Was mir aufgefallen ist …",
     "feedbackSend": "Absenden",
     "feedbackSending": "Wird gesendet…",

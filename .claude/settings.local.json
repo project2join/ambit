@@ -60,7 +60,20 @@
       "Bash(rm public/favicon.svg)",
       "Bash(git commit -m 'App installierbar machen: Manifest, eigenes App-Symbol statt Vite-Platzhalter *)",
       "Bash(git commit -m 'TODO: Hinweise fuer die erste Testrunde ergaenzt \\(Benachrichtigungen, Mail-Versand\\) *)",
-      "Bash(git commit -m 'Keine externen Benachrichtigungen: nicht-funktionale Mail/Push-Schalter entfernt, In-App-Kennzeichen bleiben *)"
+      "Bash(git commit -m 'Keine externen Benachrichtigungen: nicht-funktionale Mail/Push-Schalter entfernt, In-App-Kennzeichen bleiben *)",
+      "Bash(git commit -m 'TODO: Entscheidung gegen externe Benachrichtigungen dokumentiert *)",
+      "Bash(git remote *)",
+      "Bash(git push *)",
+      "Bash(gh --version)",
+      "Bash(gh auth *)",
+      "Bash(where git-credential-manager *)",
+      "Bash(ping -n 7 127.0.0.1)",
+      "Bash(ping -n 16 127.0.0.1)",
+      "Bash(git ls-remote *)",
+      "Bash(node -e ' *)",
+      "Bash(rm scratch-icon-512.b64 scratch-icon-192.b64)",
+      "Bash(git commit -m 'PWA: echte PNG-Icons \\(192/512\\) fuer Android-Installation und iPhone-Homescreen *)",
+      "Bash(git commit -m 'Feinschliff: Sprachwahl gleich am Anfang des Onboardings, Verifizierung ohne unnoetige Erklaerung, Feedback-Bereich klarer als klickbar *)"
     ]
   }
 }

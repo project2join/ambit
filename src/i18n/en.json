@@ -76,7 +76,6 @@
     "with": "Joining: {{names}}"
   },
   "verify": {
-    "explain": "One selfie, one quick look from us — then you get the green tick. Optional, but it builds trust.",
     "gestureIntro": "Take the selfie with this gesture:",
     "gesture": {
       "ear": "Hand at your ear",
@@ -90,8 +89,7 @@
     "rejected": "That didn't work yet.",
     "rejectedBody": "Give it another go — make sure your face and the gesture are clearly visible.",
     "retry": "Try again",
-    "error": "That didn't work — please try again.",
-    "privacy": "Only the operator sees this selfie. It never appears on your profile and is deleted after the check."
+    "error": "That didn't work — please try again."
   },
   "safety": {
     "menu": "More",
@@ -120,8 +118,9 @@
     "verification": "Verification",
     "verificationPending": "Not verified yet",
     "verificationDone": "Verified",
+    "feedbackLabel": "Feedback",
     "feedback": "Praise, gripes, ideas — tell me",
-    "feedbackHint": "Just write freely — small things count too. Honest feedback helps more than any statistic.",
+    "feedbackHint": "Just write freely, whatever's on your mind — small things count too.",
     "feedbackPlaceholder": "What I noticed …",
     "feedbackSend": "Send",
     "feedbackSending": "Sending…",

@@ -10,6 +10,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { supabase } from '../lib/supabase'
 import { saveProfile } from '../lib/profile'
+import { setLanguage } from '../i18n'
 import { Card, Label, Chip, Toggle, PrimaryButton } from '../components/UI'
 import { LockIcon, MapPinIcon } from '../components/Icons'
 import PhotoGrid from '../components/PhotoGrid'
@@ -33,7 +34,7 @@ function toggle(arr, val) {
 }
 
 function Onboarding({ user, profile, onDone }) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   // Der Entwurf des Profils — startet mit dem, was schon gespeichert ist
   const [draft, setDraft] = useState({
@@ -225,6 +226,22 @@ function Onboarding({ user, profile, onDone }) {
               {t('me.logout')}
             </button>
           </div>
+
+          {/* Sprache — bewusst ganz am Anfang, damit man sie sofort
+              richtig einstellen kann, statt sie erst spät im "Ich"-Tab
+              zu finden. Bleibt während des ganzen Onboardings sichtbar. */}
+          <div className="flex gap-1.5 mt-3">
+            {['de', 'en'].map((lang) => (
+              <Chip
+                key={lang}
+                active={i18n.language === lang}
+                onClick={() => setLanguage(lang)}
+              >
+                {t(`language.${lang}`)}
+              </Chip>
+            ))}
+          </div>
+
           <div className="mt-3 h-1 rounded-full bg-line overflow-hidden">
             <div
               className="h-full bg-pine rounded-full transition-all"

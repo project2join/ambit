@@ -9,7 +9,7 @@ import { supabase } from '../lib/supabase'
 import { saveProfile } from '../lib/profile'
 import { setLanguage } from '../i18n'
 import { Card, Label, Chip, Toggle } from '../components/UI'
-import { LockIcon, MapPinIcon, BadgeCheckIcon } from '../components/Icons'
+import { LockIcon, MapPinIcon, BadgeCheckIcon, ChevronRightIcon } from '../components/Icons'
 import VerificationCard from '../components/VerificationCard'
 import FeedbackForm from '../components/FeedbackForm'
 import { deleteAccount } from '../lib/account'
@@ -451,16 +451,24 @@ function IchTab({ user, profile, onChange }) {
           Ein Besuch bleibt so immer ein bewusster Entscheid.
         */}
 
-        {/* Feedback — bleibt in der App, keine Adresse sichtbar */}
+        {/* Feedback — bleibt in der App, keine Adresse sichtbar.
+            Eigenes Label + Pfeil, damit klar ist: das ist ein eigener
+            Bereich und man kann draufklicken. */}
+        <Label className="mb-2">{t('settings.feedbackLabel')}</Label>
         <button
           type="button"
           onClick={() => setFeedbackOpen(true)}
-          className="block w-full text-left"
+          className="w-full flex items-center justify-between gap-3 text-left"
         >
-          <span className="text-[14px] font-semibold text-ink">
-            {t('settings.feedback')}
+          <span>
+            <span className="block text-[14px] font-semibold text-ink">
+              {t('settings.feedback')}
+            </span>
+            <span className="block text-[12px] text-mut mt-0.5">
+              {t('settings.feedbackHint')}
+            </span>
           </span>
-          <p className="text-[12px] text-mut mt-1">{t('settings.feedbackHint')}</p>
+          <ChevronRightIcon size={18} className="text-mut flex-shrink-0" />
         </button>
 
         {/* Abmelden */}

@@ -8,7 +8,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Card, Label } from './UI'
-import { BadgeCheckIcon, LockIcon } from './Icons'
+import { BadgeCheckIcon } from './Icons'
 import {
   loadMyVerification,
   submitVerification,
@@ -82,14 +82,9 @@ function VerificationCard({ user, profile }) {
               </p>
             </>
           ) : (
-            <>
-              <div className="text-[14px] text-ink">
-                {t('settings.verificationPending')}
-              </div>
-              <p className="text-[12.5px] text-sub mt-1 leading-relaxed">
-                {t('verify.explain')}
-              </p>
-            </>
+            <div className="text-[14px] text-ink">
+              {t('settings.verificationPending')}
+            </div>
           )}
 
           {/* Die Geste — sie beweist, dass das Selfie gerade entsteht */}
@@ -116,11 +111,6 @@ function VerificationCard({ user, profile }) {
                 ? t('verify.retry')
                 : t('verify.start')}
           </button>
-
-          <p className="text-[12px] text-mut mt-2.5 leading-relaxed flex items-start gap-1.5">
-            <LockIcon size={12} className="mt-0.5 flex-shrink-0" />
-            {t('verify.privacy')}
-          </p>
         </>
       )}
 

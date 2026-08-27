@@ -104,6 +104,12 @@ export const ShareIcon = (p) => (
   </Icon>
 )
 
+export const ChevronRightIcon = (p) => (
+  <Icon {...p}>
+    <path d="m9 18 6-6-6-6" />
+  </Icon>
+)
+
 export const UsersIcon = (p) => (
   <Icon {...p}>
     <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
