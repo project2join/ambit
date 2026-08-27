@@ -4,7 +4,7 @@
   kommen aus den Übersetzungsdateien (de.json / en.json).
 */
 
-export const CATEGORY_IDS = ['sport', 'kaffee', 'essen', 'ausgang']
+export const CATEGORY_IDS = ['sport', 'essen', 'ausgang', 'unterwegs']
 
 export const LANGUAGE_IDS = ['de', 'ch', 'en', 'fr', 'it', 'es', 'pt']
 

@@ -325,9 +325,9 @@
   },
   "categories": {
     "sport": "Sport",
-    "kaffee": "Kaffee",
     "essen": "Essen",
-    "ausgang": "Ausgang"
+    "ausgang": "Ausgang",
+    "unterwegs": "Unterwegs"
   },
   "languagesList": {
     "de": "Deutsch",
@@ -379,8 +379,8 @@
   },
   "planSuggestions": {
     "sport": "Ich geh eh Donnerstag bouldern — wer kommt mit?",
-    "kaffee": "Samstagvormittag Kafi am See — ich bin eh da.",
     "essen": "Ich teste eh die neue Ramen-Beiz — jemand dabei?",
-    "ausgang": "Freitag ins Kino — Tag noch flexibel. Wer kommt mit?"
+    "ausgang": "Freitag ins Kino — Tag noch flexibel. Wer kommt mit?",
+    "unterwegs": "Sonntag geh ich eh an den See — wer kommt mit?"
   }
 }

@@ -325,9 +325,9 @@
   },
   "categories": {
     "sport": "Sports",
-    "kaffee": "Coffee",
     "essen": "Food",
-    "ausgang": "Going out"
+    "ausgang": "Going out",
+    "unterwegs": "Trips"
   },
   "languagesList": {
     "de": "German",
@@ -379,8 +379,8 @@
   },
   "planSuggestions": {
     "sport": "I'm going bouldering Thursday anyway — who's in?",
-    "kaffee": "Saturday-morning coffee by the lake — I'll be there anyway.",
     "essen": "I'm trying the new ramen place anyway — anyone joining?",
-    "ausgang": "Cinema on Friday — day still flexible. Who's in?"
+    "ausgang": "Cinema on Friday — day still flexible. Who's in?",
+    "unterwegs": "Sunday I'm heading to the lake anyway — who's in?"
   }
 }

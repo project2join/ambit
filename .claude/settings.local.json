@@ -74,7 +74,8 @@
       "Bash(rm scratch-icon-512.b64 scratch-icon-192.b64)",
       "Bash(git commit -m 'PWA: echte PNG-Icons \\(192/512\\) fuer Android-Installation und iPhone-Homescreen *)",
       "Bash(git commit -m 'Feinschliff: Sprachwahl gleich am Anfang des Onboardings, Verifizierung ohne unnoetige Erklaerung, Feedback-Bereich klarer als klickbar *)",
-      "Bash(git commit -m 'Umkreis-Filter fuer Plaene, Radius bis 300 km, automatisches Aufraeumen abgelaufener Plaene ohne Teilnehmende *)"
+      "Bash(git commit -m 'Umkreis-Filter fuer Plaene, Radius bis 300 km, automatisches Aufraeumen abgelaufener Plaene ohne Teilnehmende *)",
+      "Bash(git commit -m 'Kategorien neu geordnet: Sport, Essen, Ausgang, Unterwegs \\(Kaffee mit Essen verschmolzen\\) *)"
     ]
   }
 }
