@@ -77,7 +77,8 @@
       "Bash(git commit -m 'Umkreis-Filter fuer Plaene, Radius bis 300 km, automatisches Aufraeumen abgelaufener Plaene ohne Teilnehmende *)",
       "Bash(git commit -m 'Kategorien neu geordnet: Sport, Essen, Ausgang, Unterwegs \\(Kaffee mit Essen verschmolzen\\) *)",
       "Bash(git commit -m 'Standard-Umkreis von 10 auf 50 km erhoeht, damit Freunde aus verschiedenen Staedten sich automatisch sehen *)",
-      "Bash(git commit -m 'Startseiten-Text: Sterne gucken statt an den See, etwas mehr Originalitaet *)"
+      "Bash(git commit -m 'Startseiten-Text: Sterne gucken statt an den See, etwas mehr Originalitaet *)",
+      "Bash(git commit -m 'Sicherheits-Hinweis beim Plan erstellen: keine genaue Adresse/Uhrzeit im Text, wegen Stalking-Risiko *)"
     ]
   }
 }

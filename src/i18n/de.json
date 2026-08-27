@@ -180,6 +180,7 @@
   "create": {
     "title": "Wohin gehst du diese Woche sowieso?",
     "placeholder": "Ich geh eh …",
+    "textSafetyHint": "Tipp: Schreib lieber «Kaffee am Sonntag» als «10 Uhr, Café Freud» — den genauen Treffpunkt teilst du später direkt mit den Angenommenen.",
     "categoryLabel": "Kategorie",
     "whenLabel": "Wann",
     "fix": "Fix",

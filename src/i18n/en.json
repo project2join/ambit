@@ -180,6 +180,7 @@
   "create": {
     "title": "Where are you going this week anyway?",
     "placeholder": "I'm going anyway …",
+    "textSafetyHint": "Tip: write “Coffee on Sunday” rather than “10am, Café Freud” — share the exact spot later, directly with whoever's joining.",
     "categoryLabel": "Category",
     "whenLabel": "When",
     "fix": "Fixed",

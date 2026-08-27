@@ -96,6 +96,13 @@ function ErstellenTab({ user, onPublished }) {
         placeholder={t('create.placeholder')}
         className="w-full rounded-[14px] border border-line bg-card px-4 py-[15px] font-serif text-[16px] text-ink placeholder:text-mut outline-none focus:border-pine"
       />
+      {/* Sicherheits-Hinweis: keine genaue Adresse/Uhrzeit im Text —
+          sonst könnte man verfolgt werden. Bewusst nur ein sanfter
+          Hinweis, keine harte Regel (freier Text lässt sich nicht
+          zuverlässig prüfen). */}
+      <p className="text-[12px] text-mut mt-1.5 leading-relaxed">
+        {t('create.textSafetyHint')}
+      </p>
 
       {/* Kategorie */}
       <Label className="mt-[18px] mb-2">{t('create.categoryLabel')}</Label>
