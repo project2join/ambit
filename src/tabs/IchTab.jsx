@@ -299,14 +299,14 @@ function IchTab({ user, profile, onChange }) {
         <div className="flex justify-between items-baseline mt-4 mb-1">
           <span className="text-[12px] text-mut">{t('me.radiusLabel')}</span>
           <span className="text-[15px] font-semibold text-ink">
-            {profile.radius_km || 10} km
+            {profile.radius_km || 50} km
           </span>
         </div>
         <input
           type="range"
           min="1"
           max="300"
-          value={profile.radius_km || 10}
+          value={profile.radius_km || 50}
           onChange={(e) => setRadius(Number(e.target.value))}
           aria-label={t('me.radiusLabel')}
           className="w-full accent-pine"
