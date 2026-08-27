@@ -29,9 +29,11 @@
   «Meine»-Chip im Pläne-Tab zeigen offene Anfragen usw. schon jetzt,
   sobald man die App öffnet. Nicht von selbst wieder Mail/Push
   einbauen, ohne das nochmal abzusprechen.
-- Deploy auf Vercel + eigener Mail-Versand (Gmail-SMTP als schnelle
-  Zwischenlösung ohne Domain) sind im Gang — siehe Chat-Verlauf vom
-  2026-08-16 für die genauen Schritte.
+- Deploy auf Vercel (ambit-ten.vercel.app) + Gmail-SMTP eingerichtet
+  (2026-08-16) — beides erledigt. Gmail-Mails landen manchmal im Spam,
+  das ist der bekannte Kompromiss der Zwischenlösung.
+- PWA-Icons (192/512 PNG) ergänzt, iPhone braucht weiterhin Safari
+  fürs «Zum Home-Bildschirm» (Apple-Einschränkung, nicht unsere Sache).
 
 ## Nächste grosse Schritte
 - Feed-Sortierung nach «So treffe ich mich gern» (Gruppe/zu zweit):
@@ -39,6 +41,15 @@
 - Entdecken-Tab (Dating-Set, beidseitige Matches) — füllt auch
   «Du gefällst» in den Verbindungen
 - Orte-Tab (private Orte, beidseitige Aufdeckung)
+
+## Erledigt, aber mit einer Voraussetzung (2026-08-16)
+- **Umkreis-Filter für Pläne + automatisches Aufräumen** (setup11) sind
+  gebaut. WICHTIG: Bevor das SQL läuft, muss in Supabase unter
+  Database → Extensions **pg_cron** eingeschaltet werden — sonst schlägt
+  der letzte Teil des Skripts (automatisches stündliches Löschen) fehl.
+  Regel: abgelaufene Pläne ohne angenommene Person verschwinden nach
+  24 Std. (fix) bzw. 10 Tagen (flexibel) automatisch, auch beim Host.
+  Pläne mit mindestens einer angenommenen Person bleiben immer.
 
 ## Vor dem echten Start (Launch-Checkliste)
 - **Eigener Mail-Versand (SMTP) in Supabase hinterlegen** — der eingebaute

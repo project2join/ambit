@@ -305,7 +305,7 @@ function IchTab({ user, profile, onChange }) {
         <input
           type="range"
           min="1"
-          max="100"
+          max="300"
           value={profile.radius_km || 10}
           onChange={(e) => setRadius(Number(e.target.value))}
           aria-label={t('me.radiusLabel')}

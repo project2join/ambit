@@ -309,7 +309,7 @@
     "currentAdd": "Set a location (e.g. holidays)",
     "currentHint": "Used instead of your home while it's set. Remove it to switch back.",
     "radiusLabel": "Radius for plans & discover",
-    "radiusHint": "Sorts by distance — never excludes anyone. Others only see your place, never your address or exact distance.",
+    "radiusHint": "Shows you plans within this radius — you can widen it any time. Others only see your place, never your address or exact distance.",
     "smokingLabel": "Smoking",
     "appLanguage": "App language",
     "logout": "Sign out"

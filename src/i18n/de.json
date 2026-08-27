@@ -309,7 +309,7 @@
     "currentAdd": "Standort setzen (z. B. Ferien)",
     "currentHint": "Gilt statt deines Wohnorts, solange er gesetzt ist. Entfernen bringt den Wohnort zurück.",
     "radiusLabel": "Umkreis für Pläne & Entdecken",
-    "radiusHint": "Sortiert nach Nähe — schliesst niemanden aus. Andere sehen nur deinen Ort, nie deine Adresse oder exakte Distanz.",
+    "radiusHint": "Zeigt dir Pläne aus diesem Umkreis — du kannst ihn jederzeit vergrössern. Andere sehen nur deinen Ort, nie deine Adresse oder exakte Distanz.",
     "smokingLabel": "Rauchen",
     "appLanguage": "App-Sprache",
     "logout": "Abmelden"
