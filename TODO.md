@@ -78,6 +78,19 @@
 ## Ideen für später
 - «Gerne wieder» in grösseren Gruppen: aktuell ein Tipp fürs ganze Treffen.
   Falls gewünscht, später zusätzlich einzelne Personen anschreiben können.
+- **«Gerne ein andermal»-Knopf** (Idee vom 2026-08-27, bewusst zurückgestellt
+  — braucht mehr aktive Nutzer, um wirklich zu greifen, wie Entdecken/Orte).
+  Konzept, damit's beim Bauen nicht neu erfunden wird: Wer an einem Plan
+  interessiert ist, aber am Datum nicht kann, tippt «Gerne ein andermal».
+  WICHTIG — kein versteckter Doppel-Mechanismus wie bei «Gerne wieder»,
+  das würde hier nicht funktionieren: Host und Anfragende kennen sich ja
+  noch nicht persönlich, der Host hat also keinen eigenen Anlass, unabhängig
+  auch Interesse zu zeigen. Stattdessen: der Hinweis erscheint einfach
+  sichtbar direkt bei der Anfrage, die der Host sowieso schon sieht (z. B.
+  «Lea kann an diesem Tag leider nicht — hätte aber gern mal mitgemacht»).
+  Kein Risiko einer «sichtbaren Ablehnung», weil das keine verletzliche
+  Aussage ist und es auch sonst nirgends eine «gesehen, aber nicht
+  reagiert»-Anzeige in der App gibt.
 
 ## Technisch härten (später)
 - Anfrage-Statuswechsel serverseitig absichern (aktuell könnte eine
