@@ -60,13 +60,18 @@
   nie eine genaue Uhrzeit — die legt der Host im Chat fest, sobald
   jemand angenommen hat (Stalking-Schutz). Braucht kein zusätzliches
   Supabase-Setup ausser dem SQL selbst.
-- **«Gerne ein andermal»-Knopf** (setup15, 2026-08-27): Wer an einem Plan
-  interessiert ist, aber am Termin nicht kann, hinterlässt einen für den
-  Host sichtbaren, freundlichen Hinweis («Lea kann an diesem Tag leider
-  nicht — hätte aber gern mal mitgemacht») — kein Platz wird belegt, kein
-  versteckter Match-Mechanismus (der hätte hier nicht funktioniert, siehe
-  Commit-Nachricht). Braucht kein zusätzliches Supabase-Setup ausser dem
-  SQL selbst.
+- **«Gerne ein andermal»-Knopf** (setup15 + setup16, 2026-08-27): Wer an
+  einem Plan interessiert ist, aber am Termin nicht kann, hinterlässt einen
+  für den Host sichtbaren, freundlichen Hinweis («Lea kann an diesem Tag
+  leider nicht — hätte aber gern mal mitgemacht»). Reagiert der Host darauf
+  («Chat starten»), öffnet sich ein **privater 1:1-Chat** nur zwischen den
+  beiden — kein Platz im ursprünglichen Plan wird belegt, keine Vermischung
+  mit dem Gruppen-Chat der echten Teilnehmenden. Kein versteckter
+  Match-Mechanismus wie bei «Gerne wieder» (hätte hier nicht funktioniert,
+  da der Host sonst nie einen Anlass hätte, unabhängig zu reagieren).
+  Bleibt von Anfang an dauerhaft offen, kein zweiter «Gerne wieder»-Schritt
+  nötig. Gleiche Technik liesse sich später auch für «bei Gerne wieder nur
+  mit einer Person aus der Gruppe in Kontakt bleiben» wiederverwenden.
 
 ## Vor dem echten Start (Launch-Checkliste)
 - **Eigener Mail-Versand (SMTP) in Supabase hinterlegen** — der eingebaute
