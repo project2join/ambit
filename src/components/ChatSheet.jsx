@@ -1,13 +1,19 @@
 /*
-  Plan-Chat: ein Gruppenchat pro Plan, für den Host und alle Angenommenen.
-  Neue Nachrichten erscheinen sofort (Supabase Realtime), ohne Neuladen.
+  Plan-Chat: entweder ein Gruppenchat pro Plan (für Host + alle
+  Angenommenen) oder — wenn `threadWith` gesetzt ist — ein privater
+  1:1-Chat zwischen dem Host und einer Person, die «Gerne ein andermal»
+  angetippt hat. Neue Nachrichten erscheinen sofort (Supabase Realtime).
 
-  Die erste Nachricht schreibt die App selbst als Eisbrecher.
-  Sie wird als Daten gespeichert (nicht als fertiger Satz), damit jede
-  Person sie in ihrer eigenen App-Sprache liest — die Antwort aus dem
-  Profil bleibt aber in der Sprache, in der sie geschrieben wurde.
+  Die erste Nachricht schreibt die App selbst als Eisbrecher — nur im
+  Gruppenchat, nicht im privaten 1:1-Chat. Sie wird als Daten
+  gespeichert (nicht als fertiger Satz), damit jede Person sie in ihrer
+  eigenen App-Sprache liest — die Antwort aus dem Profil bleibt aber in
+  der Sprache, in der sie geschrieben wurde.
 
-  48 Stunden nach dem Plan-Zeitpunkt ist der Chat nur noch zum Lesen da.
+  Gruppenchat: 48 Stunden nach dem Plan-Zeitpunkt nur noch zum Lesen,
+  ausser «Gerne wieder» hat beidseitig gepasst.
+  Privater 1:1-Chat: bleibt von Anfang an dauerhaft offen — die
+  Zustimmung beider Seiten ist ja schon der Moment, in dem er entsteht.
 */
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -20,8 +26,9 @@ import { loadKeeps, addKeep, removeKeep, isKeepWindow } from '../lib/keeps'
 
 const CLOSE_AFTER_MS = 48 * 60 * 60 * 1000 // 48 Stunden
 
-function ChatSheet({ user, plan, onClose, onKeepChange }) {
+function ChatSheet({ user, plan, threadWith, onClose, onKeepChange }) {
   const { t, i18n } = useTranslation()
+  const isSideThread = !!threadWith
 
   const [messages, setMessages] = useState([])
   const [people, setPeople] = useState({}) // id → Profil (Name, Foto, Antworten)
@@ -33,28 +40,34 @@ function ChatSheet({ user, plan, onClose, onKeepChange }) {
   const bottomRef = useRef(null)
 
   // Ist der Plan mehr als 48 Stunden vorbei? Dann nur noch lesen —
-  // ausser es hat beidseitig «Gerne wieder» gepasst, dann bleibt er offen.
+  // ausser es hat beidseitig «Gerne wieder» gepasst, dann bleibt er
+  // offen. Der private 1:1-Chat schliesst nie automatisch.
   const closed =
+    !isSideThread &&
     !!plan.when_at &&
     Date.now() > new Date(plan.when_at).getTime() + CLOSE_AFTER_MS &&
     !keep?.matched
 
   // Nachrichten und Teilnehmende laden
   const load = useCallback(async () => {
-    const { data: msgs } = await supabase
-      .from('messages')
-      .select('*')
-      .eq('plan_id', plan.id)
-      .order('created_at', { ascending: true })
+    let query = supabase.from('messages').select('*').eq('plan_id', plan.id)
+    query = isSideThread ? query.eq('thread_with', threadWith) : query.is('thread_with', null)
+    const { data: msgs } = await query.order('created_at', { ascending: true })
 
-    // Wer ist dabei: der Host und alle Angenommenen
-    const { data: acc } = await supabase
-      .from('requests')
-      .select('requester')
-      .eq('plan_id', plan.id)
-      .eq('status', 'accepted')
+    let ids
+    if (isSideThread) {
+      // Privater Chat: nur der Host und die eine andere Person
+      ids = [...new Set([plan.owner, threadWith])]
+    } else {
+      // Gruppenchat: der Host und alle Angenommenen
+      const { data: acc } = await supabase
+        .from('requests')
+        .select('requester')
+        .eq('plan_id', plan.id)
+        .eq('status', 'accepted')
+      ids = [...new Set([plan.owner, ...(acc || []).map((r) => r.requester)])]
+    }
 
-    const ids = [...new Set([plan.owner, ...(acc || []).map((r) => r.requester)])]
     const map = {}
     if (ids.length > 0) {
       const { data: profs } = await supabase
@@ -64,22 +77,24 @@ function ChatSheet({ user, plan, onClose, onKeepChange }) {
       for (const p of profs || []) map[p.id] = p
     }
 
-    // Stand von «Gerne wieder» für diesen Plan
-    const keeps = await loadKeeps(user.id)
-    setKeep(keeps[plan.id] || { mine: false, matched: false })
+    // Stand von «Gerne wieder» — nur beim Gruppenchat relevant
+    if (!isSideThread) {
+      const keeps = await loadKeeps(user.id)
+      setKeep(keeps[plan.id] || { mine: false, matched: false })
+    }
 
     setPeople(map)
     setMessages(msgs || [])
     return { msgs: msgs || [], people: map }
-  }, [plan.id, plan.owner, user.id])
+  }, [plan.id, plan.owner, user.id, isSideThread, threadWith])
 
-  // Beim Öffnen: laden, Eisbrecher anlegen (falls noch keiner da ist),
-  // und auf neue Nachrichten horchen
+  // Beim Öffnen: laden, Eisbrecher anlegen (nur im Gruppenchat, falls
+  // noch keiner da ist), und auf neue Nachrichten horchen
   useEffect(() => {
     let active = true
 
     load().then(async ({ msgs, people }) => {
-      if (!active) return
+      if (!active || isSideThread) return
       const hasIcebreaker = msgs.some((m) => m.kind === 'system')
       if (!hasIcebreaker && !closed) {
         await createIcebreaker(people)
@@ -87,9 +102,9 @@ function ChatSheet({ user, plan, onClose, onKeepChange }) {
       }
     })
 
-    // Live-Verbindung: jede neue Nachricht dieses Plans kommt sofort an
+    // Live-Verbindung: jede neue Nachricht dieses Chats kommt sofort an
     const channel = supabase
-      .channel(`plan-chat-${plan.id}`)
+      .channel(`chat-${plan.id}-${threadWith || 'group'}`)
       .on(
         'postgres_changes',
         {
@@ -99,6 +114,12 @@ function ChatSheet({ user, plan, onClose, onKeepChange }) {
           filter: `plan_id=eq.${plan.id}`,
         },
         (payload) => {
+          // Nur Nachrichten aus genau diesem Chat übernehmen (Gruppe
+          // oder derselbe private Thread — nicht beide vermischen)
+          const belongsHere = isSideThread
+            ? payload.new.thread_with === threadWith
+            : !payload.new.thread_with
+          if (!belongsHere) return
           setMessages((list) =>
             list.some((m) => m.id === payload.new.id) ? list : [...list, payload.new]
           )
@@ -111,7 +132,7 @@ function ChatSheet({ user, plan, onClose, onKeepChange }) {
       supabase.removeChannel(channel)
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [plan.id])
+  }, [plan.id, isSideThread, threadWith])
 
   // Immer ans Ende scrollen, wenn etwas Neues kommt
   useEffect(() => {
@@ -170,9 +191,13 @@ function ChatSheet({ user, plan, onClose, onKeepChange }) {
     const text = draft.trim()
     if (!text || sending) return
     setSending(true)
-    const { error } = await supabase
-      .from('messages')
-      .insert({ plan_id: plan.id, sender: user.id, kind: 'user', text })
+    const { error } = await supabase.from('messages').insert({
+      plan_id: plan.id,
+      sender: user.id,
+      kind: 'user',
+      text,
+      thread_with: isSideThread ? threadWith : null,
+    })
     setSending(false)
     if (error) console.error('Nachricht senden fehlgeschlagen:', error.message)
     else setDraft('')
@@ -194,22 +219,28 @@ function ChatSheet({ user, plan, onClose, onKeepChange }) {
     return `${first} ${second}`
   }
 
+  // Titel: bei privaten Chats mit dem Namen der anderen Person
+  const otherPerson = isSideThread ? people[threadWith] : null
+  const title = isSideThread && otherPerson
+    ? t('chat.titleWith', { name: otherPerson.name })
+    : t('chat.title')
+
   return (
     <div className="fixed inset-0 z-40 bg-ink/55 flex items-end justify-center">
       <div className="w-full max-w-[390px] bg-paper rounded-t-3xl flex flex-col h-[85vh]">
         {/* Kopf: Titel und der Plan-Text als Erinnerung */}
         <div className="flex items-start justify-between gap-3 px-5 pt-5 pb-3 border-b border-line flex-shrink-0">
           <div className="min-w-0">
-            <div className="font-serif text-[19px] font-bold text-ink">
-              {t('chat.title')}
-            </div>
+            <div className="font-serif text-[19px] font-bold text-ink">{title}</div>
             <div className="text-[12.5px] text-mut truncate">«{plan.text}»</div>
           </div>
           <div className="flex items-center gap-1 flex-shrink-0">
             {/* Drei Punkte: jemanden melden oder blockieren */}
             <button
               type="button"
-              onClick={() => setWhoOpen(true)}
+              onClick={() =>
+                isSideThread ? otherPerson && setSafetyPerson(otherPerson) : setWhoOpen(true)
+              }
               aria-label={t('safety.menu')}
               className="text-mut p-1"
             >
@@ -273,9 +304,10 @@ function ChatSheet({ user, plan, onClose, onKeepChange }) {
           <div ref={bottomRef} />
         </div>
 
-        {/* Nach dem Treffen: «Gerne wieder» — bleibt 7 Tage antippbar,
-            also auch dann noch, wenn der Chat längst geschlossen ist */}
-        {(isKeepWindow(plan) || keep?.matched) && (
+        {/* Nach dem Treffen: «Gerne wieder» — nur im Gruppenchat.
+            Bleibt 7 Tage antippbar, auch wenn der Chat längst
+            geschlossen ist. */}
+        {!isSideThread && (isKeepWindow(plan) || keep?.matched) && (
           <div className="px-5 pb-3 flex-shrink-0">
             <KeepCard
               plan={plan}
@@ -310,8 +342,9 @@ function ChatSheet({ user, plan, onClose, onKeepChange }) {
         </div>
       </div>
 
-      {/* «Wen möchtest du melden oder blockieren?» */}
-      {whoOpen && (
+      {/* «Wen möchtest du melden oder blockieren?» — nur im Gruppenchat,
+          im privaten Chat gibt's ja nur die eine Person */}
+      {!isSideThread && whoOpen && (
         <div className="fixed inset-0 z-40 bg-ink/55 flex items-end justify-center">
           <div className="w-full max-w-[390px] bg-card rounded-t-3xl px-5 pt-5 pb-7">
             <div className="flex items-center justify-between mb-3">

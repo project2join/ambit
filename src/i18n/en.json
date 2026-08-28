@@ -60,6 +60,8 @@
     "interestedLater": "Can't make it, but keen another time",
     "interestedLaterConfirmed": "Noted ✓",
     "interestedLaterHostNote": "{{name}} can't make this one — but would have liked to join.",
+    "interestedLaterStartChat": "Start chat",
+    "interestedLaterMatched": "Chat open ✓",
     "joined": "You're in ✓",
     "youreIn": "You're in — {{when}}",
     "planFull": "Plan is full",
@@ -155,6 +157,7 @@
   "chat": {
     "open": "Chat",
     "title": "Plan chat",
+    "titleWith": "Chat with {{name}}",
     "placeholder": "Write a message …",
     "send": "Send",
     "closed": "This plan is over — see you at the next one!",

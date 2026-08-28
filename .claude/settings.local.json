@@ -83,7 +83,9 @@
       "Bash(git commit -m 'Fixe Plaene: nur grobe Tageszeit statt genauer Uhrzeit oeffentlich, Zeit wird im Chat vereinbart \\(Stalking-Schutz\\) *)",
       "Bash(git commit -m 'TODO aktualisiert: Tageszeit-Loesung dokumentiert, Treffpunkt-Punkt praezisiert *)",
       "Bash(git commit -m 'TODO: Konzept fuer Gerne-ein-andermal-Knopf festgehalten \\(sichtbarer Hinweis statt verstecktes Matching\\) *)",
-      "Bash(git commit -m 'Gerne-ein-andermal-Knopf: sichtbarer Hinweis fuer den Host statt versteckter Match-Mechanismus *)"
+      "Bash(git commit -m 'Gerne-ein-andermal-Knopf: sichtbarer Hinweis fuer den Host statt versteckter Match-Mechanismus *)",
+      "Bash(git commit -m 'TODO: Gerne-ein-andermal von '\\\\''spaeter'\\\\'' zu '\\\\''erledigt'\\\\'' verschoben *)",
+      "Bash(git commit -m 'Gerne ein andermal: privater 1:1-Chat statt Gruppen-Chat, kein Platz wird belegt *)"
     ]
   }
 }

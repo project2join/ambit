@@ -81,6 +81,7 @@ function PlaeneTab({ user, onCreate }) {
   const [catFilter, setCatFilter] = useState('alle')
   const [sheetProfile, setSheetProfile] = useState(null) // Mini-Profil gross
   const [chatPlan, setChatPlan] = useState(null) // offener Plan-Chat
+  const [chatThreadWith, setChatThreadWith] = useState(null) // gesetzt = privater 1:1-Chat
   const [keeps, setKeeps] = useState({}) // planId → «Gerne wieder»-Stand
   const [dayPick, setDayPick] = useState(null) // { planId, days } — Tage wählen vor Anfrage
   const [dateFix, setDateFix] = useState(null) // { planId, day, time } — Host legt Termin fest
@@ -181,6 +182,17 @@ function PlaeneTab({ user, onCreate }) {
         .insert({ plan_id: plan.id, requester: user.id, status: 'interested_later' })
       if (error) console.error('Gerne ein andermal fehlgeschlagen:', error.message)
     }
+    load()
+  }
+
+  // Host reagiert auf «Gerne ein andermal» → privater 1:1-Chat öffnet
+  // sich, ohne dass ein Platz im ursprünglichen Plan belegt wird
+  async function startSideChat(plan, req) {
+    if (!req.later_matched) {
+      await supabase.from('requests').update({ later_matched: true }).eq('id', req.id)
+    }
+    setChatPlan(plan)
+    setChatThreadWith(req.requester)
     load()
   }
 
@@ -467,7 +479,20 @@ function PlaeneTab({ user, onCreate }) {
                 sendInterestLater(). */}
             {!isMine && !softFull && !reallyFull && dayPick?.planId !== plan.id && (
               <div className="mt-2">
-                {myReq?.status === 'interested_later' ? (
+                {myReq?.status === 'interested_later' && myReq.later_matched ? (
+                  // Host hat reagiert — der private Chat ist offen
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setChatPlan(plan)
+                      setChatThreadWith(user.id)
+                    }}
+                    className="text-[12px] font-semibold text-pine flex items-center gap-1.5"
+                  >
+                    <CheckIcon size={13} />
+                    {t('requests.interestedLaterMatched')}
+                  </button>
+                ) : myReq?.status === 'interested_later' ? (
                   <span className="text-[12px] font-semibold text-pine flex items-center gap-1.5">
                     <CheckIcon size={13} />
                     {t('requests.interestedLaterConfirmed')}
@@ -750,25 +775,37 @@ function PlaeneTab({ user, onCreate }) {
                   </div>
                 ))}
 
-                {/* «Gerne ein andermal»: sichtbarer Hinweis, kein
-                    Anfrage-Handling nötig — der Host kann die Person
-                    einfach anschreiben, wenn er auch mag. */}
+                {/* «Gerne ein andermal»: sichtbarer Hinweis. Der Host
+                    kann die Person ansehen und — wenn er auch mag —
+                    einen privaten Chat starten, ohne dass das einen
+                    Platz im Plan belegt. */}
                 {interestedLater.map((r) => {
                   const person = profiles[r.requester]
                   return (
-                    <button
+                    <div
                       key={r.id}
-                      type="button"
-                      onClick={() => person && setSheetProfile(person)}
-                      className="flex items-center gap-3 py-2.5 border-b border-line last:border-b-0 w-full text-left"
+                      className="flex items-center gap-3 py-2.5 border-b border-line last:border-b-0"
                     >
-                      <Avatar owner={person} size="w-10 h-10" />
-                      <div className="flex-1 min-w-0 text-[12.5px] text-sub">
-                        {t('requests.interestedLaterHostNote', {
-                          name: person?.name || '…',
-                        })}
-                      </div>
-                    </button>
+                      <button
+                        type="button"
+                        onClick={() => person && setSheetProfile(person)}
+                        className="flex items-center gap-3 flex-1 min-w-0 text-left"
+                      >
+                        <Avatar owner={person} size="w-10 h-10" />
+                        <div className="flex-1 min-w-0 text-[12.5px] text-sub">
+                          {t('requests.interestedLaterHostNote', {
+                            name: person?.name || '…',
+                          })}
+                        </div>
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => startSideChat(plan, r)}
+                        className="rounded-full bg-pine text-white px-3.5 py-2 text-[12px] font-semibold flex-shrink-0"
+                      >
+                        {r.later_matched ? t('chat.open') : t('requests.interestedLaterStartChat')}
+                      </button>
+                    </div>
                   )
                 })}
 
@@ -804,12 +841,16 @@ function PlaeneTab({ user, onCreate }) {
         />
       )}
 
-      {/* Plan-Chat */}
+      {/* Plan-Chat — Gruppe, oder privat zu zweit bei «Gerne ein andermal» */}
       {chatPlan && (
         <ChatSheet
           user={user}
           plan={chatPlan}
-          onClose={() => setChatPlan(null)}
+          threadWith={chatThreadWith}
+          onClose={() => {
+            setChatPlan(null)
+            setChatThreadWith(null)
+          }}
           onKeepChange={load}
         />
       )}
