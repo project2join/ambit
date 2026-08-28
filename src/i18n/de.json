@@ -57,6 +57,9 @@
   "requests": {
     "request": "Anfragen",
     "requested": "Angefragt ✓",
+    "interestedLater": "Kann heute nicht, aber gerne ein andermal",
+    "interestedLaterConfirmed": "Vermerkt ✓",
+    "interestedLaterHostNote": "{{name}} kann an diesem Tag nicht — hätte aber gern mal mitgemacht.",
     "joined": "Dabei ✓",
     "youreIn": "Du bist dabei — {{when}}",
     "planFull": "Plan ist voll",

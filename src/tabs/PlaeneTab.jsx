@@ -163,6 +163,27 @@ function PlaeneTab({ user, onCreate }) {
     load()
   }
 
+  // «Gerne ein andermal»: sichtbarer, freundlicher Hinweis für den
+  // Host, kein Platz wird belegt. Bewusst KEIN versteckter
+  // Doppel-Mechanismus wie bei «Gerne wieder» — der Host hat hier ja
+  // keinen eigenen Anlass, unabhängig ebenfalls Interesse zu zeigen,
+  // ohne den Hinweis überhaupt zu sehen (siehe TODO.md).
+  async function sendInterestLater(plan) {
+    const existing = myRequests[plan.id]
+    if (existing) {
+      await supabase
+        .from('requests')
+        .update({ status: 'interested_later' })
+        .eq('id', existing.id)
+    } else {
+      const { error } = await supabase
+        .from('requests')
+        .insert({ plan_id: plan.id, requester: user.id, status: 'interested_later' })
+      if (error) console.error('Gerne ein andermal fehlgeschlagen:', error.message)
+    }
+    load()
+  }
+
   async function acceptRequest(req) {
     await supabase.from('requests').update({ status: 'accepted' }).eq('id', req.id)
     load()
@@ -340,6 +361,7 @@ function PlaeneTab({ user, onCreate }) {
         const pending = reqs.filter((r) => r.status === 'pending')
         const accepted = reqs.filter((r) => r.status === 'accepted')
         const cancelled = reqs.filter((r) => r.status === 'cancelled')
+        const interestedLater = reqs.filter((r) => r.status === 'interested_later')
         // Gehöre ich zu diesem Treffen? (Host mit Zusagen oder selbst zugesagt)
         const imIn = (isMine && accepted.length > 0) || myReq?.status === 'accepted'
 
@@ -439,6 +461,28 @@ function PlaeneTab({ user, onCreate }) {
                 </>
               )}
             </div>
+
+            {/* «Gerne ein andermal» — für alle, die (noch) nicht
+                angefragt/dabei sind. Sichtbar für den Host, siehe
+                sendInterestLater(). */}
+            {!isMine && !softFull && !reallyFull && dayPick?.planId !== plan.id && (
+              <div className="mt-2">
+                {myReq?.status === 'interested_later' ? (
+                  <span className="text-[12px] font-semibold text-pine flex items-center gap-1.5">
+                    <CheckIcon size={13} />
+                    {t('requests.interestedLaterConfirmed')}
+                  </span>
+                ) : myReq?.status !== 'pending' && myReq?.status !== 'accepted' ? (
+                  <button
+                    type="button"
+                    onClick={() => sendInterestLater(plan)}
+                    className="text-[12px] font-semibold text-mut"
+                  >
+                    {t('requests.interestedLater')}
+                  </button>
+                ) : null}
+              </div>
+            )}
 
             {/* Flexibler Plan: Tage antippen, dann Anfrage senden */}
             {!isMine && dayPick?.planId === plan.id && (
@@ -705,6 +749,28 @@ function PlaeneTab({ user, onCreate }) {
                     })}
                   </div>
                 ))}
+
+                {/* «Gerne ein andermal»: sichtbarer Hinweis, kein
+                    Anfrage-Handling nötig — der Host kann die Person
+                    einfach anschreiben, wenn er auch mag. */}
+                {interestedLater.map((r) => {
+                  const person = profiles[r.requester]
+                  return (
+                    <button
+                      key={r.id}
+                      type="button"
+                      onClick={() => person && setSheetProfile(person)}
+                      className="flex items-center gap-3 py-2.5 border-b border-line last:border-b-0 w-full text-left"
+                    >
+                      <Avatar owner={person} size="w-10 h-10" />
+                      <div className="flex-1 min-w-0 text-[12.5px] text-sub">
+                        {t('requests.interestedLaterHostNote', {
+                          name: person?.name || '…',
+                        })}
+                      </div>
+                    </button>
+                  )
+                })}
 
                 {pending.length === 0 && (
                   <div className="text-[12px] text-mut">{t('requests.noRequests')}</div>

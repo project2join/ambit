@@ -57,6 +57,9 @@
   "requests": {
     "request": "Ask to join",
     "requested": "Requested ✓",
+    "interestedLater": "Can't make it, but keen another time",
+    "interestedLaterConfirmed": "Noted ✓",
+    "interestedLaterHostNote": "{{name}} can't make this one — but would have liked to join.",
     "joined": "You're in ✓",
     "youreIn": "You're in — {{when}}",
     "planFull": "Plan is full",

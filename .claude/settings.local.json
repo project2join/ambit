@@ -80,7 +80,10 @@
       "Bash(git commit -m 'Startseiten-Text: Sterne gucken statt an den See, etwas mehr Originalitaet *)",
       "Bash(git commit -m 'Sicherheits-Hinweis beim Plan erstellen: keine genaue Adresse/Uhrzeit im Text, wegen Stalking-Risiko *)",
       "Bash(git commit -m 'TODO: Sicherheitsgrund fuer Treffpunkt-Feld ergaenzt *)",
-      "Bash(git commit -m 'Fixe Plaene: nur grobe Tageszeit statt genauer Uhrzeit oeffentlich, Zeit wird im Chat vereinbart \\(Stalking-Schutz\\) *)"
+      "Bash(git commit -m 'Fixe Plaene: nur grobe Tageszeit statt genauer Uhrzeit oeffentlich, Zeit wird im Chat vereinbart \\(Stalking-Schutz\\) *)",
+      "Bash(git commit -m 'TODO aktualisiert: Tageszeit-Loesung dokumentiert, Treffpunkt-Punkt praezisiert *)",
+      "Bash(git commit -m 'TODO: Konzept fuer Gerne-ein-andermal-Knopf festgehalten \\(sichtbarer Hinweis statt verstecktes Matching\\) *)",
+      "Bash(git commit -m 'Gerne-ein-andermal-Knopf: sichtbarer Hinweis fuer den Host statt versteckter Match-Mechanismus *)"
     ]
   }
 }
