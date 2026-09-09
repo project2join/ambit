@@ -60,7 +60,7 @@ function ProfileSheet({ user, profile, planId, onBlocked, onClose }) {
         </div>
 
         <div className="px-5 pt-4 pb-7">
-          <div className="font-serif text-[21px] font-bold text-ink flex items-center gap-1.5">
+          <div className="text-[21px] font-semibold text-ink flex items-center gap-1.5">
             {profile.name}, {profile.age}
             {/* Grünes Häkchen nur bei geprüften Profilen */}
             {profile.is_verified && (

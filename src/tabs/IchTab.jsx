@@ -91,7 +91,7 @@ function IchTab({ user, profile, onChange }) {
         <div className="w-[76px] h-[76px] rounded-full bg-pine-soft mx-auto flex items-center justify-center font-serif text-[30px] font-bold text-pine">
           {(profile.name || '?')[0]}
         </div>
-        <div className="font-serif text-[20px] font-semibold text-ink mt-2.5 flex items-center justify-center gap-1.5">
+        <div className="text-[20px] font-semibold text-ink mt-2.5 flex items-center justify-center gap-1.5">
           {profile.name}, {profile.age}
           {/* Grünes Häkchen nur bei geprüften Profilen */}
           {profile.is_verified && (
