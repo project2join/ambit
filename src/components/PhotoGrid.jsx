@@ -1,11 +1,17 @@
 /*
   Foto-Raster: zeigt bis zu 5 Fotos, erlaubt Hochladen und Entfernen.
   Wird im Onboarding UND im «Ich»-Tab verwendet.
+
+  Beim Hochladen kommt zuerst der Zuschneiden-Screen (PhotoCropModal):
+  so bestimmt man selbst den Bildausschnitt, statt dass die App
+  automatisch beschneidet. Wählt man mehrere Fotos aufs Mal, kommt der
+  Zuschneiden-Screen nacheinander für jedes einzelne Foto.
 */
 import { useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { uploadPhoto, deletePhoto } from '../lib/photos'
 import { PlusIcon, XIcon } from './Icons'
+import PhotoCropModal from './PhotoCropModal'
 
 const MAX_PHOTOS = 5
 
@@ -15,23 +21,51 @@ function PhotoGrid({ userId, photos, onChange }) {
   const [failed, setFailed] = useState(false) // ist ein Upload gescheitert?
   const fileRef = useRef(null) // Zugriff aufs unsichtbare Datei-Feld
 
-  // Wird aufgerufen, wenn der Nutzer Dateien ausgewählt hat
-  async function handleFiles(e) {
+  // Die Warteschlange fürs Zuschneiden: noch offene Dateien + schon
+  // hochgeladene Adressen davor
+  const [cropQueue, setCropQueue] = useState(null) // [{file}, ...] oder null
+  const [cropIndex, setCropIndex] = useState(0)
+  const uploadedRef = useRef([]) // Adressen, die in diesem Durchgang schon hochgeladen sind
+
+  // Wird aufgerufen, wenn der Nutzer Dateien ausgewählt hat — startet
+  // den Zuschneiden-Screen für die erste Datei
+  function handleFiles(e) {
     const files = Array.from(e.target.files).slice(0, MAX_PHOTOS - photos.length)
-    if (files.length === 0) return
-    setBusy(true)
-    setFailed(false)
-
-    const newUrls = []
-    for (const file of files) {
-      const url = await uploadPhoto(userId, file)
-      if (url) newUrls.push(url)
-      else setFailed(true)
-    }
-
-    if (newUrls.length > 0) onChange([...photos, ...newUrls])
-    setBusy(false)
     e.target.value = '' // Feld leeren, damit dieselbe Datei nochmal wählbar wäre
+    if (files.length === 0) return
+    setFailed(false)
+    uploadedRef.current = []
+    setCropIndex(0)
+    setCropQueue(files)
+  }
+
+  // Ein Foto wurde zugeschnitten: hochladen, dann zum nächsten in der Liste
+  async function handleCropDone(blob) {
+    setBusy(true)
+    const file = new File([blob], `foto-${Date.now()}.jpg`, { type: 'image/jpeg' })
+    const url = await uploadPhoto(userId, file)
+    if (url) uploadedRef.current.push(url)
+    else setFailed(true)
+    advanceQueue()
+  }
+
+  // Ein Foto wurde übersprungen (Abbrechen im Zuschneiden-Screen) —
+  // einfach zum nächsten in der Liste, ohne es hochzuladen
+  function handleCropSkip() {
+    advanceQueue()
+  }
+
+  // Zum nächsten Foto in der Warteschlange, oder fertig
+  function advanceQueue() {
+    if (cropIndex + 1 < cropQueue.length) {
+      setCropIndex(cropIndex + 1)
+    } else {
+      if (uploadedRef.current.length > 0) {
+        onChange([...photos, ...uploadedRef.current])
+      }
+      setCropQueue(null)
+      setBusy(false)
+    }
   }
 
   // Ein Foto entfernen (aus der Liste und aus dem Speicher)
@@ -93,6 +127,16 @@ function PhotoGrid({ userId, photos, onChange }) {
         onChange={handleFiles}
         className="hidden"
       />
+
+      {/* Zuschneiden-Screen — für jede ausgewählte Datei einzeln */}
+      {cropQueue && (
+        <PhotoCropModal
+          key={cropIndex}
+          file={cropQueue[cropIndex]}
+          onCancel={handleCropSkip}
+          onDone={handleCropDone}
+        />
+      )}
     </div>
   )
 }

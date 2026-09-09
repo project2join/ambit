@@ -86,7 +86,9 @@
       "Bash(git commit -m 'Gerne-ein-andermal-Knopf: sichtbarer Hinweis fuer den Host statt versteckter Match-Mechanismus *)",
       "Bash(git commit -m 'TODO: Gerne-ein-andermal von '\\\\''spaeter'\\\\'' zu '\\\\''erledigt'\\\\'' verschoben *)",
       "Bash(git commit -m 'Gerne ein andermal: privater 1:1-Chat statt Gruppen-Chat, kein Platz wird belegt *)",
-      "Bash(git commit -m 'TODO: privaten 1:1-Chat bei Gerne-ein-andermal dokumentiert *)"
+      "Bash(git commit -m 'TODO: privaten 1:1-Chat bei Gerne-ein-andermal dokumentiert *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git commit --amend -m ' *)"
     ]
   }
 }

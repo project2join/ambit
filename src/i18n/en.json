@@ -238,7 +238,11 @@
     "main": "Main photo",
     "add": "Photo",
     "uploading": "Uploading…",
-    "uploadError": "Upload failed — please try again."
+    "uploadError": "Upload failed — please try again.",
+    "cropTitle": "Choose your crop",
+    "cropHint": "Drag to move, use the slider to zoom in.",
+    "cropCancel": "Cancel",
+    "cropApply": "Apply"
   },
   "location": {
     "searchPlaceholder": "Neighbourhood, town or postcode",

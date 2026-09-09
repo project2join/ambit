@@ -238,7 +238,11 @@
     "main": "Hauptfoto",
     "add": "Foto",
     "uploading": "Lädt hoch…",
-    "uploadError": "Hochladen hat nicht geklappt — versuch es nochmal."
+    "uploadError": "Hochladen hat nicht geklappt — versuch es nochmal.",
+    "cropTitle": "Bildausschnitt wählen",
+    "cropHint": "Ziehen zum Verschieben, Regler zum Vergrössern.",
+    "cropCancel": "Abbrechen",
+    "cropApply": "Übernehmen"
   },
   "location": {
     "searchPlaceholder": "Quartier, Ort oder PLZ",
