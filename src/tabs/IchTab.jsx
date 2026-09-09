@@ -92,7 +92,15 @@ function IchTab({ user, profile, onChange }) {
           {(profile.name || '?')[0]}
         </div>
         <div className="text-[20px] font-semibold text-ink mt-2.5 flex items-center justify-center gap-1.5">
-          {profile.name}, {profile.age}
+          {/* Name + Alter in einem Span, damit der Flex-«gap» des
+              Elternelements (für den Abstand zum Häkchen) nicht auch
+              noch zwischen Namen und Komma eine Lücke reinschiebt.
+              Alter gedämpft statt schwarz — wirkt ruhiger als ein
+              hartes Komma in gleicher Stärke. */}
+          <span>
+            {profile.name}
+            <span className="font-normal text-sub">, {profile.age}</span>
+          </span>
           {/* Grünes Häkchen nur bei geprüften Profilen */}
           {profile.is_verified && (
             <BadgeCheckIcon size={17} className="text-pine" strokeWidth={2} />

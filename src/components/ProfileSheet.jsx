@@ -61,7 +61,15 @@ function ProfileSheet({ user, profile, planId, onBlocked, onClose }) {
 
         <div className="px-5 pt-4 pb-7">
           <div className="text-[21px] font-semibold text-ink flex items-center gap-1.5">
-            {profile.name}, {profile.age}
+            {/* Name + Alter in einem Span, damit der Flex-«gap» des
+                Elternelements (für den Abstand zum Häkchen) nicht auch
+                noch zwischen Namen und Komma eine Lücke reinschiebt.
+                Alter gedämpft statt schwarz — wirkt ruhiger als ein
+                hartes Komma in gleicher Stärke. */}
+            <span>
+              {profile.name}
+              <span className="font-normal text-sub">, {profile.age}</span>
+            </span>
             {/* Grünes Häkchen nur bei geprüften Profilen */}
             {profile.is_verified && (
               <BadgeCheckIcon size={17} className="text-pine" strokeWidth={2} />
