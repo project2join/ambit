@@ -36,7 +36,7 @@ function BottomNav({ tab, onChange }) {
                 // mx-auto: zentriert den Knopf in seiner Spalte, auch
                 // mit fester Breite (Grid-Spalten strecken sonst nur
                 // Elemente ohne feste Breite, sonst landen sie links)
-                '-mt-7 mx-auto w-[50px] h-[50px] rounded-full text-white flex items-center justify-center shadow-[0_6px_16px_rgba(51,71,60,0.30)] transition-colors ' +
+                'smooth -mt-7 mx-auto w-[50px] h-[50px] rounded-full text-white flex items-center justify-center shadow-[0_6px_16px_rgba(51,71,60,0.30)] ' +
                 (active ? 'bg-ink' : 'bg-pine')
               }
             >
@@ -51,7 +51,7 @@ function BottomNav({ tab, onChange }) {
             type="button"
             onClick={() => onChange(id)}
             className={
-              'flex flex-col items-center gap-[3px] px-2.5 py-1 ' +
+              'smooth flex flex-col items-center gap-[3px] px-2.5 py-1 ' +
               (active ? 'text-ink' : 'text-mut')
             }
           >

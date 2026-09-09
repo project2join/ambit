@@ -242,7 +242,7 @@ function ChatSheet({ user, plan, threadWith, onClose, onKeepChange }) {
                 isSideThread ? otherPerson && setSafetyPerson(otherPerson) : setWhoOpen(true)
               }
               aria-label={t('safety.menu')}
-              className="text-mut p-1"
+              className="smooth text-mut p-1"
             >
               <MoreIcon size={20} />
             </button>
@@ -250,7 +250,7 @@ function ChatSheet({ user, plan, threadWith, onClose, onKeepChange }) {
               type="button"
               onClick={onClose}
               aria-label={t('common.close')}
-              className="text-mut p-1"
+              className="smooth text-mut p-1"
             >
               <XIcon size={20} />
             </button>
@@ -333,7 +333,7 @@ function ChatSheet({ user, plan, threadWith, onClose, onKeepChange }) {
               <button
                 type="submit"
                 disabled={!draft.trim() || sending}
-                className="rounded-full bg-pine text-white px-5 text-[13.5px] font-semibold disabled:opacity-40"
+                className="smooth rounded-full bg-pine text-white px-5 text-[13.5px] font-semibold disabled:opacity-40"
               >
                 {t('chat.send')}
               </button>
@@ -355,7 +355,7 @@ function ChatSheet({ user, plan, threadWith, onClose, onKeepChange }) {
                 type="button"
                 onClick={() => setWhoOpen(false)}
                 aria-label={t('common.close')}
-                className="text-mut p-1"
+                className="smooth text-mut p-1"
               >
                 <XIcon size={20} />
               </button>
@@ -371,7 +371,7 @@ function ChatSheet({ user, plan, threadWith, onClose, onKeepChange }) {
                       setSafetyPerson(p)
                       setWhoOpen(false)
                     }}
-                    className="w-full text-left rounded-xl border border-line bg-paper px-4 py-3.5 text-[14.5px] text-ink"
+                    className="smooth w-full text-left rounded-xl border border-line bg-paper px-4 py-3.5 text-[14.5px] text-ink"
                   >
                     {p.name}
                   </button>

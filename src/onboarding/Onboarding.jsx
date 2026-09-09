@@ -167,7 +167,7 @@ function Onboarding({ user, profile, onDone }) {
         <button
           type="button"
           onClick={() => setPickerSlot(slot)}
-          className="w-full py-3 rounded-xl border-[1.5px] border-dashed border-line text-mut text-[13px] font-medium"
+          className="smooth w-full py-3 rounded-xl border-[1.5px] border-dashed border-line text-mut text-[13px] font-medium"
         >
           {optional ? t('promptsUi.addThird') : `+ ${t('promptsUi.pick')}`}
         </button>
@@ -186,7 +186,7 @@ function Onboarding({ user, profile, onDone }) {
           <button
             type="button"
             onClick={() => setPickerSlot(slot)}
-            className="text-[12px] font-semibold text-mut"
+            className="smooth text-[12px] font-semibold text-mut"
           >
             {t('promptsUi.change')}
           </button>
@@ -196,7 +196,7 @@ function Onboarding({ user, profile, onDone }) {
               <button
                 type="button"
                 onClick={removeThirdPrompt}
-                className="text-[12px] font-semibold text-mut"
+                className="smooth text-[12px] font-semibold text-mut"
               >
                 {t('common.remove')}
               </button>
@@ -221,7 +221,7 @@ function Onboarding({ user, profile, onDone }) {
             <button
               type="button"
               onClick={() => supabase.auth.signOut()}
-              className="text-[12px] font-semibold text-sub bg-card border border-line rounded-full px-4 py-2"
+              className="smooth text-[12px] font-semibold text-sub bg-card border border-line rounded-full px-4 py-2"
             >
               {t('me.logout')}
             </button>
@@ -404,7 +404,7 @@ function Onboarding({ user, profile, onDone }) {
                   <button
                     type="submit"
                     disabled={!otherLang.trim()}
-                    className="rounded-full border border-line px-4 text-[13px] font-semibold text-sub disabled:opacity-40"
+                    className="smooth rounded-full border border-line px-4 text-[13px] font-semibold text-sub disabled:opacity-40"
                   >
                     {t('onboarding.languagesStep.otherAdd')}
                   </button>
@@ -432,7 +432,7 @@ function Onboarding({ user, profile, onDone }) {
                         onClick={() =>
                           update({ home_area: null, home_lat: null, home_lng: null })
                         }
-                        className="ml-auto text-[12px] font-semibold text-mut"
+                        className="smooth ml-auto text-[12px] font-semibold text-mut"
                       >
                         {t('common.change')}
                       </button>
@@ -624,7 +624,7 @@ function Onboarding({ user, profile, onDone }) {
                   <button
                     type="button"
                     onClick={() => finish('create')}
-                    className="mt-3 rounded-full bg-pine px-5 py-2.5 text-[13px] font-semibold text-white"
+                    className="smooth mt-3 rounded-full bg-pine px-5 py-2.5 text-[13px] font-semibold text-white"
                   >
                     {t('onboarding.firstPlan.use')}
                   </button>
@@ -636,7 +636,7 @@ function Onboarding({ user, profile, onDone }) {
                 type="button"
                 onClick={() => finish('plans')}
                 disabled={saving}
-                className="w-full rounded-full border border-line bg-card px-6 py-3.5 text-[15px] font-semibold text-sub"
+                className="smooth w-full rounded-full border border-line bg-card px-6 py-3.5 text-[15px] font-semibold text-sub"
               >
                 {t('common.later')}
               </button>
@@ -667,7 +667,7 @@ function Onboarding({ user, profile, onDone }) {
                 <button
                   type="button"
                   onClick={() => setStepIndex((i) => i - 1)}
-                  className="text-[13px] font-semibold text-mut"
+                  className="smooth text-[13px] font-semibold text-mut"
                 >
                   {t('common.back')}
                 </button>

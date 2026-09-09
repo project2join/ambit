@@ -7,25 +7,26 @@
   und Tailwind setzt automatisch die richtige Farbe ein.
 */
 @theme {
-  /* Farben */
-  --color-ink: #191813; /* Tinte — warmes Fast-Schwarz für Text */
-  --color-paper: #f6f4ef; /* Elfenbein — der Hintergrund der App */
+  /* Farben — «Sanft & luftig»: helle, warme Töne mit wenig Kontrast
+     (2026-09-09 aufgehellt, siehe Vergleichsseite mit dem Nutzer) */
+  --color-ink: #38352e; /* Tinte — warmes Dunkelbraun statt Fast-Schwarz */
+  --color-paper: #faf8f3; /* Elfenbein — der Hintergrund der App */
   --color-card: #ffffff; /* Weiss für Karten */
-  --color-pine: #33473c; /* Tannengrün — Freundschaftliches */
-  --color-pine-soft: #e9ebe2; /* helles Grün */
-  --color-bordeaux: #7e3b43; /* Bordeaux — Dating-Momente */
-  --color-bordeaux-deep: #652e36; /* dunkles Bordeaux */
-  --color-bordeaux-soft: #f1e5e3; /* helles Bordeaux */
-  --color-line: #e7e2d7; /* warme Haarlinien (Trennlinien, Ränder) */
-  --color-sub: #6e695d; /* gedämpfter Text */
-  --color-mut: #9c9689; /* leiser Text */
+  --color-pine: #46594c; /* Tannengrün — Freundschaftliches */
+  --color-pine-soft: #eef1e8; /* helles Grün */
+  --color-bordeaux: #95555c; /* Bordeaux — Dating-Momente */
+  --color-bordeaux-deep: #7a464b; /* dunkles Bordeaux */
+  --color-bordeaux-soft: #f7efec; /* helles Bordeaux */
+  --color-line: #f1ede3; /* warme Haarlinien (Trennlinien, Ränder) — kaum sichtbar */
+  --color-sub: #86806f; /* gedämpfter Text */
+  --color-mut: #b6afa0; /* leiser Text */
 
   /* Schriften */
   --font-serif: "Fraunces", Georgia, serif; /* Titel, Namen, Zitate */
   --font-sans: "Inter", system-ui, sans-serif; /* Fliesstext */
 
-  /* Weicher, tiefer Schatten für Karten */
-  --shadow-card: 0 10px 30px rgba(25, 24, 19, 0.07);
+  /* Weicher, zarter Schatten für Karten — trägt statt einer Linie */
+  --shadow-card: 0 10px 28px rgba(56, 53, 46, 0.06);
 }
 
 /* Grundeinstellung: Elfenbein-Hintergrund, Inter als Standardschrift */
@@ -42,6 +43,18 @@ body {
 */
 .font-serif {
   font-variation-settings: 'opsz' 18;
+}
+
+/*
+  Weicher Übergang fürs Antippen: statt dass Knöpfe hart von einem
+  Zustand in den anderen springen, federn sie sanft ein. Einfach diese
+  Klasse an einen Knopf/Chip dranhängen (className="... smooth").
+*/
+.smooth {
+  transition: all 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.smooth:active {
+  transform: scale(0.97);
 }
 
 /*
@@ -69,7 +82,7 @@ body {
   border-radius: 50%;
   background: #fff;
   border: 2px solid var(--color-pine);
-  box-shadow: 0 1px 4px rgba(25, 24, 19, 0.2);
+  box-shadow: 0 1px 4px rgba(56, 53, 46, 0.18);
   cursor: pointer;
 }
 .dual-range input[type='range']::-moz-range-thumb {

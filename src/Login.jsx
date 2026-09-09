@@ -76,7 +76,7 @@ function Login() {
           )}
 
           {/* Darunter: das Login in einer weissen Karte */}
-          <div className="mt-2 rounded-2xl bg-card border border-line shadow-card p-6">
+          <div className="mt-2 rounded-[22px] bg-card shadow-card p-6">
             {sent ? (
               // Nach dem Absenden: Bestätigung statt Formular
               <div className="text-center py-2">
@@ -127,7 +127,7 @@ function Login() {
                 <button
                   type="submit"
                   disabled={sending}
-                  className="w-full mt-4 rounded-full bg-pine px-6 py-3.5 text-[15px] font-semibold text-white shadow-card active:bg-ink transition-colors disabled:opacity-60"
+                  className="smooth w-full mt-4 rounded-full bg-pine px-6 py-3.5 text-[15px] font-semibold text-white shadow-card active:bg-ink disabled:opacity-60"
                 >
                   {sending ? t('login.submitting') : t('login.submit')}
                 </button>

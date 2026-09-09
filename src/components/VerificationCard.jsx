@@ -103,7 +103,7 @@ function VerificationCard({ user, profile }) {
             type="button"
             onClick={() => fileRef.current.click()}
             disabled={busy}
-            className="w-full mt-3 rounded-full bg-pine px-6 py-3 text-[14px] font-semibold text-white disabled:opacity-50"
+            className="smooth w-full mt-3 rounded-full bg-pine px-6 py-3 text-[14px] font-semibold text-white disabled:opacity-50"
           >
             {busy
               ? t('verify.uploading')

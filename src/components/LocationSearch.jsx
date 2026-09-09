@@ -67,7 +67,7 @@ function LocationSearch({ onPick }) {
         <button
           type="submit"
           disabled={busy || !query.trim()}
-          className="rounded-full bg-pine px-5 text-[14px] font-semibold text-white disabled:opacity-40"
+          className="smooth rounded-full bg-pine px-5 text-[14px] font-semibold text-white disabled:opacity-40"
         >
           {busy ? '…' : t('location.search')}
         </button>
@@ -84,7 +84,7 @@ function LocationSearch({ onPick }) {
               key={i}
               type="button"
               onClick={() => onPick(r)}
-              className="flex items-center gap-2 text-left bg-paper border border-line rounded-xl px-4 py-3 text-[14px] text-ink"
+              className="smooth flex items-center gap-2 text-left bg-paper border border-line rounded-xl px-4 py-3 text-[14px] text-ink"
             >
               <MapPinIcon size={15} className="text-pine flex-shrink-0" />
               {r.label}

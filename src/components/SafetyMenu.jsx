@@ -54,7 +54,7 @@ function SafetyMenu({ user, person, planId, onBlocked, onClose }) {
             type="button"
             onClick={onClose}
             aria-label={t('common.close')}
-            className="text-mut p-1"
+            className="smooth text-mut p-1"
           >
             <XIcon size={20} />
           </button>
@@ -66,7 +66,7 @@ function SafetyMenu({ user, person, planId, onBlocked, onClose }) {
             <button
               type="button"
               onClick={() => setMode('report')}
-              className="w-full text-left rounded-xl border border-line bg-paper px-4 py-3.5 text-[14.5px] text-ink"
+              className="smooth w-full text-left rounded-xl border border-line bg-paper px-4 py-3.5 text-[14.5px] text-ink"
             >
               {t('safety.report')}
             </button>
@@ -74,7 +74,7 @@ function SafetyMenu({ user, person, planId, onBlocked, onClose }) {
               type="button"
               onClick={handleBlock}
               disabled={busy}
-              className="w-full text-left rounded-xl border border-line bg-paper px-4 py-3.5 text-[14.5px] text-bordeaux disabled:opacity-50"
+              className="smooth w-full text-left rounded-xl border border-line bg-paper px-4 py-3.5 text-[14.5px] text-bordeaux disabled:opacity-50"
             >
               {t('safety.block')}
             </button>
@@ -100,7 +100,7 @@ function SafetyMenu({ user, person, planId, onBlocked, onClose }) {
             <button
               type="submit"
               disabled={!reason.trim() || busy}
-              className="w-full mt-3 rounded-full bg-pine px-6 py-3 text-[14px] font-semibold text-white disabled:opacity-40"
+              className="smooth w-full mt-3 rounded-full bg-pine px-6 py-3 text-[14px] font-semibold text-white disabled:opacity-40"
             >
               {t('safety.reportSend')}
             </button>
@@ -114,7 +114,7 @@ function SafetyMenu({ user, person, planId, onBlocked, onClose }) {
             <button
               type="button"
               onClick={onClose}
-              className="mt-4 rounded-full border border-line bg-paper px-6 py-2.5 text-[13.5px] font-semibold text-sub"
+              className="smooth mt-4 rounded-full border border-line bg-paper px-6 py-2.5 text-[13.5px] font-semibold text-sub"
             >
               {t('common.close')}
             </button>

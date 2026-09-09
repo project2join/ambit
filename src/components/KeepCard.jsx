@@ -29,7 +29,7 @@ function KeepCard({ plan, state, onKeep, onRelease }) {
         <button
           type="button"
           onClick={onRelease}
-          className="text-[12px] font-semibold text-mut mt-2"
+          className="smooth text-[12px] font-semibold text-mut mt-2"
         >
           {t('keep.release')}
         </button>
@@ -63,7 +63,7 @@ function KeepCard({ plan, state, onKeep, onRelease }) {
         <button
           type="button"
           onClick={onKeep}
-          className="rounded-full bg-pine text-white px-4 py-2 text-[12.5px] font-semibold"
+          className="smooth rounded-full bg-pine text-white px-4 py-2 text-[12.5px] font-semibold"
         >
           {t('keep.button')}
         </button>

@@ -183,7 +183,7 @@ function PhotoCropModal({ file, onCancel, onDone }) {
         <button
           type="button"
           onClick={onCancel}
-          className="w-12 h-12 rounded-full bg-white/15 text-white flex items-center justify-center"
+          className="smooth w-12 h-12 rounded-full bg-white/15 text-white flex items-center justify-center"
           aria-label={t('photos.cropCancel')}
         >
           <XIcon size={20} />
@@ -192,7 +192,7 @@ function PhotoCropModal({ file, onCancel, onDone }) {
           type="button"
           onClick={handleApply}
           disabled={!natural || saving}
-          className="w-12 h-12 rounded-full bg-pine text-white flex items-center justify-center disabled:opacity-40"
+          className="smooth w-12 h-12 rounded-full bg-pine text-white flex items-center justify-center disabled:opacity-40"
           aria-label={t('photos.cropApply')}
         >
           <CheckIcon size={20} />

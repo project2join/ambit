@@ -29,7 +29,7 @@ function ProfileSheet({ user, profile, planId, onBlocked, onClose }) {
                 type="button"
                 onClick={() => setSafetyOpen(true)}
                 aria-label={t('safety.menu')}
-                className="w-8 h-8 rounded-full bg-ink/45 text-white flex items-center justify-center"
+                className="smooth w-8 h-8 rounded-full bg-ink/45 text-white flex items-center justify-center"
               >
                 <MoreIcon size={17} />
               </button>
@@ -38,7 +38,7 @@ function ProfileSheet({ user, profile, planId, onBlocked, onClose }) {
               type="button"
               onClick={onClose}
               aria-label={t('common.close')}
-              className="w-8 h-8 rounded-full bg-ink/45 text-white flex items-center justify-center"
+              className="smooth w-8 h-8 rounded-full bg-ink/45 text-white flex items-center justify-center"
             >
               <XIcon size={17} />
             </button>

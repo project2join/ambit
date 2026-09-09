@@ -145,7 +145,7 @@ function IchTab({ user, profile, onChange }) {
                 <button
                   type="button"
                   onClick={() => patch({ prompts: prompts.slice(0, 2) })}
-                  className="text-[12px] font-semibold text-mut"
+                  className="smooth text-[12px] font-semibold text-mut"
                 >
                   {t('common.remove')}
                 </button>
@@ -158,7 +158,7 @@ function IchTab({ user, profile, onChange }) {
           <button
             type="button"
             onClick={() => setPickerOpen(true)}
-            className="w-full mt-2.5 py-3 rounded-xl border-[1.5px] border-dashed border-line text-mut text-[13px] font-medium"
+            className="smooth w-full mt-2.5 py-3 rounded-xl border-[1.5px] border-dashed border-line text-mut text-[13px] font-medium"
           >
             {t('promptsUi.addThird')}
           </button>
@@ -226,7 +226,7 @@ function IchTab({ user, profile, onChange }) {
           <button
             type="submit"
             disabled={!otherLang.trim()}
-            className="rounded-full border border-line px-4 text-[13px] font-semibold text-sub disabled:opacity-40"
+            className="smooth rounded-full border border-line px-4 text-[13px] font-semibold text-sub disabled:opacity-40"
           >
             {t('onboarding.languagesStep.otherAdd')}
           </button>
@@ -250,7 +250,7 @@ function IchTab({ user, profile, onChange }) {
             <button
               type="button"
               onClick={() => setEditingLocation(true)}
-              className="ml-auto text-[12px] font-semibold text-mut"
+              className="smooth ml-auto text-[12px] font-semibold text-mut"
             >
               {t('common.change')}
             </button>
@@ -276,7 +276,7 @@ function IchTab({ user, profile, onChange }) {
                 onClick={() =>
                   patch({ current_area: null, current_lat: null, current_lng: null })
                 }
-                className="ml-auto text-[12px] font-semibold text-mut"
+                className="smooth ml-auto text-[12px] font-semibold text-mut"
               >
                 {t('common.remove')}
               </button>
@@ -285,7 +285,7 @@ function IchTab({ user, profile, onChange }) {
             <button
               type="button"
               onClick={() => setEditingCurrent(true)}
-              className="w-full py-2.5 rounded-xl border-[1.5px] border-dashed border-line text-mut text-[13px] font-medium"
+              className="smooth w-full py-2.5 rounded-xl border-[1.5px] border-dashed border-line text-mut text-[13px] font-medium"
             >
               + {t('me.currentAdd')}
             </button>
@@ -458,7 +458,7 @@ function IchTab({ user, profile, onChange }) {
         <button
           type="button"
           onClick={() => setFeedbackOpen(true)}
-          className="w-full flex items-center justify-between gap-3 text-left"
+          className="smooth w-full flex items-center justify-between gap-3 text-left"
         >
           <span>
             <span className="block text-[14px] font-semibold text-ink">
@@ -475,7 +475,7 @@ function IchTab({ user, profile, onChange }) {
         <button
           type="button"
           onClick={handleLogout}
-          className="w-full mt-5 rounded-full border border-line bg-paper px-6 py-3 text-[14px] font-semibold text-sub"
+          className="smooth w-full mt-5 rounded-full border border-line bg-paper px-6 py-3 text-[14px] font-semibold text-sub"
         >
           {t('me.logout')}
         </button>
@@ -485,7 +485,7 @@ function IchTab({ user, profile, onChange }) {
           type="button"
           onClick={handleDeleteAccount}
           disabled={deleting}
-          className="w-full mt-2 rounded-full border border-line bg-paper px-6 py-3 text-[14px] font-semibold text-bordeaux disabled:opacity-50"
+          className="smooth w-full mt-2 rounded-full border border-line bg-paper px-6 py-3 text-[14px] font-semibold text-bordeaux disabled:opacity-50"
         >
           {deleting ? t('settings.deleting') : t('settings.deleteAccount')}
         </button>

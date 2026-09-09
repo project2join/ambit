@@ -122,7 +122,7 @@ function MainShell({ user, profile, onProfileChange, initialTab = 'plans' }) {
             type="button"
             onClick={() => setConnOpen(true)}
             aria-label={t('connections.title')}
-            className="relative w-10 h-10 rounded-full bg-card border border-line text-ink flex items-center justify-center"
+            className="smooth relative w-10 h-10 rounded-full bg-card border border-line text-ink flex items-center justify-center"
           >
             <UsersIcon size={19} />
             {badge > 0 && (

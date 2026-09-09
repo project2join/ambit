@@ -352,7 +352,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
           <button
             type="button"
             onClick={onCreate}
-            className="mt-5 rounded-full bg-pine px-6 py-3 text-[14px] font-semibold text-white shadow-card active:bg-ink transition-colors"
+            className="smooth mt-5 rounded-full bg-pine px-6 py-3 text-[14px] font-semibold text-white shadow-card active:bg-ink"
           >
             {t('plans.emptyButton')}
           </button>
@@ -396,14 +396,14 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                   <button
                     type="button"
                     onClick={() => onEdit(plan)}
-                    className="text-[12px] font-semibold text-sub"
+                    className="smooth text-[12px] font-semibold text-sub"
                   >
                     {t('plans.edit')}
                   </button>
                   <button
                     type="button"
                     onClick={() => deletePlan(plan.id)}
-                    className="text-[12px] font-semibold text-mut"
+                    className="smooth text-[12px] font-semibold text-mut"
                   >
                     {t('plans.delete')}
                   </button>
@@ -474,7 +474,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                           ? setDayPick({ planId: plan.id, days: [] })
                           : sendRequest(plan)
                       }
-                      className="rounded-full bg-pine text-white px-[18px] py-2.5 text-[14px] font-semibold flex-shrink-0"
+                      className="smooth rounded-full bg-pine text-white px-[18px] py-2.5 text-[14px] font-semibold flex-shrink-0"
                     >
                       {t('requests.request')}
                     </button>
@@ -496,7 +496,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                       setChatPlan(plan)
                       setChatThreadWith(user.id)
                     }}
-                    className="text-[12px] font-semibold text-pine flex items-center gap-1.5"
+                    className="smooth text-[12px] font-semibold text-pine flex items-center gap-1.5"
                   >
                     <CheckIcon size={13} />
                     {t('requests.interestedLaterMatched')}
@@ -510,7 +510,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                   <button
                     type="button"
                     onClick={() => sendInterestLater(plan)}
-                    className="text-[12px] font-semibold text-mut"
+                    className="smooth text-[12px] font-semibold text-mut"
                   >
                     {t('requests.interestedLater')}
                   </button>
@@ -544,7 +544,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                   type="button"
                   onClick={() => sendRequest(plan, dayPick.days)}
                   disabled={dayPick.days.length === 0}
-                  className="mt-3 rounded-full bg-pine text-white px-[18px] py-2.5 text-[14px] font-semibold disabled:opacity-40"
+                  className="smooth mt-3 rounded-full bg-pine text-white px-[18px] py-2.5 text-[14px] font-semibold disabled:opacity-40"
                 >
                   {t('requests.send')}
                 </button>
@@ -564,14 +564,14 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                       <button
                         type="button"
                         onClick={() => confirmJoin(myReq)}
-                        className="rounded-full bg-pine text-white px-[18px] py-2.5 text-[13px] font-semibold"
+                        className="smooth rounded-full bg-pine text-white px-[18px] py-2.5 text-[13px] font-semibold"
                       >
                         {t('requests.confirm')}
                       </button>
                       <button
                         type="button"
                         onClick={() => cancelJoin(myReq)}
-                        className="rounded-full border border-line bg-card text-sub px-[18px] py-2.5 text-[13px] font-semibold"
+                        className="smooth rounded-full border border-line bg-card text-sub px-[18px] py-2.5 text-[13px] font-semibold"
                       >
                         {t('requests.cancel')}
                       </button>
@@ -588,7 +588,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                       <button
                         type="button"
                         onClick={() => setChatPlan(plan)}
-                        className="rounded-full bg-pine text-white px-4 py-2 text-[12.5px] font-semibold"
+                        className="smooth rounded-full bg-pine text-white px-4 py-2 text-[12.5px] font-semibold"
                       >
                         {t('chat.open')}
                       </button>
@@ -597,7 +597,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                         type="button"
                         onClick={() => handleShare(plan)}
                         aria-label={t('share.button')}
-                        className="rounded-full border border-line bg-card text-sub px-3 py-2 flex items-center gap-1.5 text-[12.5px] font-semibold"
+                        className="smooth rounded-full border border-line bg-card text-sub px-3 py-2 flex items-center gap-1.5 text-[12.5px] font-semibold"
                       >
                         <ShareIcon size={14} />
                         {t('share.button')}
@@ -605,7 +605,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                       <button
                         type="button"
                         onClick={() => cancelJoin(myReq)}
-                        className="rounded-full border border-line bg-card text-sub px-4 py-2 text-[12.5px] font-semibold"
+                        className="smooth rounded-full border border-line bg-card text-sub px-4 py-2 text-[12.5px] font-semibold"
                       >
                         {t('requests.cancel')}
                       </button>
@@ -632,7 +632,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                       <button
                         type="button"
                         onClick={() => setChatPlan(plan)}
-                        className="rounded-full bg-pine text-white px-4 py-2 text-[12.5px] font-semibold"
+                        className="smooth rounded-full bg-pine text-white px-4 py-2 text-[12.5px] font-semibold"
                       >
                         {t('chat.open')}
                       </button>
@@ -640,7 +640,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                         type="button"
                         onClick={() => handleShare(plan)}
                         aria-label={t('share.button')}
-                        className="rounded-full border border-line bg-card text-sub p-2"
+                        className="smooth rounded-full border border-line bg-card text-sub p-2"
                       >
                         <ShareIcon size={15} />
                       </button>
@@ -682,7 +682,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                             type="button"
                             onClick={() => fixDate(plan, dateFix.day, dateFix.time)}
                             disabled={!dateFix.day}
-                            className="rounded-full bg-pine text-white px-4 py-2 text-[13px] font-semibold disabled:opacity-40"
+                            className="smooth rounded-full bg-pine text-white px-4 py-2 text-[13px] font-semibold disabled:opacity-40"
                           >
                             {t('requests.setDate')}
                           </button>
@@ -692,7 +692,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                       <button
                         type="button"
                         onClick={() => setDateFix({ planId: plan.id, day: null, time: '19:00' })}
-                        className="mt-2 rounded-full bg-ink text-white px-4 py-2 text-[12.5px] font-semibold"
+                        className="smooth mt-2 rounded-full bg-ink text-white px-4 py-2 text-[12.5px] font-semibold"
                       >
                         {t('requests.setDate')}
                       </button>
@@ -716,7 +716,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                         <button
                           type="button"
                           onClick={() => fixTimeOnly(plan, dateFix.time)}
-                          className="rounded-full bg-pine text-white px-4 py-2 text-[13px] font-semibold"
+                          className="smooth rounded-full bg-pine text-white px-4 py-2 text-[13px] font-semibold"
                         >
                           {t('requests.setDate')}
                         </button>
@@ -725,7 +725,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                       <button
                         type="button"
                         onClick={() => setDateFix({ planId: plan.id, time: '19:00' })}
-                        className="mt-1 rounded-full bg-ink text-white px-4 py-2 text-[12.5px] font-semibold"
+                        className="smooth mt-1 rounded-full bg-ink text-white px-4 py-2 text-[12.5px] font-semibold"
                       >
                         {t('requests.setDate')}
                       </button>
@@ -741,7 +741,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                       <button
                         type="button"
                         onClick={() => person && setSheetProfile(person)}
-                        className="flex items-center gap-3 flex-1 min-w-0 text-left"
+                        className="smooth flex items-center gap-3 flex-1 min-w-0 text-left"
                       >
                         <Avatar owner={person} size="w-10 h-10" />
                         <div className="flex-1 min-w-0">
@@ -759,7 +759,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                         type="button"
                         onClick={() => acceptRequest(r)}
                         aria-label={t('requests.accept')}
-                        className="w-9 h-9 rounded-full bg-pine text-white flex items-center justify-center flex-shrink-0"
+                        className="smooth w-9 h-9 rounded-full bg-pine text-white flex items-center justify-center flex-shrink-0"
                       >
                         <CheckIcon size={17} />
                       </button>
@@ -767,7 +767,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                         type="button"
                         onClick={() => declineRequest(r)}
                         aria-label={t('requests.declineSoft')}
-                        className="w-9 h-9 rounded-full bg-card border border-line text-mut flex items-center justify-center flex-shrink-0"
+                        className="smooth w-9 h-9 rounded-full bg-card border border-line text-mut flex items-center justify-center flex-shrink-0"
                       >
                         <XIcon size={17} />
                       </button>
@@ -798,7 +798,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                       <button
                         type="button"
                         onClick={() => person && setSheetProfile(person)}
-                        className="flex items-center gap-3 flex-1 min-w-0 text-left"
+                        className="smooth flex items-center gap-3 flex-1 min-w-0 text-left"
                       >
                         <Avatar owner={person} size="w-10 h-10" />
                         <div className="flex-1 min-w-0 text-[12.5px] text-sub">
@@ -810,7 +810,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                       <button
                         type="button"
                         onClick={() => startSideChat(plan, r)}
-                        className="rounded-full bg-pine text-white px-3.5 py-2 text-[12px] font-semibold flex-shrink-0"
+                        className="smooth rounded-full bg-pine text-white px-3.5 py-2 text-[12px] font-semibold flex-shrink-0"
                       >
                         {r.later_matched ? t('chat.open') : t('requests.interestedLaterStartChat')}
                       </button>

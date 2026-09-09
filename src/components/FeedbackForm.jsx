@@ -45,7 +45,7 @@ function FeedbackForm({ user, onClose }) {
             type="button"
             onClick={onClose}
             aria-label={t('common.close')}
-            className="text-mut p-1"
+            className="smooth text-mut p-1"
           >
             <XIcon size={20} />
           </button>
@@ -58,7 +58,7 @@ function FeedbackForm({ user, onClose }) {
             <button
               type="button"
               onClick={onClose}
-              className="mt-4 rounded-full border border-line bg-paper px-6 py-2.5 text-[13.5px] font-semibold text-sub"
+              className="smooth mt-4 rounded-full border border-line bg-paper px-6 py-2.5 text-[13.5px] font-semibold text-sub"
             >
               {t('common.close')}
             </button>
@@ -82,7 +82,7 @@ function FeedbackForm({ user, onClose }) {
             <button
               type="submit"
               disabled={!text.trim() || sending}
-              className="w-full mt-3 rounded-full bg-pine px-6 py-3 text-[14px] font-semibold text-white disabled:opacity-40"
+              className="smooth w-full mt-3 rounded-full bg-pine px-6 py-3 text-[14px] font-semibold text-white disabled:opacity-40"
             >
               {sending ? t('settings.feedbackSending') : t('settings.feedbackSend')}
             </button>

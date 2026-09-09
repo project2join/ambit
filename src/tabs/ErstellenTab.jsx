@@ -247,7 +247,7 @@ function ErstellenTab({ user, editPlan, onPublished }) {
         <button
           type="button"
           onClick={() => setSpots(Math.max(1, spots - 1))}
-          className="w-[38px] h-[38px] rounded-full border border-line bg-card text-[18px] text-ink"
+          className="smooth w-[38px] h-[38px] rounded-full border border-line bg-card text-[18px] text-ink"
         >
           −
         </button>
@@ -258,7 +258,7 @@ function ErstellenTab({ user, editPlan, onPublished }) {
         <button
           type="button"
           onClick={() => setSpots(Math.min(5, spots + 1))}
-          className="w-[38px] h-[38px] rounded-full border border-line bg-card text-[18px] text-ink"
+          className="smooth w-[38px] h-[38px] rounded-full border border-line bg-card text-[18px] text-ink"
         >
           +
         </button>
@@ -350,7 +350,7 @@ function ErstellenTab({ user, editPlan, onPublished }) {
         type="button"
         onClick={publish}
         disabled={!canPublish}
-        className="w-full mt-[18px] rounded-full bg-pine px-6 py-[15px] text-[15px] font-semibold text-white disabled:opacity-40"
+        className="smooth w-full mt-[18px] rounded-full bg-pine px-6 py-[15px] text-[15px] font-semibold text-white disabled:opacity-40"
       >
         {isEditing
           ? publishing

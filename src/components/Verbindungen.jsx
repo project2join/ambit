@@ -154,7 +154,7 @@ function Verbindungen({ user, onClose }) {
             type="button"
             onClick={onClose}
             aria-label={t('common.close')}
-            className="text-mut p-1"
+            className="smooth text-mut p-1"
           >
             <XIcon size={20} />
           </button>
@@ -195,7 +195,7 @@ function Verbindungen({ user, onClose }) {
                     <button
                       type="button"
                       onClick={() => setChatPlan(plan)}
-                      className="rounded-full bg-pine text-white px-3.5 py-2 text-[12px] font-semibold"
+                      className="smooth rounded-full bg-pine text-white px-3.5 py-2 text-[12px] font-semibold"
                     >
                       {t('chat.open')}
                     </button>
@@ -204,7 +204,7 @@ function Verbindungen({ user, onClose }) {
                     <button
                       type="button"
                       onClick={() => cancelJoin(req)}
-                      className="rounded-full border border-line bg-card text-sub px-3.5 py-2 text-[12px] font-semibold"
+                      className="smooth rounded-full border border-line bg-card text-sub px-3.5 py-2 text-[12px] font-semibold"
                     >
                       {t('requests.cancel')}
                     </button>
@@ -248,14 +248,14 @@ function Verbindungen({ user, onClose }) {
                   <button
                     type="button"
                     onClick={() => setChatPlan(plan)}
-                    className="rounded-full bg-pine text-white px-3.5 py-2 text-[12px] font-semibold"
+                    className="smooth rounded-full bg-pine text-white px-3.5 py-2 text-[12px] font-semibold"
                   >
                     {t('chat.open')}
                   </button>
                   <button
                     type="button"
                     onClick={() => handleRelease(plan)}
-                    className="rounded-full border border-line bg-card text-sub px-3.5 py-2 text-[12px] font-semibold"
+                    className="smooth rounded-full border border-line bg-card text-sub px-3.5 py-2 text-[12px] font-semibold"
                   >
                     {t('keep.release')}
                   </button>

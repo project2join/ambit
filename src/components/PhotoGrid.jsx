@@ -91,7 +91,7 @@ function PhotoGrid({ userId, photos, onChange }) {
               type="button"
               onClick={() => removePhoto(i)}
               aria-label={t('common.remove')}
-              className="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-ink/55 text-white flex items-center justify-center"
+              className="smooth absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-ink/55 text-white flex items-center justify-center"
             >
               <XIcon size={13} />
             </button>
@@ -104,7 +104,7 @@ function PhotoGrid({ userId, photos, onChange }) {
             type="button"
             onClick={() => fileRef.current.click()}
             disabled={busy}
-            className="aspect-[3/4] rounded-xl border-[1.5px] border-dashed border-line text-mut flex flex-col items-center justify-center gap-1 disabled:opacity-50"
+            className="smooth aspect-[3/4] rounded-xl border-[1.5px] border-dashed border-line text-mut flex flex-col items-center justify-center gap-1 disabled:opacity-50"
           >
             <PlusIcon size={16} />
             <span className="text-[11px]">

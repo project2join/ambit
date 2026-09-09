@@ -21,7 +21,7 @@ function PromptPicker({ usedIds, onPick, onClose }) {
             type="button"
             onClick={onClose}
             aria-label={t('common.close')}
-            className="text-mut p-1"
+            className="smooth text-mut p-1"
           >
             <XIcon size={20} />
           </button>
@@ -32,7 +32,7 @@ function PromptPicker({ usedIds, onPick, onClose }) {
             key={id}
             type="button"
             onClick={() => onPick(id)}
-            className="block w-full text-left bg-paper border border-line rounded-xl px-4 py-3 mb-2 text-[14px] text-ink leading-snug"
+            className="smooth block w-full text-left bg-paper border border-line rounded-xl px-4 py-3 mb-2 text-[14px] text-ink leading-snug"
           >
             {t(`prompts.${id}`)}
           </button>

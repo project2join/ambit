@@ -3,10 +3,11 @@
   Damit sieht alles automatisch gleich aus.
 */
 
-// Weisse Karte mit Haarlinie und abgerundeten Ecken
+// Weisse Karte: zarter Schatten statt harter Linie, grosszügig gerundet
+// («Sanft & luftig» — trägt die Karte, statt sie einzurahmen)
 export function Card({ children, className = '' }) {
   return (
-    <div className={`bg-card border border-line rounded-2xl p-[18px] ${className}`}>
+    <div className={`bg-card shadow-card rounded-[22px] p-[18px] ${className}`}>
       {children}
     </div>
   )
@@ -34,7 +35,7 @@ export function Chip({ active, warm, onClick, children }) {
       type="button"
       onClick={onClick}
       className={
-        'px-[14px] py-[7px] rounded-full text-[13px] font-medium whitespace-nowrap transition-colors border ' +
+        'smooth px-[14px] py-[7px] rounded-full text-[13px] font-medium whitespace-nowrap border ' +
         (active
           ? (warm ? 'bg-bordeaux' : 'bg-pine') + ' text-white border-transparent'
           : 'bg-card text-sub border-line')
@@ -75,7 +76,7 @@ export function PrimaryButton({ onClick, disabled, children, type = 'button' }) 
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className="w-full rounded-full bg-pine px-6 py-3.5 text-[15px] font-semibold text-white shadow-card active:bg-ink transition-colors disabled:opacity-40"
+      className="smooth w-full rounded-full bg-pine px-6 py-3.5 text-[15px] font-semibold text-white shadow-card active:bg-ink disabled:opacity-40"
     >
       {children}
     </button>
