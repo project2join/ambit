@@ -57,6 +57,16 @@ body {
   transform: scale(0.97);
 }
 
+/* Scrollbar unsichtbar machen — z. B. bei den durchwischbaren Fotos
+   im Mini-Profil. Wischen/Scrollen funktioniert weiterhin normal. */
+.no-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* alter Edge */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
 /*
   Doppel-Schieberegler für die Altersspanne:
   zwei übereinanderliegende Regler — nur die runden Griffe reagieren

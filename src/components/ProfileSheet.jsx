@@ -1,7 +1,9 @@
 /*
-  Mini-Profil in Grossansicht: erscheint von unten, wenn der Host
-  eine anfragende Person antippt. Zeigt nur die erlaubten Felder
-  (Fotos, Name, Alter, Ort, Sprachen, Kategorien, Über mich, Antworten).
+  Mini-Profil in Grossansicht: erscheint von unten, wenn man auf eine
+  Plan-Karte tippt (Host-Ansicht) oder auf eine anfragende Person
+  (Anfragen-Ansicht) — für beide Seiten dasselbe. Zeigt nur die
+  erlaubten Felder (Fotos, Name, Alter, Ort, Sprachen, Kategorien,
+  Über mich, Antworten).
 */
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -14,14 +16,26 @@ function ProfileSheet({ user, profile, planId, onBlocked, onClose }) {
   const [safetyOpen, setSafetyOpen] = useState(false)
   if (!profile) return null
 
-  const photo = profile.photo_urls?.[0]
+  const photos = profile.photo_urls || []
 
   return (
     <div className="fixed inset-0 z-30 bg-ink/55 flex items-end justify-center">
       <div className="w-full max-w-[390px] bg-card rounded-t-3xl overflow-hidden max-h-[85vh] overflow-y-auto">
-        {/* Foto-Kopf (erstes Foto oder ruhige Farbfläche) */}
+        {/* Foto-Kopf: alle Fotos nebeneinander zum Durchwischen
+            (nicht nur das erste) — so sieht man mehr von der Person */}
         <div className="relative h-[190px] bg-pine-soft">
-          {photo && <img src={photo} alt="" className="w-full h-full object-cover" />}
+          {photos.length > 0 && (
+            <div className="flex h-full overflow-x-auto snap-x snap-mandatory no-scrollbar">
+              {photos.map((url, i) => (
+                <img
+                  key={i}
+                  src={url}
+                  alt=""
+                  className="w-full h-full object-cover flex-shrink-0 snap-center"
+                />
+              ))}
+            </div>
+          )}
           <div className="absolute top-3.5 right-3.5 flex gap-2">
             {/* Drei Punkte: Melden oder Blockieren */}
             {user && (

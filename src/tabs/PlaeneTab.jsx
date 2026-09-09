@@ -411,8 +411,15 @@ function PlaeneTab({ user, onCreate, onEdit }) {
               </div>
             )}
 
-            {/* Kopfzeile: Bild, Name, Kategorie, Zeitpunkt */}
-            <div className="flex items-center gap-3">
+            {/* Kopfzeile: Bild, Name, Kategorie, Zeitpunkt — antippbar,
+                um das Mini-Profil des Hosts zu sehen (nicht beim eigenen
+                Plan, da bringt es nichts, sich selbst anzuschauen) */}
+            <button
+              type="button"
+              disabled={isMine}
+              onClick={() => owner && setSheetProfile(owner)}
+              className="smooth flex items-center gap-3 text-left w-full"
+            >
               <Avatar owner={owner} />
               <div className="flex-1 min-w-0">
                 <div className="text-[14px] font-semibold text-ink flex items-center gap-1.5">
@@ -438,7 +445,7 @@ function PlaeneTab({ user, onCreate, onEdit }) {
                   {plan.alcohol_free && <> · {t('plans.alcoholFree')}</>}
                 </div>
               </div>
-            </div>
+            </button>
 
             {/* Der Plan-Text in Anführungszeichen, Fraunces */}
             <p className="font-serif text-[17px] font-medium leading-[1.35] text-ink my-3">
