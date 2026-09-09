@@ -52,7 +52,8 @@
     "emptyButton": "Create a plan",
     "alcoholFree": "alcohol-free",
     "delete": "Delete",
-    "deleteConfirm": "Really delete this plan?"
+    "deleteConfirm": "Really delete this plan?",
+    "edit": "Edit"
   },
   "requests": {
     "request": "Ask to join",
@@ -223,7 +224,11 @@
     "publish": "Publish plan",
     "publishing": "Publishing…",
     "publishError": "That didn't work — please try again.",
-    "needDateTime": "Pick a date and time of day."
+    "needDateTime": "Pick a date and time of day.",
+    "editTitle": "Edit plan",
+    "save": "Save",
+    "saving": "Saving…",
+    "finalizedTimeHint": "The exact time is already agreed in the chat. To change it, message the chat directly."
   },
   "setupError": {
     "title": "Database not set up yet",
@@ -265,12 +270,12 @@
     },
     "aboutStep": {
       "title": "About you.",
-      "subtitle": "A sentence or two is plenty — how you are, not your CV.",
-      "placeholder": "e.g. Half gym, half croissants. Always up for plans worth telling stories about."
+      "subtitle": "A sentence or two is plenty — how you are.",
+      "placeholder": ""
     },
     "promptsStep": {
       "title": "Two questions, honest answers.",
-      "subtitle": "Pick two questions and answer in your own words. A third one is optional."
+      "subtitle": "Pick two questions and answer in your own words."
     },
     "languagesStep": {
       "title": "Which languages do you speak?",

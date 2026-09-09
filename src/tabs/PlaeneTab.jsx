@@ -71,7 +71,7 @@ function filterLine(plan, t) {
   return parts.join(' · ')
 }
 
-function PlaeneTab({ user, onCreate }) {
+function PlaeneTab({ user, onCreate, onEdit }) {
   const { t, i18n } = useTranslation()
 
   const [plans, setPlans] = useState(null) // null = lädt noch
@@ -392,13 +392,22 @@ function PlaeneTab({ user, onCreate }) {
                     </span>
                   )}
                 </div>
-                <button
-                  type="button"
-                  onClick={() => deletePlan(plan.id)}
-                  className="text-[12px] font-semibold text-mut"
-                >
-                  {t('plans.delete')}
-                </button>
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => onEdit(plan)}
+                    className="text-[12px] font-semibold text-sub"
+                  >
+                    {t('plans.edit')}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => deletePlan(plan.id)}
+                    className="text-[12px] font-semibold text-mut"
+                  >
+                    {t('plans.delete')}
+                  </button>
+                </div>
               </div>
             )}
 

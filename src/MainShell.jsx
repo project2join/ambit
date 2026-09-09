@@ -31,6 +31,13 @@ function MainShell({ user, profile, onProfileChange, initialTab = 'plans' }) {
   const [tab, setTab] = useState(initialTab)
   const [connOpen, setConnOpen] = useState(false) // Verbindungen offen?
   const [badge, setBadge] = useState(0) // Zähler für Neuigkeiten
+  const [editPlan, setEditPlan] = useState(null) // gesetzt = Erstellen-Screen im Bearbeiten-Modus
+
+  // Frisch erstellen (Plus-Knopf, leerer Feed): nie im Bearbeiten-Modus
+  function openCreateTab() {
+    setEditPlan(null)
+    setTab('create')
+  }
 
   // Neuigkeiten zählen: offene Anfragen auf meine Pläne +
   // neu festgelegte Termine, die auf meine Zusage warten +
@@ -131,15 +138,38 @@ function MainShell({ user, profile, onProfileChange, initialTab = 'plans' }) {
             <IchTab user={user} profile={profile} onChange={onProfileChange} />
           )}
           {tab === 'plans' && (
-            <PlaeneTab user={user} onCreate={() => setTab('create')} />
+            <PlaeneTab
+              user={user}
+              onCreate={openCreateTab}
+              onEdit={(plan) => {
+                setEditPlan(plan)
+                setTab('create')
+              }}
+            />
           )}
           {tab === 'create' && (
-            <ErstellenTab user={user} onPublished={() => setTab('plans')} />
+            <ErstellenTab
+              user={user}
+              editPlan={editPlan}
+              onPublished={() => {
+                setEditPlan(null)
+                setTab('plans')
+              }}
+            />
           )}
           {tab !== 'me' && tab !== 'plans' && tab !== 'create' && <Placeholder />}
         </div>
 
-        <BottomNav tab={tab} onChange={setTab} />
+        <BottomNav
+          tab={tab}
+          onChange={(id) => {
+            // Über die Navigation kommt man immer frisch zum Erstellen-Screen,
+            // nie im Bearbeiten-Modus (der wird nur über "Bearbeiten" im
+            // Pläne-Tab ausgelöst)
+            if (id === 'create') setEditPlan(null)
+            setTab(id)
+          }}
+        />
 
         {/* Verbindungen-Übersicht (Overlay) */}
         {connOpen && (

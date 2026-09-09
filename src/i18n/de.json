@@ -52,7 +52,8 @@
     "emptyButton": "Plan erstellen",
     "alcoholFree": "alkoholfrei",
     "delete": "Löschen",
-    "deleteConfirm": "Diesen Plan wirklich löschen?"
+    "deleteConfirm": "Diesen Plan wirklich löschen?",
+    "edit": "Bearbeiten"
   },
   "requests": {
     "request": "Anfragen",
@@ -223,7 +224,11 @@
     "publish": "Plan veröffentlichen",
     "publishing": "Wird veröffentlicht…",
     "publishError": "Das hat nicht geklappt — versuch es nochmal.",
-    "needDateTime": "Wähle noch Datum und Tageszeit."
+    "needDateTime": "Wähle noch Datum und Tageszeit.",
+    "editTitle": "Plan bearbeiten",
+    "save": "Speichern",
+    "saving": "Wird gespeichert…",
+    "finalizedTimeHint": "Die genaue Uhrzeit ist schon im Chat vereinbart. Um sie zu ändern, schreib das direkt dort."
   },
   "setupError": {
     "title": "Datenbank fehlt noch",
@@ -265,12 +270,12 @@
     },
     "aboutStep": {
       "title": "Über dich.",
-      "subtitle": "Ein, zwei Sätze reichen — wie du bist, nicht dein Lebenslauf.",
-      "placeholder": "z. B. Halb Gym, halb Gipfeli. Immer offen für Pläne, bei denen man danach etwas erzählen kann."
+      "subtitle": "Ein, zwei Sätze reichen — wie du bist.",
+      "placeholder": ""
     },
     "promptsStep": {
       "title": "Zwei Fragen, ehrliche Antworten.",
-      "subtitle": "Wähle zwei Fragen und antworte in deinen Worten. Eine dritte ist freiwillig."
+      "subtitle": "Wähle zwei Fragen und antworte in deinen Worten."
     },
     "languagesStep": {
       "title": "Welche Sprachen sprichst du?",

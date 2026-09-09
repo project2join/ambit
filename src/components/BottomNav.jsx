@@ -17,7 +17,10 @@ function BottomNav({ tab, onChange }) {
   const { t } = useTranslation()
 
   return (
-    <nav className="flex justify-around items-center px-2 pt-2.5 pb-4 bg-card border-t border-line flex-shrink-0">
+    // Fünf gleich breite Spalten statt "justify-around": so liegt der
+    // Plus-Knopf immer exakt in der Mitte, egal wie lang die Labels
+    // links und rechts davon sind (z. B. "Entdecken" vs. "Ich").
+    <nav className="grid grid-cols-5 items-center px-2 pt-2.5 pb-4 bg-card border-t border-line flex-shrink-0">
       {TABS.map(({ id, labelKey, Icon }) => {
         const active = tab === id
 
@@ -30,7 +33,10 @@ function BottomNav({ tab, onChange }) {
               onClick={() => onChange(id)}
               aria-label={t('nav.create')}
               className={
-                '-mt-7 w-[50px] h-[50px] rounded-full text-white flex items-center justify-center shadow-[0_6px_16px_rgba(51,71,60,0.30)] transition-colors ' +
+                // mx-auto: zentriert den Knopf in seiner Spalte, auch
+                // mit fester Breite (Grid-Spalten strecken sonst nur
+                // Elemente ohne feste Breite, sonst landen sie links)
+                '-mt-7 mx-auto w-[50px] h-[50px] rounded-full text-white flex items-center justify-center shadow-[0_6px_16px_rgba(51,71,60,0.30)] transition-colors ' +
                 (active ? 'bg-ink' : 'bg-pine')
               }
             >
