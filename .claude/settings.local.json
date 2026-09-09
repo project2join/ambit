@@ -88,7 +88,8 @@
       "Bash(git commit -m 'Gerne ein andermal: privater 1:1-Chat statt Gruppen-Chat, kein Platz wird belegt *)",
       "Bash(git commit -m 'TODO: privaten 1:1-Chat bei Gerne-ein-andermal dokumentiert *)",
       "Bash(git commit -m ' *)",
-      "Bash(git commit --amend -m ' *)"
+      "Bash(git commit --amend -m ' *)",
+      "mcp__visualize__read_me"
     ]
   }
 }

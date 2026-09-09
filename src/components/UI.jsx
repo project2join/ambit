@@ -7,7 +7,7 @@
 // («Sanft & luftig» — trägt die Karte, statt sie einzurahmen)
 export function Card({ children, className = '' }) {
   return (
-    <div className={`bg-card shadow-card rounded-[22px] p-[18px] ${className}`}>
+    <div className={`bg-card shadow-card rounded-2xl p-[18px] ${className}`}>
       {children}
     </div>
   )

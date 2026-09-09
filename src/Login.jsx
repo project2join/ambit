@@ -76,7 +76,7 @@ function Login() {
           )}
 
           {/* Darunter: das Login in einer weissen Karte */}
-          <div className="mt-2 rounded-[22px] bg-card shadow-card p-6">
+          <div className="mt-2 rounded-2xl bg-card shadow-card p-6">
             {sent ? (
               // Nach dem Absenden: Bestätigung statt Formular
               <div className="text-center py-2">
